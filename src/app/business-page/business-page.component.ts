@@ -15,7 +15,13 @@ export class BusinessPageComponent implements OnInit {
   text = '';
   totalRecords;
   page = 1;
-
+  show_businessEdit_form = false;
+  show_businessAdd_form = false;
+  show_businessDelete_form = false;
+  businessEditName;
+  businessEditId;
+  editedBusiness;
+  addedBusiness;
   constructor(private authService: AuthService) { }
 
   getBusiness(){
@@ -30,18 +36,68 @@ export class BusinessPageComponent implements OnInit {
     })
   }
 
-  deleteBusiness(data){
+  deleteBusiness(){
     console.log("Deleting Business...")
-    return this.authService.deleteBusiness(data['businessId']).subscribe((result) => {
+    return this.authService.deleteBusiness(this.businessEditId).subscribe((result) => {
       console.log("Business Deleted Successfully....")
       location.assign(environment.frontend_url + "business")
     })
+  }
+
+  editBusinessForm(data) {
+    this.businessEditId = data.businessId
+    this.businessEditName = data.businessName;
+    this.show_businessEdit_form = true;
+    console.log(this.businessEditName)
+
+
+  }
+
+  editBusiness(data) {
+    console.log("Editing Business...")
+    data.value['businessId'] = this.businessEditId;
+    return this.authService.editBusiness(data.value).subscribe((result) => {
+      this.editedBusiness = result;
+      console.log("Customer Edited...");
+      this.show_businessEdit_form = false;
+      location.assign(environment.frontend_url + "business/")
+    })
+
   }
 
 //   onChangePage(pageOfItems: Array<any>) {
 //     // update current page of items
 //     this.pageOfItems = pageOfItems;
 // }
+addUser() {
+  this.show_businessAdd_form = true
+}
+
+deleteBusinessForm(data){
+  this.businessEditId = data.businessId
+  this.businessEditName = data.businessName
+  this.show_businessDelete_form = true
+}
+
+addBusiness(data) {
+  return this.authService.addBusiness(data.value).subscribe((result) => {
+    console.log("Customer Added....")
+    this.addedBusiness = result
+    this.show_businessAdd_form = false;
+    console.log(this.addedBusiness);
+    location.assign(environment.frontend_url + "business/")
+
+  })}
+
+
+onClose() {
+  this.show_businessEdit_form = false;
+  this.show_businessAdd_form = false;
+  this.show_businessDelete_form = false;
+
+
+
+}
 
   ngOnInit(): void {
     console.log(this.text)

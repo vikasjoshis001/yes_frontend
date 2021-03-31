@@ -1,10 +1,39 @@
  <head>
-    
+
 </head>
 
 <body>
     <div class="intro">
         <div class="container">
+
+
+            <!-- Delete Form -->
+            <!-- Form -->
+            <div *ngIf="show_customerDelete_form===true">
+                <!-- Title -->
+                <h3>
+                    <br><br><br>
+                    <span id="title" class="pacificofont">Delete Customer</span>
+                    <br><br><br>
+                </h3>
+                <!-- Title -->
+                <div id="model_popup" class="fancy">
+                    <p id="delete" style="text-align:center;font-size:
+                        22px;"><b>Are You Sure Do You Want to Delete Customer {{
+                            customerEditName }} </b></p><br><hr>
+                    <button style="margin-left:100px;width:80px"
+                        id="delete_button"
+                        (click)="onClose()" type="button"
+                        class="btn
+                        btn-outline-primary">Cancel</button>
+                    <button style="margin-left:150px;" id="delete_button"
+                        (click)="deleteCustomer()" type="button"
+                        class="btn
+                        btn-outline-danger">Delete</button>
+                </div>
+            </div>
+            <!-- Delete Form -->
+
 
             <!-- Add Customer Form -->
             <div *ngIf="show_customerAdd_form === true && show_transaction_form
@@ -515,7 +544,7 @@
             <!-- Customer Table -->
             <div *ngIf="show_customerEdit_form === false &&
                 show_transaction_form === false && show_customerAdd_form ===
-                false">
+                false && show_customerDelete_form===false">
 
                 <!-- Title -->
                 <h2>
@@ -586,7 +615,7 @@
                                             class="material-icons">&#xE254;</i></a>
                                     <a style="color: #E34724;" class="delete"
                                         title="Delete" data-toggle="tooltip"
-                                        (click)="deleteCustomer(customer)"><i
+                                        (click)="deleteCustomerForm(customer)"><i
                                             class="material-icons">&#xE872;</i></a>
                                     <a style="color: green;" class="delete"
                                         title="Transaction"
@@ -653,7 +682,7 @@
                                             class="material-icons">&#xE254;</i></a>
                                     <a style="color: #E34724;" class="delete"
                                         title="Delete" data-toggle="tooltip"
-                                        (click)="deleteCustomer(customer)"><i
+                                        (click)="deleteCustomerForm(customer)"><i
                                             class="material-icons">&#xE872;</i></a>
                                     <a style="color: green;" class="delete"
                                         title="Transaction"

@@ -12,7 +12,7 @@ export class AppComponent {
   title = 'yes-frontend';
 
   url = environment.url + "admin/"
-
+  database;
   constructor(private authService: AuthService,) { }
 
 
@@ -23,8 +23,12 @@ export class AppComponent {
   }
 
   backupData() {
-    this.authService.backupData()
-    console.log("Database backup sucessfull...");
+    this.authService.backupData().subscribe((result) => {
+      this.database = result;
+      console.log("Database backup sucessfull...");
+      location.assign(environment.frontend_url + "/")
+
+    })
 
   }
 }

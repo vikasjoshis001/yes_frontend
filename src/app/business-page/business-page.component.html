@@ -1,99 +1,250 @@
 <head>
-  
+
 </head>
 <body>
   <div class="intro">
     <div class="container">
       <br>
 
-      <!-- Title -->
-      <h2>
-        <span style="position:relative;margin-left:450px;color:white"
-          class="pacificofont"><b><i>{{ title|titlecase }}</i></b></span>
-      </h2>
-      <!-- Title -->
 
-
-      <!-- Search Bar -->
-      <div class="form-group">
-        <input type="text" class="form-control" [(ngModel)]="text"
-          placeholder="Search Your Business">
+      <!-- Delete Form -->
+      <!-- Form -->
+      <div *ngIf="show_businessDelete_form===true">
+        <!-- Title -->
+        <h3>
+          <br><br><br>
+          <span id="title" class="pacificofont">Delete Business</span>
+          <br><br><br>
+        </h3>
+        <!-- Title -->
+        <div id="model_popup" class="fancy">
+          <p id="delete" style="text-align:center;font-size:
+            22px;"><b>Are You Sure Do You Want to Delete Business {{
+              businessEditName }} </b></p><br><hr>
+          <button style="margin-left:100px;width:80px" id="delete_button"
+            (click)="onClose()" type="button"
+            class="btn
+            btn-outline-primary">Cancel</button>
+          <button style="margin-left:150px;" id="delete_button"
+            (click)="deleteBusiness()" type="button"
+            class="btn
+            btn-outline-danger">Delete</button>
+        </div>
       </div>
-      <!-- Search Bar -->
+      <!-- Delete Form -->
 
 
-      <!-- Condition for Business List -->
-      <div *ngIf="text === '';then content else other_content"></div>
-      <!-- Condition for Business List -->
+      <!-- Add Form -->
+      <div *ngIf="show_businessEdit_form === false && show_businessAdd_form ===
+        true && show_businessDelete_form===false">
+        <!-- Title -->
+        <h3>
+          <br><br><br>
+          <span id="title" class="pacificofont">Add Business</span>
+          <br><br><br>
+        </h3>
+        <!-- Title -->
 
 
-      <!-- Pagination List of Business -->
-      <ng-template #content>
+        <!-- Form -->
+        <form id=businessAddForm #businessAddForm="ngForm"
+          (ngSubmit)="addBusiness(businessAddForm)">
 
-        <div>
-          <ul class="list-group" *ngFor="let business of businessList | paginate
-            : {id :
-            'listing_pagination',
-            itemsPerPage : 8,
-            currentPage : page,
-            totalItems : totalRecords}">
+          <div>
 
+            <!-- Close Icon -->
+            <p style="text-align:center;font-size: 22px"><a
+                (click)="onClose()" class="close">&times;</a></p>
+            <!-- Close Icon -->
+
+
+            <!-- Business Name -->
+            <div class="form-group">
+              <label id="input_label"
+                for="businessName">Name</label>
+              <input #businessName="ngModel"
+                type="text" class="form-control"
+                placeholder="Enter Business Name"
+                id="businessName"
+                autocomplete="off"
+                aria-describedby="businessName" ngModel
+                name="businessName">
+              <!-- <span id="input_label" *ngIf="businessName.invalid &&
+              businessName.touched"
+                  style="color:red"><b>**Invalid Username Format</b></span> -->
+            </div>
+            <!-- Business Name -->
+
+            <!-- Submit Button -->
+            <button id="submit_button" type="submit"
+              [disabled]="businessAddForm.invalid" class="btn
+              btn-danger">Add</button>
+            <!-- Submit Button -->
+
+
+
+          </div>
+        </form>
+        <!-- Form -->
+      </div>
+      <!-- Add Form -->
+
+
+      <!-- Edit Form -->
+      <div *ngIf="show_businessEdit_form === true && show_businessAdd_form ===
+        false && show_businessDelete_form===false">
+        <!-- Title -->
+        <h3>
+          <br><br><br>
+          <span id="title" class="pacificofont">Edit Customer</span>
+          <br><br><br>
+        </h3>
+        <!-- Title -->
+
+
+        <!-- Form -->
+        <form id=businessEditForm #businessEditForm="ngForm"
+          (ngSubmit)="editBusiness(businessEditForm)">
+
+          <div>
+
+            <!-- Close Icon -->
+            <p style="text-align:center;font-size: 22px"><a
+                (click)="onClose()" class="close">&times;</a></p>
+            <!-- Close Icon -->
+
+
+            <!-- Business Name -->
+            <div class="form-group">
+              <label id="input_label"
+                for="businessName">Name</label>
+              <input #businessName="ngModel"
+                type="text" class="form-control"
+                placeholder={{businessEditName}}
+                id="businessName"
+                autocomplete="off"
+                aria-describedby="businessName" ngModel
+                name="businessName">
+              <!-- <span id="input_label" *ngIf="businessName.invalid &&
+              businessName.touched"
+                  style="color:red"><b>**Invalid Username Format</b></span> -->
+            </div>
+            <!-- Business Name -->
+
+            <!-- Submit Button -->
+            <button id="submit_button" type="submit"
+              [disabled]="businessEditForm.invalid" class="btn
+              btn-danger">Edit</button>
+            <!-- Submit Button -->
+
+
+
+          </div>
+        </form>
+        <!-- Form -->
+      </div>
+      <!-- Edit Form -->
+
+
+      <!-- Business List -->
+      <div *ngIf="show_businessEdit_form === false && show_businessAdd_form ===
+        false && show_businessDelete_form===false">
+
+        <!-- Title -->
+        <h2>
+          <span style="position:relative;margin-left:450px;color:white"
+            class="pacificofont"><b><i>{{ title|titlecase }}</i></b></span>
+        </h2>
+        <!-- Title -->
+
+
+        <!-- Search Bar -->
+        <div class="form-group">
+          <input id="searchBar" type="text" class="form-control"
+            [(ngModel)]="text"
+            placeholder="Search Your Business">
+        </div>
+        <!-- Search Bar -->
+
+
+        <!-- Add New User Button -->
+        <button style="position:relative;bottom:54px;margin-left:1000px;"
+          type="button" class="btn btn-info add-new"
+          (click)=addUser()><i class="fa fa-plus"></i> Add New</button>
+        <!-- Add New User Button -->
+
+
+        <!-- Condition for Business List -->
+        <div *ngIf="text === '';then content else other_content"></div>
+        <!-- Condition for Business List -->
+
+
+        <!-- Pagination List of Business -->
+        <ng-template #content>
+
+          <div>
+            <ul class="list-group" *ngFor="let business of businessList |
+              paginate
+              : {id :
+              'listing_pagination',
+              itemsPerPage : 8,
+              currentPage : page,
+              totalItems : totalRecords}">
+
+              <li class="list-group-item d-flex justify-content-between
+                align-items-center">
+                <span>
+                  <a href="/customers/{{
+                    business.businessId }}">
+                    {{business.businessName}}</a>
+                </span> <span><a style="color: #FFC107;"
+                    class="edit"
+                    title="Edit" data-toggle="tooltip"
+                    (click)="editBusinessForm(business)"><i
+                      class="material-icons">&#xE254;</i></a>&nbsp;&nbsp;&nbsp;
+                  <a style="color: #E34724;" class="delete"
+                    title="Delete" data-toggle="tooltip"
+                    (click)="deleteBusinessForm(business)"><i
+                      class="material-icons">&#xE872;</i></a>
+                </span>
+              </li>
+            </ul>
+          </div>
+          <div>
+            <pagination-controls style="color:white;" id="listing_pagination"
+              (pageChange)="page=
+              $event"></pagination-controls>
+          </div>
+        </ng-template>
+        <!-- Pagination List of Business -->
+
+
+        <!-- Searching List of Business -->
+        <ng-template #other_content>
+          <ul class="list-group" *ngFor="let business of businessList |
+            filter:text">
             <li class="list-group-item d-flex justify-content-between
-              align-items-center">
-              <span>
-                <a href="/customers/{{
-                  business.businessId }}"
-                  class="stretched-link">
-                  {{business.businessName}}</a>
-              </span> <span><a style="color: #FFC107;"
-                  class="edit"
-                  title="Edit" data-toggle="tooltip"
-                  (click)="deleteBusiness(business)"><i
-                    class="material-icons">&#xE254;</i></a>&nbsp;&nbsp;&nbsp;
-                <a style="color: #E34724;" class="delete"
-                  title="Delete" data-toggle="tooltip"><i
-                    class="material-icons">&#xE872;</i></a>
-              </span>
-            </li>
-
-            <!-- <li class="list-group-item"><a href="/customers/{{
-                business.businessId }}"
-                class="stretched-link">{{ business.businessName|titlecase }}</a>
-              <span>
-                <a style="color: #FFC107;" class="edit"
-                  title="Edit" data-toggle="tooltip"><i
-                    class="material-icons">&#xE254;</i></a>
-              </span>
-              <span>
-
-                <a style="color: #E34724;" class="delete"
-                  title="Delete" data-toggle="tooltip"><i
-                    class="material-icons">&#xE872;</i></a>
-              </span>
-
-            </li> -->
+                align-items-center">
+                <span>
+                  <a href="/customers/{{
+                    business.businessId }}">
+                    {{business.businessName}}</a>
+                </span> <span><a style="color: #FFC107;"
+                    class="edit"
+                    title="Edit" data-toggle="tooltip"
+                    (click)="editBusinessForm(business)"><i
+                      class="material-icons">&#xE254;</i></a>&nbsp;&nbsp;&nbsp;
+                  <a style="color: #E34724;" class="delete"
+                    title="Delete" data-toggle="tooltip"
+                    (click)="deleteBusinessForm(business)"><i
+                      class="material-icons">&#xE872;</i></a>
+                </span>
+              </li>
           </ul>
-        </div>
-        <div>
-          <pagination-controls style="color:white;" id="listing_pagination"
-            (pageChange)="page=
-            $event"></pagination-controls>
-        </div>
-      </ng-template>
-      <!-- Pagination List of Business -->
-
-
-      <!-- Searching List of Business -->
-      <ng-template #other_content>
-        <ul class="list-group" *ngFor="let business of businessList |
-          filter:text">
-          <li class="list-group-item"><a href="/customers/{{ business.businessId
-              }}"
-              class="stretched-link">{{ business.businessName|titlecase }}</a></li>
-        </ul>
-      </ng-template>
-      <!-- Searching List of Business -->
-
+        </ng-template>
+        <!-- Searching List of Business -->
+      </div>
+      <!-- Business List -->
 
     </div>
   </div>

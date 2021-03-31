@@ -28,6 +28,7 @@ export class CustomersPageComponent implements OnInit {
   my_transaction;
   show_customerEdit_form = false;
   show_customerAdd_form = false;
+  show_customerDelete_form = false;
   show_transaction_form = false;
   customerEditName;
   customerEditContact;
@@ -104,9 +105,9 @@ export class CustomersPageComponent implements OnInit {
 
   }
 
-  deleteCustomer(data) {
+  deleteCustomer() {
     console.log("Deleting Customer...")
-    return this.authService.deleteCustomer(data.customerId).subscribe((result) => {
+    return this.authService.deleteCustomer(this.customerEditId).subscribe((result) => {
       this.deletedCustomer = result;
       console.log(this.deletedCustomer)
       console.log("Customer Deleted...");
@@ -171,6 +172,12 @@ export class CustomersPageComponent implements OnInit {
     this.show_customerAdd_form = true
   }
 
+  deleteCustomerForm(data) {
+    this.customerEditId = data.customerId
+    this.customerEditName = data.customerName
+    this.show_customerDelete_form = true
+  }
+
   addCustomer(data) {
     data.value['businessId'] = this.id
     console.log(data.value)
@@ -188,6 +195,7 @@ export class CustomersPageComponent implements OnInit {
     this.show_customerEdit_form = false;
     this.show_transaction_form = false;
     this.show_customerAdd_form = false;
+    this.show_customerDelete_form = false;
 
 
   }
