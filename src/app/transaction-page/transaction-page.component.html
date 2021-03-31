@@ -1,0 +1,172 @@
+<head>
+
+</head>
+<body>
+    <div class="intro">
+        <div class="container">
+            <!-- Title -->
+            <h2>
+                <span
+                    style="position:relative;top:20px;margin-left:450px;color:white"
+                    class="pacificofont"><b><i>User Transactions</i></b></span>
+                <br><br><br>
+            </h2>
+            <!-- Title -->
+
+
+            <!-- Search Bar -->
+            <div class="form-group">
+                <input id="searchBar" type="text" class="form-control"
+                    [(ngModel)]="text"
+                    placeholder="Search">
+            </div>
+            <div *ngIf="text === '';then content else other_content"></div>
+            <!-- Search Bar -->
+
+
+            <!-- Create Excel Button -->
+            <button style="margin-left:970px;position:relative;bottom:430px;" type="button" class="btn
+                btn-success" (click)="createCSV()"><i class="fa
+                    fa-file-excel-o"></i> Create Excel</button>
+            <!-- Create Excel Button -->
+
+
+            <!-- Transaction List Pagination Table -->
+            <ng-template #content>
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th class="table-dark" *ngFor="let head of
+                                headElements"
+                                scope="col">{{head}} </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="table-light" *ngFor="let transaction of
+                            transactionList |
+                            paginate : {id :
+                            'listing_pagination',
+                            itemsPerPage : 10,
+                            currentPage : page,
+                            totalItems : totalRecords
+                            }; let i=index">
+                            <td>{{ i+1 }}</td>
+                            <td>{{transaction.creationTime}}</td>
+                            <td>{{transaction.transactionName}}</td>
+                            <td>{{transaction.transactionCredit}}</td>
+                            <td>{{transaction.transactionNewDebit}}</td>
+                            <td>{{transaction.transactionTotalDebit}}</td>
+                            <td>{{transaction.transactionPending}}</td>
+                            <!-- <td>{{customer.customerContact}}</td>
+                    <td>{{customer.customerAddress}}</td>
+                    <td>{{customer.customerAadharNumber}}</td>
+                    <td>{{customer.customerPanNumber}}</td> -->
+                            <!-- <td>
+                        <a style="color: #FFC107;" class="edit"
+                            title="Edit" data-toggle="tooltip"
+                            (click)="editCustomerForm(customer)"><i
+                                class="material-icons">&#xE254;</i></a>
+                        <a style="color: #E34724;" class="delete"
+                            title="Delete" data-toggle="tooltip"
+                            (click)="deleteCustomer(customer)"><i
+                                class="material-icons">&#xE872;</i></a>
+                        <a style="color: green;" class="delete"
+                            title="Transaction"
+                            data-toggle="tooltip"
+                            (click)="transactionForm(customer)"><i
+                                class="material-icons">&#xe8e5;</i></a>
+                    </td> -->
+                        </tr>
+
+                    </tbody>
+                    <tr class="table-primary">
+                        <td></td>
+                        <td></td>
+                        <td>Total </td>
+                        <td>{{totalCredit}}</td>
+                        <td></td>
+                        <td>{{totalDebit}}</td>
+                        <td>{{totalPending}}</td>
+                        <!-- <td></td>
+                <td></td>
+                <td></td>
+                <td></td> -->
+                    </tr>
+                </table>
+
+                <div>
+                    <pagination-controls style="color:white;"
+                        id="listing_pagination"
+                        (pageChange)="page=
+                        $event"></pagination-controls>
+                </div>
+                
+            </ng-template>
+            <!-- Transaction List Pagination Table -->
+
+
+            <!-- Transaction List Search Table -->
+            <ng-template #other_content>
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th class="table-dark" *ngFor="let head of
+                                headElements"
+                                scope="col">{{head}} </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="table-light" *ngFor="let transaction of
+                            transactionList |
+                            filter:text let i=index">
+                            <td>{{ i+1 }}</td>
+                            <td>{{transaction.creationTime}}</td>
+                            <td>{{transaction.transactionName}}</td>
+                            <td>{{transaction.transactionCredit}}</td>
+                            <td>{{transaction.transactionNewDebit}}</td>
+                            <td>{{transaction.transactionTotalDebit}}</td>
+                            <td>{{transaction.transactionPending}}</td>
+                            <!-- <td>{{customer.customerContact}}</td>
+                    <td>{{customer.customerAddress}}</td>
+                    <td>{{customer.customerAadharNumber}}</td>
+                    <td>{{customer.customerPanNumber}}</td> -->
+                            <!-- <td>
+                        <a style="color: #FFC107;" class="edit"
+                            title="Edit" data-toggle="tooltip"
+                            (click)="editCustomerForm(customer)"><i
+                                class="material-icons">&#xE254;</i></a>
+                        <a style="color: #E34724;" class="delete"
+                            title="Delete" data-toggle="tooltip"
+                            (click)="deleteCustomer(customer)"><i
+                                class="material-icons">&#xE872;</i></a>
+                        <a style="color: green;" class="delete"
+                            title="Transaction"
+                            data-toggle="tooltip"
+                            (click)="transactionForm(customer)"><i
+                                class="material-icons">&#xe8e5;</i></a>
+                    </td> -->
+                        </tr>
+
+                    </tbody>
+                    <tr class="table-primary">
+                        <td></td>
+                        <td></td>
+                        <td>Total </td>
+                        <td>{{totalCredit}}</td>
+                        <td></td>
+                        <td>{{totalDebit}}</td>
+                        <td>{{totalPending}}</td>
+                        <!-- <td></td>
+                <td></td>
+                <td></td>
+                <td></td> -->
+                    </tr>
+                </table>
+
+
+            </ng-template>
+            <!-- Transaction List Search Table -->
+        </div>
+    </div>
+    <!-- Transaction Table -->
+</body>

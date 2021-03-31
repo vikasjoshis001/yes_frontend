@@ -1,0 +1,46 @@
+body {
+  background-image: url("src/assets/Images/finance5.jpg");
+}
+.intro {
+  height: 180vh;
+}
+
+#searchBar {
+  position: relative;
+  width: 700px;
+}
+
+.pacificofont {
+  font-family: pacifico;
+  font-size: 50px;
+}
+
+#title {
+  color: white;
+  margin-left: 400px;
+}
+
+table.table td a {
+  cursor: pointer;
+  display: inline-block;
+  margin: 0 5px;
+  min-width: 24px;
+}
+table.table td a.add {
+  color: #27c46b;
+}
+table.table td a.edit {
+  color: #ffc107;
+}
+table.table td a.delete {
+  color: #e34724;
+}
+table.table td i {
+  font-size: 19px;
+}
+table.table td a.add i {
+  font-size: 24px;
+  margin-right: -1px;
+  position: relative;
+  top: 3px;
+}
