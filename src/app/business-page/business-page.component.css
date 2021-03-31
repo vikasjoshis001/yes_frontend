@@ -1,0 +1,16 @@
+body {
+  background-image: url("src/assets/Images/finance5.jpg");
+}
+.intro {
+  height: 100vh;
+}
+
+#listing_pagination {
+  position: relative;
+  top: 10px;
+}
+
+.pacificofont {
+  font-family: pacifico;
+  font-size: 50px;
+}

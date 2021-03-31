@@ -1,0 +1,101 @@
+<head>
+  
+</head>
+<body>
+  <div class="intro">
+    <div class="container">
+      <br>
+
+      <!-- Title -->
+      <h2>
+        <span style="position:relative;margin-left:450px;color:white"
+          class="pacificofont"><b><i>{{ title|titlecase }}</i></b></span>
+      </h2>
+      <!-- Title -->
+
+
+      <!-- Search Bar -->
+      <div class="form-group">
+        <input type="text" class="form-control" [(ngModel)]="text"
+          placeholder="Search Your Business">
+      </div>
+      <!-- Search Bar -->
+
+
+      <!-- Condition for Business List -->
+      <div *ngIf="text === '';then content else other_content"></div>
+      <!-- Condition for Business List -->
+
+
+      <!-- Pagination List of Business -->
+      <ng-template #content>
+
+        <div>
+          <ul class="list-group" *ngFor="let business of businessList | paginate
+            : {id :
+            'listing_pagination',
+            itemsPerPage : 8,
+            currentPage : page,
+            totalItems : totalRecords}">
+
+            <li class="list-group-item d-flex justify-content-between
+              align-items-center">
+              <span>
+                <a href="/customers/{{
+                  business.businessId }}"
+                  class="stretched-link">
+                  {{business.businessName}}</a>
+              </span> <span><a style="color: #FFC107;"
+                  class="edit"
+                  title="Edit" data-toggle="tooltip"
+                  (click)="deleteBusiness(business)"><i
+                    class="material-icons">&#xE254;</i></a>&nbsp;&nbsp;&nbsp;
+                <a style="color: #E34724;" class="delete"
+                  title="Delete" data-toggle="tooltip"><i
+                    class="material-icons">&#xE872;</i></a>
+              </span>
+            </li>
+
+            <!-- <li class="list-group-item"><a href="/customers/{{
+                business.businessId }}"
+                class="stretched-link">{{ business.businessName|titlecase }}</a>
+              <span>
+                <a style="color: #FFC107;" class="edit"
+                  title="Edit" data-toggle="tooltip"><i
+                    class="material-icons">&#xE254;</i></a>
+              </span>
+              <span>
+
+                <a style="color: #E34724;" class="delete"
+                  title="Delete" data-toggle="tooltip"><i
+                    class="material-icons">&#xE872;</i></a>
+              </span>
+
+            </li> -->
+          </ul>
+        </div>
+        <div>
+          <pagination-controls style="color:white;" id="listing_pagination"
+            (pageChange)="page=
+            $event"></pagination-controls>
+        </div>
+      </ng-template>
+      <!-- Pagination List of Business -->
+
+
+      <!-- Searching List of Business -->
+      <ng-template #other_content>
+        <ul class="list-group" *ngFor="let business of businessList |
+          filter:text">
+          <li class="list-group-item"><a href="/customers/{{ business.businessId
+              }}"
+              class="stretched-link">{{ business.businessName|titlecase }}</a></li>
+        </ul>
+      </ng-template>
+      <!-- Searching List of Business -->
+
+
+    </div>
+  </div>
+</body>
+<router-outlet></router-outlet>
