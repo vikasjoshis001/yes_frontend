@@ -1,0 +1,84 @@
+/* Form */
+input.ng-invalid {
+  border-left: 5px solid red;
+}
+input.ng-valid {
+  border-left: 5px solid green;
+}
+
+body {
+  background-image: url("src/assets/Images/finance5.jpg");
+}
+.intro {
+  height: 160vh;
+}
+
+#customerEditForm {
+  padding: 1em;
+  width: 60%;
+  height: 550px;
+  box-sizing: border-box;
+  position: relative;
+  margin: 0 auto;
+  border-radius: 25px;
+  top: auto;
+  background-color: grey;
+}
+
+#transactionForm,
+#addCustomerForm {
+  padding: 1em;
+  width: 70%;
+  height: 700px;
+  box-sizing: border-box;
+  position: relative;
+  margin: 0 auto;
+  border-radius: 25px;
+  top: auto;
+  background-color: grey;
+}
+
+form label {
+  color: aqua;
+}
+
+#searchBar {
+  position: relative;
+  top: 70px;
+  width: 700px;
+}
+
+.pacificofont {
+  font-family: pacifico;
+  font-size: 50px;
+}
+
+#title {
+  color: white;
+  margin-left: 400px;
+}
+
+table.table td a {
+  cursor: pointer;
+  display: inline-block;
+  margin: 0 5px;
+  min-width: 24px;
+}
+table.table td a.add {
+  color: #27c46b;
+}
+table.table td a.edit {
+  color: #ffc107;
+}
+table.table td a.delete {
+  color: #e34724;
+}
+table.table td i {
+  font-size: 19px;
+}
+table.table td a.add i {
+  font-size: 24px;
+  margin-right: -1px;
+  position: relative;
+  top: 3px;
+}
