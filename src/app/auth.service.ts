@@ -10,10 +10,8 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 export class AuthService {
 
   token;
-  my_token;
+  auth_token;
   header;
-  businessList;
-  url;
   public jwtHelper: JwtHelperService = new JwtHelperService();
 
   constructor(private http: HttpClient, private router: Router) {
@@ -25,9 +23,9 @@ export class AuthService {
   }
 
   public isAuthenticated(): boolean {
-    this.my_token = sessionStorage.getItem('token');
-    console.log(this.my_token)
-    if (this.my_token == null) {
+    this.auth_token = sessionStorage.getItem('token');
+    console.log(this.auth_token)
+    if (this.auth_token == null) {
       console.log("false");
       return false;
     }
@@ -46,7 +44,7 @@ export class AuthService {
   getToken() {
     console.log("fetching token....");
     this.header = new HttpHeaders().set(
-      'Authorization', 'Token ' + this.my_token
+      'Authorization', 'Token ' + this.auth_token
     );
     return this.header
   }
@@ -111,6 +109,11 @@ export class AuthService {
   addBusiness(data) {
     console.log("Adding Business...")
     return this.http.post(environment.url + "addBusiness/", data, { headers: this.getToken() })
+  }
+
+  copyCustomer(data) {
+    console.log("Copying Customer...")
+    return this.http.post(environment.url + "copy/", data, { headers: this.getToken() })
   }
 
 }

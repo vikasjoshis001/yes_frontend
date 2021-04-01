@@ -4,7 +4,6 @@ import { AuthService } from "../auth.service";
 import { Router } from "@angular/router";
 import { environment } from 'src/environments/environment';
 
-
 @Component({
   selector: 'app-customers-page',
   templateUrl: './customers-page.component.html',
@@ -30,6 +29,7 @@ export class CustomersPageComponent implements OnInit {
   show_customerAdd_form = false;
   show_customerDelete_form = false;
   show_transaction_form = false;
+  show_copyCustomer_form = false;
   customerEditName;
   customerEditContact;
   customerEditAadharNumber;
@@ -43,10 +43,15 @@ export class CustomersPageComponent implements OnInit {
   deletedCustomer;
   addedCustomer;
   msg;
+
   customerList;
+  businessList;
   headElements = ['Sr.No.', 'Name', 'Credit', 'Debit', 'Pending', 'Contact', 'Address', 'Aadhar No.', 'Pan No.', 'Actions'];
+  newHead = ['Select','Name']
   transactionList;
-  constructor(private route: ActivatedRoute, private authService: AuthService, private router: Router) { }
+  constructor(private route: ActivatedRoute, private authService: AuthService, private router: Router) { 
+  }
+
 
   getCustomers(data) {
     console.log("Getting Customers List...")
@@ -58,6 +63,7 @@ export class CustomersPageComponent implements OnInit {
       this.totalDebit = this.customerList.total["totalDebit"]
       this.totalPending = this.customerList.total["totalPending"]
       this.customerList = this.customerList.data['customersList'];
+      console.log(this.customerList)
       this.totalLength = this.customerList.length
     })
   }
@@ -105,6 +111,7 @@ export class CustomersPageComponent implements OnInit {
 
   }
 
+  
   deleteCustomer() {
     console.log("Deleting Customer...")
     return this.authService.deleteCustomer(this.customerEditId).subscribe((result) => {
@@ -203,7 +210,6 @@ export class CustomersPageComponent implements OnInit {
   ngOnInit(): void {
     this.routeSub = this.route.params.subscribe(para => {
       this.id = para['businessId']
-      console.log(this.id)
       this.getCustomers(this.id)
 
     })
@@ -212,3 +218,4 @@ export class CustomersPageComponent implements OnInit {
   }
 
 }
+

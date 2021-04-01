@@ -5,8 +5,14 @@ import { AuthGuardService as AuthGuard } from './auth-guard.service';
 import { BusinessPageComponent } from './business-page/business-page.component';
 import { CustomersPageComponent } from './customers-page/customers-page.component';
 import { TransactionPageComponent } from './transaction-page/transaction-page.component';
+import { CopyCustomerPageComponent } from './copy-customer-page/copy-customer-page.component';
 
 const routes: Routes = [
+  {
+    path: "copy/:businessId",
+    component: CopyCustomerPageComponent,
+    canActivate: [AuthGuard] 
+  },
   {
     path: "transaction/:businessId/:customerId",
     component: TransactionPageComponent,

@@ -17,6 +17,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { TransactionPageComponent } from './transaction-page/transaction-page.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { CopyCustomerPageComponent } from './copy-customer-page/copy-customer-page.component';
 
 // My Modules
 
@@ -27,6 +29,7 @@ import { TransactionPageComponent } from './transaction-page/transaction-page.co
     BusinessPageComponent,
     CustomersPageComponent,
     TransactionPageComponent,
+    CopyCustomerPageComponent,
   ],
   imports: [
     BrowserModule,
@@ -36,7 +39,8 @@ import { TransactionPageComponent } from './transaction-page/transaction-page.co
     Ng2SearchPipeModule,
     NgxPaginationModule,
     MatTableModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    ReactiveFormsModule
   ],
   providers: [AuthService, AuthGuard],
   bootstrap: [AppComponent]

@@ -13,20 +13,24 @@
                 <!-- Title -->
                 <h3>
                     <br><br><br>
-                    <span id="title" class="pacificofont">Delete Customer</span>
+                    <span id="title" class="pacificofont">Delete
+                        Customer</span>
                     <br><br><br>
                 </h3>
                 <!-- Title -->
                 <div id="model_popup" class="fancy">
-                    <p id="delete" style="text-align:center;font-size:
-                        22px;"><b>Are You Sure Do You Want to Delete Customer {{
+                    <p id="delete"
+                        style="text-align:center;font-size:
+                        22px;"><b>Are You Sure Do You Want to Delete
+                            Customer {{
                             customerEditName }} </b></p><br><hr>
                     <button style="margin-left:100px;width:80px"
                         id="delete_button"
                         (click)="onClose()" type="button"
                         class="btn
                         btn-outline-primary">Cancel</button>
-                    <button style="margin-left:150px;" id="delete_button"
+                    <button style="margin-left:150px;"
+                        id="delete_button"
                         (click)="deleteCustomer()" type="button"
                         class="btn
                         btn-outline-danger">Delete</button>
@@ -36,12 +40,15 @@
 
 
             <!-- Add Customer Form -->
-            <div *ngIf="show_customerAdd_form === true && show_transaction_form
-                === false && show_customerEdit_form === false">
+            <div *ngIf="show_customerAdd_form === true &&
+                show_transaction_form
+                === false && show_customerEdit_form === false &&
+                show_copyCustomer_form===false">
                 <!-- Title -->
                 <h3>
                     <br><br><br>
-                    <span id="title" class="pacificofont">Add Customer</span>
+                    <span id="title" class="pacificofont">Add
+                        Customer</span>
                     <br><br><br>
                 </h3>
                 <!-- Title -->
@@ -54,7 +61,8 @@
 
 
                         <!-- Close Icon -->
-                        <p style="text-align:center;font-size: 22px"><a
+                        <p style="text-align:center;font-size:
+                            22px"><a
                                 (click)="onClose()" class="close">&times;</a></p>
                         <!-- Close Icon -->
 
@@ -69,7 +77,8 @@
                                 placeholder="Enter Name"
                                 id="customerName"
                                 autocomplete="off"
-                                aria-describedby="customerName" ngModel
+                                aria-describedby="customerName"
+                                ngModel
                                 name="customerName">
                             <!-- <span id="input_label" *ngIf="customerName.invalid &&
                                         customerName.touched"
@@ -88,12 +97,15 @@
                                 id="customerContact"
                                 autocomplete="off"
                                 aria-describedby="customerContact"
-                                placeholder="Enter Mobile Number" ngModel
+                                placeholder="Enter Mobile Number"
+                                ngModel
                                 name="customerContact">
                             <span id="input_label"
                                 *ngIf="customerContact.invalid &&
                                 customerContact.touched"
-                                style="color:red"><b>**Mobile Number Should be
+                                style="color:red"><b>**Mobile Number
+                                    Should
+                                    be
                                     10 digits</b></span>
                         </div>
                         <!-- Customer Contact -->
@@ -108,7 +120,8 @@
                                 placeholder="Enter Address"
                                 id="customerAddress"
                                 autocomplete="off"
-                                aria-describedby="customerAddress" ngModel
+                                aria-describedby="customerAddress"
+                                ngModel
                                 name="customerAddress">
                             <!-- <span id="input_label" *ngIf="customerName.invalid &&
                                         customerName.touched"
@@ -120,19 +133,25 @@
                         <!-- Customer Aadhar Number -->
                         <div class="form-group">
                             <label id="input_label"
-                                for="customerAadharNumber">Aadhar Card Number</label>
+                                for="customerAadharNumber">Aadhar
+                                Card
+                                Number</label>
                             <input #customerAadharNumber="ngModel"
                                 pattern="\d\d\d\d\d\d\d\d\d\d\d\d"
                                 type="text" class="form-control"
                                 placeholder="Enter Aadhar Number"
                                 id="customerAadharNumber"
                                 autocomplete="off"
-                                aria-describedby="customerAadharNumber" ngModel
+                                aria-describedby="customerAadharNumber"
+                                ngModel
                                 name="customerAadharNumber">
                             <span id="input_label"
-                                *ngIf="customerAadharNumber.invalid &&
+                                *ngIf="customerAadharNumber.invalid
+                                &&
                                 customerAadharNumber.touched"
-                                style="color:red"><b>**Aadhar card Number should
+                                style="color:red"><b>**Aadhar card
+                                    Number
+                                    should
                                     be 12 digits</b></span>
                         </div>
                         <!-- Customer Aadhar Number -->
@@ -141,19 +160,23 @@
                         <!-- Customer Pan Number -->
                         <div class="form-group">
                             <label id="input_label"
-                                for="customerPanNumber">Pan Card Number</label>
+                                for="customerPanNumber">Pan Card
+                                Number</label>
                             <input #customerPanNumber="ngModel"
                                 pattern="\w\w\w\w\w\d\d\d\d\d"
                                 type="text" class="form-control"
                                 placeholder="Enter Pan Number"
                                 id="customerPanNumber"
                                 autocomplete="off"
-                                aria-describedby="customerPanNumber" ngModel
+                                aria-describedby="customerPanNumber"
+                                ngModel
                                 name="customerPanNumber">
                             <span id="input_label"
                                 *ngIf="customerPanNumber.invalid &&
                                 customerPanNumber.touched"
-                                style="color:red"><b>**Enter Valid Pan Card
+                                style="color:red"><b>**Enter Valid
+                                    Pan
+                                    Card
                                     Number</b></span>
                         </div>
                         <!-- Customer Pan Number -->
@@ -169,7 +192,8 @@
                                 id="customerDebit"
                                 autocomplete="off"
                                 aria-describedby="customerDebit"
-                                placeholder="Enter Debit Amount" ngModel
+                                placeholder="Enter Debit Amount"
+                                ngModel
                                 name="customerDebit">
                             <!-- <span id="input_label" *ngIf="customerContact.invalid &&
                                         customerContact.touched"
@@ -187,7 +211,8 @@
                                 id="customerCredit"
                                 autocomplete="off"
                                 aria-describedby="customerCredit"
-                                placeholder="Enter Credit Amount" ngModel
+                                placeholder="Enter Credit Amount"
+                                ngModel
                                 name="customerCredit">
                             <!-- <span id="input_label" *ngIf="customerContact.invalid &&
                                         customerContact.touched"
@@ -198,7 +223,8 @@
 
                         <!-- Submit Button -->
                         <button id="submit_button" type="submit"
-                            [disabled]="addCustomerForm.invalid" class="btn
+                            [disabled]="addCustomerForm.invalid"
+                            class="btn
                             btn-danger">Add</button>
                         <!-- Submit Button -->
 
@@ -212,12 +238,15 @@
 
 
             <!-- Transaction Form -->
-            <div *ngIf="show_transaction_form === true && show_customerEdit_form
-                === false && show_customerAdd_form === false">
+            <div *ngIf="show_transaction_form === true &&
+                show_customerEdit_form
+                === false && show_customerAdd_form === false &&
+                show_copyCustomer_form===false">
                 <!-- Title -->
                 <h3>
                     <br><br><br>
-                    <span id="title" class="pacificofont">Add Transaction</span>
+                    <span id="title" class="pacificofont">Add
+                        Transaction</span>
                     <br><br><br>
                 </h3>
                 <!-- Title -->
@@ -230,7 +259,8 @@
                     <div>
 
                         <!-- Close Icon -->
-                        <p style="text-align:center;font-size: 22px"><a
+                        <p style="text-align:center;font-size:
+                            22px"><a
                                 (click)="onClose()" class="close">&times;</a></p>
                         <!-- Close Icon -->
 
@@ -245,7 +275,8 @@
                                 placeholder={{customerEditName}}
                                 id="transactionName"
                                 autocomplete="off"
-                                aria-describedby="transactionName" ngModel
+                                aria-describedby="transactionName"
+                                ngModel
                                 name="transactionName">
                             <!-- <span id="input_label" *ngIf="customerName.invalid &&
                         customerName.touched"
@@ -257,14 +288,16 @@
                         <!-- Customer Contact -->
                         <div class="form-group">
                             <label id="input_label"
-                                for="transactionContact">Mobile Number</label>
+                                for="transactionContact">Mobile
+                                Number</label>
                             <input #transactionContact="ngModel"
                                 disabled
                                 type="text" class="form-control"
                                 id="transactionContact"
                                 autocomplete="off"
                                 aria-describedby="transactionContact"
-                                placeholder={{customerEditContact}} ngModel
+                                placeholder={{customerEditContact}}
+                                ngModel
                                 name="transactionContact">
                             <!-- <span id="input_label" *ngIf="customerContact.invalid &&
                         customerContact.touched"
@@ -283,7 +316,8 @@
                                 placeholder={{customerEditAddress}}
                                 id="transactionAddress"
                                 autocomplete="off"
-                                aria-describedby="transactionAddress" ngModel
+                                aria-describedby="transactionAddress"
+                                ngModel
                                 name="transactionAddress">
                             <!-- <span id="input_label" *ngIf="customerName.invalid &&
                         customerName.touched"
@@ -295,8 +329,11 @@
                         <!-- Customer Aadhar Number -->
                         <div class="form-group">
                             <label id="input_label"
-                                for="transactionAadharNumber">Aadhar Card Number</label>
-                            <input #transactionAadharNumber="ngModel"
+                                for="transactionAadharNumber">Aadhar
+                                Card
+                                Number</label>
+                            <input
+                                #transactionAadharNumber="ngModel"
                                 disabled
                                 pattern="\d\d\d\d\d\d\d\d\d\d\d\d"
                                 type="text" class="form-control"
@@ -316,7 +353,8 @@
                         <!-- Customer Pan Number -->
                         <div class="form-group">
                             <label id="input_label"
-                                for="transactionPanNumber">Pan Card Number</label>
+                                for="transactionPanNumber">Pan Card
+                                Number</label>
                             <input #transactionPanNumber="ngModel"
                                 disabled
                                 pattern="\w\w\w\w\w\d\d\d\d\d"
@@ -324,7 +362,8 @@
                                 placeholder={{customerEditPanNumber}}
                                 id="transactionPanNumber"
                                 autocomplete="off"
-                                aria-describedby="transactionPanNumber" ngModel
+                                aria-describedby="transactionPanNumber"
+                                ngModel
                                 name="transactionPanNumber">
                             <!-- <span id="input_label" *ngIf="transactionPanNumber.invalid &&
                             transactionPanNumber.touched"
@@ -336,13 +375,15 @@
                         <!-- Customer New Debit -->
                         <div class="form-group">
                             <label id="input_label"
-                                for="transactionNewDebit">New Debit Amount</label>
+                                for="transactionNewDebit">New Debit
+                                Amount</label>
                             <input #transactionNewDebit="ngModel"
                                 type="text" class="form-control"
                                 id="transactionNewDebit"
                                 autocomplete="off"
                                 aria-describedby="transactionNewDebit"
-                                placeholder="Enter Debit Amount" ngModel
+                                placeholder="Enter Debit Amount"
+                                ngModel
                                 name="transactionNewDebit">
                             <!-- <span id="input_label" *ngIf="customerContact.invalid &&
                         customerContact.touched"
@@ -354,14 +395,17 @@
                         <!-- Customer Total Debit -->
                         <div class="form-group">
                             <label id="input_label"
-                                for="transactionTotalDebit">Total Debit Amount</label>
+                                for="transactionTotalDebit">Total
+                                Debit
+                                Amount</label>
                             <input #transactionTotalDebit="ngModel"
-                                disabled
+                                
                                 type="text" class="form-control"
                                 id="transactionTotalDebit"
                                 autocomplete="off"
                                 aria-describedby="transactionTotalDebit"
-                                placeholder={{customerEditDebit}} ngModel
+                                placeholder={{customerEditDebit}}
+                                ngModel
                                 name="transactionTotalDebit">
                             <!-- <span id="input_label" *ngIf="customerContact.invalid &&
                         customerContact.touched"
@@ -372,13 +416,15 @@
                         <!-- Customer Credit -->
                         <div class="form-group">
                             <label id="input_label"
-                                for="transactionCredit">Credit Amount</label>
+                                for="transactionCredit">Credit
+                                Amount</label>
                             <input #transactionCredit="ngModel"
                                 type="text" class="form-control"
                                 id="transactionCredit"
                                 autocomplete="off"
                                 aria-describedby="transactionCredit"
-                                placeholder={{customerEditCredit}} ngModel
+                                placeholder={{customerEditCredit}}
+                                ngModel
                                 name="transactionCredit">
                             <!-- <span id="input_label" *ngIf="customerContact.invalid &&
                         customerContact.touched"
@@ -389,7 +435,8 @@
 
                         <!-- Submit Button -->
                         <button id="submit_button" type="submit"
-                            [disabled]="transactionForm.invalid" class="btn
+                            [disabled]="transactionForm.invalid"
+                            class="btn
                             btn-danger">Transaction</button>
                         <!-- Submit Button -->
 
@@ -403,12 +450,15 @@
 
 
             <!-- Edit Form -->
-            <div *ngIf="show_customerEdit_form === true && show_transaction_form
-                === false && show_customerAdd_form === false">
+            <div *ngIf="show_customerEdit_form === true &&
+                show_transaction_form
+                === false && show_customerAdd_form === false&&
+                show_copyCustomer_form===false">
                 <!-- Title -->
                 <h3>
                     <br><br><br>
-                    <span id="title" class="pacificofont">Edit Customer</span>
+                    <span id="title" class="pacificofont">Edit
+                        Customer</span>
                     <br><br><br>
                 </h3>
                 <!-- Title -->
@@ -417,11 +467,11 @@
                 <!-- Form -->
                 <form id=customerEditForm #customerEditForm="ngForm"
                     (ngSubmit)="editCustomer(customerEditForm)">
-
                     <div>
 
                         <!-- Close Icon -->
-                        <p style="text-align:center;font-size: 22px"><a
+                        <p style="text-align:center;font-size:
+                            22px"><a
                                 (click)="onClose()" class="close">&times;</a></p>
                         <!-- Close Icon -->
 
@@ -435,7 +485,8 @@
                                 placeholder={{customerEditName}}
                                 id="customerName"
                                 autocomplete="off"
-                                aria-describedby="customerName" ngModel
+                                aria-describedby="customerName"
+                                ngModel
                                 name="customerName">
                             <!-- <span id="input_label" *ngIf="customerName.invalid &&
                         customerName.touched"
@@ -455,12 +506,15 @@
                                 id="customerContact"
                                 autocomplete="off"
                                 aria-describedby="customerContact"
-                                placeholder="Enter Mobile Number" ngModel
+                                placeholder="Enter Mobile Number"
+                                ngModel
                                 name="customerContact">
                             <span id="input_label"
                                 *ngIf="customerContact.invalid &&
                                 customerContact.touched"
-                                style="color:red"><b>**Mobile Number Should be
+                                style="color:red"><b>**Mobile Number
+                                    Should
+                                    be
                                     10 digits</b></span>
                         </div>
                         <!-- Customer Contact -->
@@ -475,7 +529,8 @@
                                 placeholder={{customerEditAddress}}
                                 id="customerAddress"
                                 autocomplete="off"
-                                aria-describedby="customerAddress" ngModel
+                                aria-describedby="customerAddress"
+                                ngModel
                                 name="customerAddress">
                             <!-- <span id="input_label" *ngIf="customerName.invalid &&
                                         customerName.touched"
@@ -487,19 +542,25 @@
                         <!-- Customer Aadhar Number -->
                         <div class="form-group">
                             <label id="input_label"
-                                for="customerAadharNumber">Aadhar Card Number</label>
+                                for="customerAadharNumber">Aadhar
+                                Card
+                                Number</label>
                             <input #customerAadharNumber="ngModel"
                                 pattern="\d\d\d\d\d\d\d\d\d\d\d\d"
                                 type="text" class="form-control"
                                 placeholder={{customerEditAadharNumber}}
                                 id="customerAadharNumber"
                                 autocomplete="off"
-                                aria-describedby="customerAadharNumber" ngModel
+                                aria-describedby="customerAadharNumber"
+                                ngModel
                                 name="customerAadharNumber">
                             <span id="input_label"
-                                *ngIf="customerAadharNumber.invalid &&
+                                *ngIf="customerAadharNumber.invalid
+                                &&
                                 customerAadharNumber.touched"
-                                style="color:red"><b>**Aadhar card Number should
+                                style="color:red"><b>**Aadhar card
+                                    Number
+                                    should
                                     be 12 digits</b></span>
                         </div>
                         <!-- Customer Aadhar Number -->
@@ -508,19 +569,23 @@
                         <!-- Customer Pan Number -->
                         <div class="form-group">
                             <label id="input_label"
-                                for="customerPanNumber">Pan Card Number</label>
+                                for="customerPanNumber">Pan Card
+                                Number</label>
                             <input #customerPanNumber="ngModel"
                                 pattern="\w\w\w\w\w\d\d\d\d\d"
                                 type="text" class="form-control"
                                 placeholder={{customerEditPanNumber}}
                                 id="customerPanNumber"
                                 autocomplete="off"
-                                aria-describedby="customerPanNumber" ngModel
+                                aria-describedby="customerPanNumber"
+                                ngModel
                                 name="customerPanNumber">
                             <span id="input_label"
                                 *ngIf="customerPanNumber.invalid &&
                                 customerPanNumber.touched"
-                                style="color:red"><b>**Enter Valid Pan Card
+                                style="color:red"><b>**Enter Valid
+                                    Pan
+                                    Card
                                     Number</b></span>
                         </div>
                         <!-- Customer Pan Number -->
@@ -528,7 +593,8 @@
 
                         <!-- Submit Button -->
                         <button id="submit_button" type="submit"
-                            [disabled]="customerEditForm.invalid" class="btn
+                            [disabled]="customerEditForm.invalid"
+                            class="btn
                             btn-danger">Edit</button>
                         <!-- Submit Button -->
 
@@ -543,21 +609,26 @@
 
             <!-- Customer Table -->
             <div *ngIf="show_customerEdit_form === false &&
-                show_transaction_form === false && show_customerAdd_form ===
-                false && show_customerDelete_form===false">
+                show_transaction_form === false &&
+                show_customerAdd_form
+                ===
+                false && show_customerDelete_form===false &&
+                show_copyCustomer_form===false">
 
                 <!-- Title -->
                 <h2>
                     <span
                         style="position:relative;top:20px;margin-left:450px;color:white"
-                        class="pacificofont"><b><i>{{ title|titlecase }}</i></b></span>
+                        class="pacificofont"><b><i>{{
+                                title|titlecase }}</i></b></span>
                 </h2>
                 <!-- Title -->
 
 
                 <!-- Search Bar -->
                 <div class="form-group">
-                    <input id="searchBar" type="text" class="form-control"
+                    <input id="searchBar" type="text"
+                        class="form-control"
                         [(ngModel)]="text"
                         placeholder="Search Your Business">
                 </div>
@@ -565,18 +636,32 @@
 
 
                 <!-- Create Excel Button -->
-                <button style="margin-left:970px;" type="button" class="btn
+                <button style="margin-left:970px;" type="button"
+                    class="btn
                     btn-success" (click)="createCSV()"><i class="fa
                         fa-file-excel-o"></i> Create Excel</button>
                 <!-- Create Excel Button -->
 
 
+
                 <!-- Add New User Button -->
-                <button style="position:relative;bottom:54px;margin-left:840px;"
+                <button
+                    style="position:relative;bottom:54px;margin-left:840px;"
                     type="button" class="btn btn-info add-new"
-                    (click)=addUser()><i class="fa fa-plus"></i> Add New</button>
-                <div *ngIf="text === '';then content else other_content"></div>
+                    (click)=addUser()><i class="fa fa-plus"></i> Add
+                    New</button>
+                <div *ngIf="text === '';then content else
+                    other_content"></div>
                 <!-- Add New User Button -->
+
+
+                <!-- Copy User Button -->
+                <a href="/copy/{{id}}/"><button
+                        style="position:relative;bottom:778px;margin-left:730px;"
+                        type="button" class="btn btn-warning"><i class="fa
+                            fa-copy"></i>
+                        Copy</button></a>
+                <!-- Copy User Button -->
 
 
                 <!-- Customer List Pagination Table -->
@@ -584,13 +669,17 @@
                     <table class="table table-hover">
                         <thead>
                             <tr>
-                                <th class="table-dark" *ngFor="let head of
+                                <th class="table-dark" *ngFor="let
+                                    head
+                                    of
                                     headElements"
                                     scope="col">{{head}} </th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr class="table-light" *ngFor="let customer of
+                            <tr class="table-light" *ngFor="let
+                                customer
+                                of
                                 customerList.slice().reverse() |
                                 paginate : {id :
                                 'listing_pagination',
@@ -598,7 +687,7 @@
                                 currentPage : page,
                                 totalItems : totalLength
                                 }; let i=index">
-                                <td>{{ i+1 }}</td>
+                                <td>{{ (page - 1) * 10 + i +1 }}</td>
                                 <td><a
                                         href="/transaction/{{id}}/{{customer.customerId}}">{{customer.customerName}}</a></td>
                                 <td>{{customer.customerCredit}}</td>
@@ -609,15 +698,20 @@
                                 <td>{{customer.customerAadharNumber}}</td>
                                 <td>{{customer.customerPanNumber}}</td>
                                 <td>
-                                    <a style="color: #FFC107;" class="edit"
-                                        title="Edit" data-toggle="tooltip"
+                                    <a style="color: #FFC107;"
+                                        class="edit"
+                                        title="Edit"
+                                        data-toggle="tooltip"
                                         (click)="editCustomerForm(customer)"><i
                                             class="material-icons">&#xE254;</i></a>
-                                    <a style="color: #E34724;" class="delete"
-                                        title="Delete" data-toggle="tooltip"
+                                    <a style="color: #E34724;"
+                                        class="delete"
+                                        title="Delete"
+                                        data-toggle="tooltip"
                                         (click)="deleteCustomerForm(customer)"><i
                                             class="material-icons">&#xE872;</i></a>
-                                    <a style="color: green;" class="delete"
+                                    <a style="color: green;"
+                                        class="delete"
                                         title="Transaction"
                                         data-toggle="tooltip"
                                         (click)="transactionForm(customer)"><i
@@ -655,13 +749,17 @@
                     <table class="table table-hover">
                         <thead>
                             <tr>
-                                <th class="table-dark" *ngFor="let head of
+                                <th class="table-dark" *ngFor="let
+                                    head
+                                    of
                                     headElements"
                                     scope="col">{{head}} </th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr class="table-light" *ngFor="let customer of
+                            <tr class="table-light" *ngFor="let
+                                customer
+                                of
                                 customerList.slice().reverse() |
                                 filter : text; let i=index">
                                 <!-- <div *ngIf="{{customer.customerPending}} === '0' "> -->
@@ -676,15 +774,20 @@
                                 <td>{{customer.customerAadharNumber}}</td>
                                 <td>{{customer.customerPanNumber}}</td>
                                 <td>
-                                    <a style="color: #FFC107;" class="edit"
-                                        title="Edit" data-toggle="tooltip"
+                                    <a style="color: #FFC107;"
+                                        class="edit"
+                                        title="Edit"
+                                        data-toggle="tooltip"
                                         (click)="editCustomerForm(customer)"><i
                                             class="material-icons">&#xE254;</i></a>
-                                    <a style="color: #E34724;" class="delete"
-                                        title="Delete" data-toggle="tooltip"
+                                    <a style="color: #E34724;"
+                                        class="delete"
+                                        title="Delete"
+                                        data-toggle="tooltip"
                                         (click)="deleteCustomerForm(customer)"><i
                                             class="material-icons">&#xE872;</i></a>
-                                    <a style="color: green;" class="delete"
+                                    <a style="color: green;"
+                                        class="delete"
                                         title="Transaction"
                                         data-toggle="tooltip"
                                         (click)="transactionForm(customer)"><i

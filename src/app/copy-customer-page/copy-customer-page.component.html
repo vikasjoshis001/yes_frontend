@@ -1,0 +1,91 @@
+<body>
+    <div class="intro">
+        <div class="container">
+            <!-- Copy Customers -->
+            <!-- Title -->
+            <h3>
+                <br><br><br>
+                <span id="title" class="pacificofont">Copy Customers</span>
+                <br><br><br>
+            </h3>
+            <!-- Title -->
+
+            <!-- Search Bar -->
+            <div class="form-group">
+                <input id="copysearchBar" type="text" class="form-control"
+                    [(ngModel)]="text"
+                    placeholder="Search Your Business">
+            </div>
+            <!-- Search Bar -->
+
+            <!-- Select Business Form -->
+            <form #selectBusinessForm="ngForm"
+                (ngSubmit)="copy(selectBusinessForm)">
+                <label id="input_label" style="color:black" for="sem">Select
+                    Business to Copy</label>
+                <div id="select_business" class="select" class="input-group
+                    mb-3">
+                    <div class="input-group-prepend">
+                        <label style="color:black" class="input-group-text"
+                            for="inputGroupSelect01">BUSINESS</label>
+                    </div>
+                    <select required name="businessId" ngModel
+                        class="custom-select"
+                        id="inputGroupSelect01">
+                        <option *ngFor="let business of businessList"
+                            value="{{
+                            business.businessId }}">{{
+                            business.businessName }}</option>
+                    </select>
+                </div>
+
+                <button
+                    style="position:relative;bottom:160px;margin-left:1030px;"
+                    id="submit_button" type="submit" class="btn
+                    btn-info">Submit</button>
+
+
+            </form>
+            <!-- Select Business Form -->
+
+
+            <form [formGroup]="form" (ngSubmit)="submit()">
+                <div>
+                    <ul class="list-group"
+                        *ngFor="let order of
+                        ordersFormArray.controls |
+                        filter:text let i=index">
+
+                        <li class="list-group-item d-flex
+                            justify-content-between
+                            align-items-center">
+                            <span>
+                                <label style="color:black"
+                                    formArrayName="orders"
+                                    formGroupName="orders">
+                                    <input type="checkbox"
+                                        [formControlName]="i">
+                                    <b>&nbsp;&nbsp;&nbsp;{{
+                                        webData[i].customerName }}</b>
+                                </label>
+                            </span>
+                        </li>
+                    </ul>
+                </div>
+                <!-- Searching List of Business -->
+                <!-- Business List -->
+
+                <!-- Submit Button -->
+                <button style="margin-left:970px;" type="submit"
+                    class="btn
+                    btn-warning"><i class="fa
+                        fa-file-copy"></i>Copy</button>
+                <!-- Submit Button -->
+
+
+            </form>
+            <!-- Copy Cutomer List -->
+
+        </div>
+    </div>
+</body>

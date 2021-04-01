@@ -50,7 +50,7 @@
                             currentPage : page,
                             totalItems : totalRecords
                             }; let i=index">
-                            <td>{{ i+1 }}</td>
+                            <td>{{ (page - 1) * 10 + i +1 }}</td>
                             <td>{{transaction.creationTime}}</td>
                             <td>{{transaction.transactionName}}</td>
                             <td>{{transaction.transactionCredit}}</td>
