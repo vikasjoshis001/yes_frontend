@@ -399,7 +399,7 @@
                                 Debit
                                 Amount</label>
                             <input #transactionTotalDebit="ngModel"
-                                
+
                                 type="text" class="form-control"
                                 id="transactionTotalDebit"
                                 autocomplete="off"
@@ -457,8 +457,7 @@
                 <!-- Title -->
                 <h3>
                     <br><br><br>
-                    <span id="title" class="pacificofont">Edit
-                        Customer</span>
+                    <span id="title" class="pacificofont">Edit Customer</span>
                     <br><br><br>
                 </h3>
                 <!-- Title -->
@@ -501,12 +500,11 @@
                                 for="customerContact">Mobile Number</label>
                             <input #customerContact="ngModel"
                                 pattern="\d\d\d\d\d\d\d\d\d\d"
-                                required
                                 type="text" class="form-control"
                                 id="customerContact"
                                 autocomplete="off"
                                 aria-describedby="customerContact"
-                                placeholder="Enter Mobile Number"
+                                placeholder={{customerEditContact}}
                                 ngModel
                                 name="customerContact">
                             <span id="input_label"
@@ -636,187 +634,204 @@
 
 
                 <!-- Create Excel Button -->
-                <button style="margin-left:970px;" type="button"
-                    class="btn
-                    btn-success" (click)="createCSV()"><i class="fa
-                        fa-file-excel-o"></i> Create Excel</button>
-                <!-- Create Excel Button -->
+                <div *ngIf="show_createExcel === false">
+
+                    <button style="margin-left:970px;" type="button"
+                        class="btn
+                        btn-success" (click)="createCSV()"><i class="fa
+                            fa-file-excel-o"></i> Create Excel</button>
+
+                </div>
 
 
+                <div *ngIf="show_createExcel === true">
 
-                <!-- Add New User Button -->
-                <button
-                    style="position:relative;bottom:54px;margin-left:840px;"
-                    type="button" class="btn btn-info add-new"
-                    (click)=addUser()><i class="fa fa-plus"></i> Add
-                    New</button>
-                <div *ngIf="text === '';then content else
-                    other_content"></div>
-                <!-- Add New User Button -->
+                    <button style="margin-left:970px;" type="button"
+                        class="btn btn-success"
+                        disabled>
+                        <span class="spinner-border spinner-border-sm"
+                            role="status"
+                            aria-hidden="true"></span>
+                        Creating...</button>
 
-
-                <!-- Copy User Button -->
-                <a href="/copy/{{id}}/"><button
-                        style="position:relative;bottom:778px;margin-left:730px;"
-                        type="button" class="btn btn-warning"><i class="fa
-                            fa-copy"></i>
-                        Copy</button></a>
-                <!-- Copy User Button -->
-
-
-                <!-- Customer List Pagination Table -->
-                <ng-template #content>
-                    <table class="table table-hover">
-                        <thead>
-                            <tr>
-                                <th class="table-dark" *ngFor="let
-                                    head
-                                    of
-                                    headElements"
-                                    scope="col">{{head}} </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr class="table-light" *ngFor="let
-                                customer
-                                of
-                                customerList.slice().reverse() |
-                                paginate : {id :
-                                'listing_pagination',
-                                itemsPerPage : 10,
-                                currentPage : page,
-                                totalItems : totalLength
-                                }; let i=index">
-                                <td>{{ (page - 1) * 10 + i +1 }}</td>
-                                <td><a
-                                        href="/transaction/{{id}}/{{customer.customerId}}">{{customer.customerName}}</a></td>
-                                <td>{{customer.customerCredit}}</td>
-                                <td>{{customer.customerDebit}}</td>
-                                <td>{{customer.customerPending}}</td>
-                                <td>{{customer.customerContact}}</td>
-                                <td>{{customer.customerAddress}}</td>
-                                <td>{{customer.customerAadharNumber}}</td>
-                                <td>{{customer.customerPanNumber}}</td>
-                                <td>
-                                    <a style="color: #FFC107;"
-                                        class="edit"
-                                        title="Edit"
-                                        data-toggle="tooltip"
-                                        (click)="editCustomerForm(customer)"><i
-                                            class="material-icons">&#xE254;</i></a>
-                                    <a style="color: #E34724;"
-                                        class="delete"
-                                        title="Delete"
-                                        data-toggle="tooltip"
-                                        (click)="deleteCustomerForm(customer)"><i
-                                            class="material-icons">&#xE872;</i></a>
-                                    <a style="color: green;"
-                                        class="delete"
-                                        title="Transaction"
-                                        data-toggle="tooltip"
-                                        (click)="transactionForm(customer)"><i
-                                            class="material-icons">&#xe8e5;</i></a>
-                                </td>
-                            </tr>
-
-                        </tbody>
-                        <tr class="table-primary">
-                            <td></td>
-                            <td>Total </td>
-                            <td>{{totalCredit}}</td>
-                            <td>{{totalDebit}}</td>
-                            <td>{{totalPending}}</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                    </table>
-
-                    <div>
-                        <pagination-controls style="color:white;"
-                            id="listing_pagination"
-                            (pageChange)="page=
-                            $event"></pagination-controls>
                     </div>
-                </ng-template>
-                <!-- Customer List Pagination Table -->
+                    <!-- Create Excel Button -->
 
 
-                <!-- Customer List Search Table -->
-                <ng-template #other_content>
-                    <table class="table table-hover">
-                        <thead>
-                            <tr>
-                                <th class="table-dark" *ngFor="let
-                                    head
+
+                    <!-- Add New User Button -->
+                    <button
+                        style="position:relative;bottom:54px;margin-left:840px;"
+                        type="button" class="btn btn-info add-new"
+                        (click)=addUser()><i class="fa fa-plus"></i> Add
+                        New</button>
+                    <div *ngIf="text === '';then content else
+                        other_content"></div>
+                    <!-- Add New User Button -->
+
+
+                    <!-- Copy User Button -->
+                    <a href="/copy/{{id}}/"><button
+                            style="position:absolute;bottom:30.8em;margin-left:730px;"
+                            type="button" class="btn btn-warning"><i class="fa
+                                fa-copy"></i>
+                            Copy</button></a>
+                    <!-- Copy User Button -->
+
+
+                    <!-- Customer List Pagination Table -->
+                    <ng-template #content>
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th class="table-dark" *ngFor="let
+                                        head
+                                        of
+                                        headElements"
+                                        scope="col">{{head}} </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="table-light" *ngFor="let
+                                    customer
                                     of
-                                    headElements"
-                                    scope="col">{{head}} </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr class="table-light" *ngFor="let
-                                customer
-                                of
-                                customerList.slice().reverse() |
-                                filter : text; let i=index">
-                                <!-- <div *ngIf="{{customer.customerPending}} === '0' "> -->
-                                <td>{{ i+1 }}</td>
-                                <td><a
-                                        href="/transaction/{{id}}/{{customer.customerId}}">{{customer.customerName}}</a></td>
-                                <td>{{customer.customerCredit}}</td>
-                                <td>{{customer.customerDebit}}</td>
-                                <td>{{customer.customerPending}}</td>
-                                <td>{{customer.customerContact}}</td>
-                                <td>{{customer.customerAddress}}</td>
-                                <td>{{customer.customerAadharNumber}}</td>
-                                <td>{{customer.customerPanNumber}}</td>
-                                <td>
-                                    <a style="color: #FFC107;"
-                                        class="edit"
-                                        title="Edit"
-                                        data-toggle="tooltip"
-                                        (click)="editCustomerForm(customer)"><i
-                                            class="material-icons">&#xE254;</i></a>
-                                    <a style="color: #E34724;"
-                                        class="delete"
-                                        title="Delete"
-                                        data-toggle="tooltip"
-                                        (click)="deleteCustomerForm(customer)"><i
-                                            class="material-icons">&#xE872;</i></a>
-                                    <a style="color: green;"
-                                        class="delete"
-                                        title="Transaction"
-                                        data-toggle="tooltip"
-                                        (click)="transactionForm(customer)"><i
-                                            class="material-icons">&#xe8e5;</i></a>
-                                </td>
-                                <!-- </div> -->
-                            </tr>
+                                    customerList.slice().reverse() |
+                                    paginate : {id :
+                                    'listing_pagination',
+                                    itemsPerPage : 10,
+                                    currentPage : page,
+                                    totalItems : totalLength
+                                    }; let i=index">
+                                    <td>{{ (page - 1) * 10 + i +1 }}</td>
+                                    <td><a
+                                            href="/transaction/{{id}}/{{customer.customerId}}">{{customer.customerName}}</a></td>
+                                    <td>{{customer.customerCredit}}</td>
+                                    <td>{{customer.customerDebit}}</td>
+                                    <td>{{customer.customerPending}}</td>
+                                    <td>{{customer.customerContact}}</td>
+                                    <td>{{customer.customerAddress}}</td>
+                                    <td>{{customer.customerAadharNumber}}</td>
+                                    <td>{{customer.customerPanNumber}}</td>
+                                    <td>
+                                        <a style="color: #FFC107;"
+                                            class="edit"
+                                            title="Edit"
+                                            data-toggle="tooltip"
+                                            (click)="editCustomerForm(customer)"><i
+                                                class="material-icons">&#xE254;</i></a>
+                                        <a style="color: #E34724;"
+                                            class="delete"
+                                            title="Delete"
+                                            data-toggle="tooltip"
+                                            (click)="deleteCustomerForm(customer)"><i
+                                                class="material-icons">&#xE872;</i></a>
+                                        <a style="color: green;"
+                                            class="delete"
+                                            title="Transaction"
+                                            data-toggle="tooltip"
+                                            (click)="transactionForm(customer)"><i
+                                                class="material-icons">&#xe8e5;</i></a>
+                                    </td>
+                                </tr>
 
-                        </tbody>
-                        <tr class="table-primary">
-                            <td></td>
-                            <td>Total </td>
-                            <td>{{totalCredit}}</td>
-                            <td>{{totalDebit}}</td>
-                            <td>{{totalPending}}</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                    </table>
-                </ng-template>
-                <!-- Customer List Search Table -->
+                            </tbody>
+                            <tr class="table-primary">
+                                <td></td>
+                                <td>Total </td>
+                                <td>{{totalCredit}}</td>
+                                <td>{{totalDebit}}</td>
+                                <td>{{totalPending}}</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </table>
+
+                        <div>
+                            <pagination-controls style="color:white;"
+                                id="listing_pagination"
+                                (pageChange)="page=
+                                $event"></pagination-controls>
+                        </div>
+                    </ng-template>
+                    <!-- Customer List Pagination Table -->
+
+
+                    <!-- Customer List Search Table -->
+                    <ng-template #other_content>
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th class="table-dark" *ngFor="let
+                                        head
+                                        of
+                                        headElements"
+                                        scope="col">{{head}} </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="table-light" *ngFor="let
+                                    customer
+                                    of
+                                    customerList.slice().reverse() |
+                                    filter : text; let i=index">
+                                    <!-- <div *ngIf="{{customer.customerPending}} === '0' "> -->
+                                    <td>{{ i+1 }}</td>
+                                    <td><a
+                                            href="/transaction/{{id}}/{{customer.customerId}}">{{customer.customerName}}</a></td>
+                                    <td>{{customer.customerCredit}}</td>
+                                    <td>{{customer.customerDebit}}</td>
+                                    <td>{{customer.customerPending}}</td>
+                                    <td>{{customer.customerContact}}</td>
+                                    <td>{{customer.customerAddress}}</td>
+                                    <td>{{customer.customerAadharNumber}}</td>
+                                    <td>{{customer.customerPanNumber}}</td>
+                                    <td>
+                                        <a style="color: #FFC107;"
+                                            class="edit"
+                                            title="Edit"
+                                            data-toggle="tooltip"
+                                            (click)="editCustomerForm(customer)"><i
+                                                class="material-icons">&#xE254;</i></a>
+                                        <a style="color: #E34724;"
+                                            class="delete"
+                                            title="Delete"
+                                            data-toggle="tooltip"
+                                            (click)="deleteCustomerForm(customer)"><i
+                                                class="material-icons">&#xE872;</i></a>
+                                        <a style="color: green;"
+                                            class="delete"
+                                            title="Transaction"
+                                            data-toggle="tooltip"
+                                            (click)="transactionForm(customer)"><i
+                                                class="material-icons">&#xe8e5;</i></a>
+                                    </td>
+                                    <!-- </div> -->
+                                </tr>
+
+                            </tbody>
+                            <tr class="table-primary">
+                                <td></td>
+                                <td>Total </td>
+                                <td>{{totalCredit}}</td>
+                                <td>{{totalDebit}}</td>
+                                <td>{{totalPending}}</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </table>
+                    </ng-template>
+                    <!-- Customer List Search Table -->
+
+                </div>
+                <!-- Customer Table -->
+
 
             </div>
-            <!-- Customer Table -->
-
-
         </div>
-    </div>
-</body>
+    </body>

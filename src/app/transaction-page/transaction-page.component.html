@@ -25,10 +25,28 @@
 
 
             <!-- Create Excel Button -->
-            <button style="margin-left:970px;position:relative;bottom:430px;" type="button" class="btn
-                btn-success" (click)="createCSV()"><i class="fa
-                    fa-file-excel-o"></i> Create Excel</button>
-            <!-- Create Excel Button -->
+            <div *ngIf="show_createExcel === false">
+
+                <button style="position:absolute;bottom:30.5em;margin-left:970px;" type="button"
+                    class="btn
+                    btn-success" (click)="createCSV()"><i class="fa
+                        fa-file-excel-o"></i> Create Excel</button>
+
+            </div>
+
+
+            <div *ngIf="show_createExcel === true">
+
+                <button style="margin-left:970px;" type="button"
+                    class="btn btn-success"
+                    disabled>
+                    <span class="spinner-border spinner-border-sm"
+                        role="status"
+                        aria-hidden="true"></span>
+                    Creating...</button>
+
+                </div>
+                <!-- Create Excel Button -->
 
 
             <!-- Transaction List Pagination Table -->

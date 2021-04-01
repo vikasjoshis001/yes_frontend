@@ -13,6 +13,7 @@ export class AppComponent {
 
   url = environment.url + "admin/"
   database;
+  show_backup = false;
   constructor(private authService: AuthService,) { }
 
 
@@ -23,9 +24,11 @@ export class AppComponent {
   }
 
   backupData() {
+    this.show_backup = true
     this.authService.backupData().subscribe((result) => {
       this.database = result;
       console.log("Database backup sucessfull...");
+      this.show_backup = false;
       location.assign(environment.frontend_url + "/")
 
     })

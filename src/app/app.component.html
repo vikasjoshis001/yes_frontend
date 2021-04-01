@@ -48,7 +48,29 @@
               <li><a href="/home">Home</a></li>
               <li><a href="http://localhost:8000/admin">Admin</a></li>
               <li><a href="/business">My Businesses</a></li>
-              <li><a role="button" (click)="backupData()">Backup Data</a></li>
+
+
+              <!-- Submit Button -->
+              <div *ngIf="show_backup;then content else other_content">here is
+                ignored</div>
+
+              <!-- Initial Calculate button -->
+              <ng-template #other_content>
+                <li><a role="button" (click)="backupData()">Backup Data</a></li>
+              </ng-template>
+              <!-- Initial Calculate button -->
+
+              <!-- After clicking loading button -->
+              <ng-template #content>
+                <div class="d-flex justify-content-center">
+                  <div class="spinner-border text-success" role="status">
+                    <span class="sr-only">Loading...</span>
+                  </div>
+                </div>
+              </ng-template>
+              <!-- After clicking loading button -->
+
+
               <li><a role="button" (click)="logout()">Logout</a></li>
             </ul>
           </div>
@@ -63,29 +85,22 @@
 
 
 
-  <!-- <footer id="dk-footer" class="dk-footer">
-  
-      <div class="copyright">
-        <div class="container">
-          <div class="row">
-            <span
-              style="font-size:large;margin-left:-200px;position:relative;top:40px">
-              <a href="mailto: crunchbase.io@gmail.com">
-                <i class="fa fa-envelope"></i>
-              </a>
-            </span>
-            <span>Developed by devMonks.org</span>
-            <br>
-            <span>Copyright © 2021, All Right Reserved</span>
-            <span>
-              <a id="counter" href="https://www.hitwebcounter.com/"
-                target="_blank">
-                <img height="20px"
-                  src="https://hitwebcounter.com/counter/counter.php?page=7761392&style=0010&nbdigits=3&type=page&initCount=0"
-                  title="Free Counter" Alt="web counter" border="0" /></a>
-            </span>
-          </div>
-  
+  <footer id="dk-footer" class="dk-footer">
+
+    <div class="copyright">
+      <div class="container">
+        <div class="row">
+          <span
+            style="font-size:large;margin-left:-200px;position:relative;top:40px">
+            <a href="mailto: crunchbase.io@gmail.com">
+              <i class="fa fa-envelope"></i>
+            </a>
+          </span>
+          <span>Developed by devMonks.org</span>
+          <br>
+          <span>Copyright © 2021, All Right Reserved</span>
         </div>
+
       </div>
-    </footer> -->
+    </div>
+  </footer>

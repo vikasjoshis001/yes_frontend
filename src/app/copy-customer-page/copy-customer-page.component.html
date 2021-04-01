@@ -40,7 +40,7 @@
                 </div>
 
                 <button
-                    style="position:relative;bottom:160px;margin-left:1030px;"
+                    style="position:relative;bottom:163px;margin-left:1030px;"
                     id="submit_button" type="submit" class="btn
                     btn-info">Submit</button>
 
@@ -54,7 +54,7 @@
                     <ul class="list-group"
                         *ngFor="let order of
                         ordersFormArray.controls |
-                        filter:text let i=index">
+                        filter:text ;let i=index">
 
                         <li class="list-group-item d-flex
                             justify-content-between
@@ -76,7 +76,7 @@
                 <!-- Business List -->
 
                 <!-- Submit Button -->
-                <button style="margin-left:970px;" type="submit"
+                <button style="position:absolute;bottom:25.2em;margin-left:920px;" type="submit"
                     class="btn
                     btn-warning"><i class="fa
                         fa-file-copy"></i>Copy</button>

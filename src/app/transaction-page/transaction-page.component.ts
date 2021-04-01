@@ -19,6 +19,7 @@ export class TransactionPageComponent implements OnInit {
   totalCredit;
   totalDebit;
   totalPending;
+  show_createExcel = false;
   text = '';
   csvdata;
   csvFile;
@@ -46,12 +47,14 @@ export class TransactionPageComponent implements OnInit {
   }
 
   createCSV() {
+    this.show_createExcel = true;
     console.log("CSV Creating...")
     console.log(this.csvdata)
     return this.authService.createCSV(this.csvdata).subscribe((result) => {
       console.log("CSV Created....")
       this.csvFile = result
       console.log(this.csvFile);
+      this.show_createExcel = false;
     })
   }
 
