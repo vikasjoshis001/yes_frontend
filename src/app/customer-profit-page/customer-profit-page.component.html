@@ -1,0 +1,142 @@
+<head>
+
+</head>
+<body>
+    <div class="intro">
+        <div class="container">
+            <!-- Title -->
+            <h2>
+                <span
+                    style="position:relative;top:20px;margin-left:450px;color:white"
+                    class="pacificofont"><b><i>User Behaviour</i></b></span>
+                <br><br><br>
+            </h2>
+            <!-- Title -->
+
+
+            <!-- Search Bar -->
+            <div class="form-group">
+                <input id="searchBar" type="text" class="form-control"
+                    [(ngModel)]="text"
+                    placeholder="Search">
+            </div>
+            <div *ngIf="text === '';then content else other_content"></div>
+            <!-- Search Bar -->
+
+
+            <!-- Create Excel Button -->
+            <div *ngIf="show_createExcel === false">
+
+                <button
+                    style="position:absolute;bottom:30.5em;margin-left:970px;"
+                    type="button"
+                    class="btn
+                    btn-success" (click)="createProfitCSV()"><i class="fa
+                        fa-file-excel-o"></i> Create Excel</button>
+
+            </div>
+
+
+            <div *ngIf="show_createExcel === true">
+
+                <button style="margin-left:970px;" type="button"
+                    class="btn btn-success"
+                    disabled>
+                    <span class="spinner-border spinner-border-sm"
+                        role="status"
+                        aria-hidden="true"></span>
+                    Creating...</button>
+
+            </div>
+            <!-- Create Excel Button -->
+
+
+            <!-- Transaction List Pagination Table -->
+            <ng-template #content>
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th class="table-dark" *ngFor="let head of
+                                headElements"
+                                scope="col">{{head}} </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="table-light" *ngFor="let profit of
+                            profitList |
+                            paginate : {id :
+                            'listing_pagination',
+                            itemsPerPage : 10,
+                            currentPage : page,
+                            totalItems : totalRecords
+                            }; let i=index">
+                            <td>{{ (page - 1) * 10 + i +1 }}</td>
+                            <td>{{profit.customerBusiness}}</td>
+                            <td>{{profit.customerName}}</td>
+                            <td>{{profit.customerCredit}}</td>
+                            <td>{{profit.customerDebit}}</td>
+                            <td>{{profit.customerPending}}</td>
+                        </tr>
+
+                    </tbody>
+                    <tr class="table-primary">
+                        <td></td>
+                        <td></td>
+                        <td>Total </td>
+                        <td>{{totalCredit}}</td>
+                        <td>{{totalDebit}}</td>
+                        <td>{{totalPending}}</td>
+                    </tr>
+                </table>
+
+                <div>
+                    <pagination-controls style="color:white;"
+                        id="listing_pagination"
+                        (pageChange)="page=
+                        $event"></pagination-controls>
+                </div>
+
+            </ng-template>
+            <!-- Transaction List Pagination Table -->
+
+
+            <!-- Transaction List Search Table -->
+            <ng-template #other_content>
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th class="table-dark" *ngFor="let head of
+                                headElements"
+                                scope="col">{{head}} </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="table-light" *ngFor="let profit of
+                            profitList |
+                            filter:text; let i=index">
+                            <td>{{ (page - 1) * 10 + i +1 }}</td>
+                            <td>{{profit.customerBusiness}}</td>
+                            <td>{{profit.customerName}}</td>
+                            <td>{{profit.customerCredit}}</td>
+                            <td>{{profit.customerDebit}}</td>
+                            <td>{{profit.customerPending}}</td>
+                        </tr>
+
+                    </tbody>
+                    <tr class="table-primary">
+                        <td></td>
+                        <td></td>
+                        <td>Total </td>
+                        <td>{{totalCredit}}</td>
+                        <td>{{totalDebit}}</td>
+                        <td>{{totalPending}}</td>
+                    </tr>
+                </table>
+
+
+            </ng-template>
+            <!-- Transaction List Search Table -->
+        </div>
+    </div>
+    <!-- Transaction Table -->
+</body>
