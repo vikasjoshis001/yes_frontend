@@ -463,7 +463,7 @@
                                 for="customerDOB">Date of Birth</label>
                             <input #customerDOB="ngModel"
                                 type="date" class="form-control"
-                                placeholder="Enter Date of Birth"
+                                placeholder={{customerEditDOB}}
                                 id="customerDOB"
                                 autocomplete="off"
                                 aria-describedby="customerDOB"
@@ -634,13 +634,13 @@
                                             class="material-icons">&#xE872;</i></a>
                                     <a style="color: green;"
                                         class="delete"
-                                        title="info"
+                                        title="Transaction"
                                         data-toggle="tooltip"
                                         (click)="transactionForm(customer)"><i
                                             class="material-icons">&#xe263;</i></a>
                                     <a style="color: blue;"
                                         class="delete"
-                                        title="Transaction"
+                                        title="info"
                                         data-toggle="tooltip"
                                         href="/profit/{{businessId}}/{{customer.customerId}}"><i
                                             class="material-icons">&#xe88f;</i></a>
@@ -733,13 +733,13 @@
                                             class="material-icons">&#xE872;</i></a>
                                     <a style="color: green;"
                                         class="delete"
-                                        title="info"
+                                        title="Transaction"
                                         data-toggle="tooltip"
                                         (click)="transactionForm(customer)"><i
                                             class="material-icons">&#xe263;</i></a>
                                     <a style="color: blue;"
                                         class="delete"
-                                        title="Transaction"
+                                        title="info"
                                         data-toggle="tooltip"
                                         href="/profit/{{businessId}}/{{customer.customerId}}"><i
                                             class="material-icons">&#xe88f;</i></a>
