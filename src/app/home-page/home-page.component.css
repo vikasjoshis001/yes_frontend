@@ -19,18 +19,6 @@ body {
   height: 110vh;
 }
 
-.fancy {
-  padding: 1em;
-  width: 50%;
-  height: 280px;
-  box-sizing: border-box;
-  position: relative;
-  margin: 0 auto;
-  border-radius: 25px;
-  top: auto;
-  background-color: #fcfcfa;
-}
-
 .pacificofont {
   font-family: pacifico;
   font-size: 50px;
