@@ -6,8 +6,14 @@ import { BusinessPageComponent } from './business-page/business-page.component';
 import { CustomersPageComponent } from './customers-page/customers-page.component';
 import { TransactionPageComponent } from './transaction-page/transaction-page.component';
 import { CopyCustomerPageComponent } from './copy-customer-page/copy-customer-page.component';
+import { CustomerProfitPageComponent } from './customer-profit-page/customer-profit-page.component';
 
 const routes: Routes = [
+  {
+    path: "profit/:businessId/:customerId",
+    component: CustomerProfitPageComponent,
+    canActivate: [AuthGuard] 
+  },
   {
     path: "copy/:businessId",
     component: CopyCustomerPageComponent,

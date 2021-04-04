@@ -19,7 +19,9 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { TransactionPageComponent } from './transaction-page/transaction-page.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CopyCustomerPageComponent } from './copy-customer-page/copy-customer-page.component';
-
+import { AngularDataTableModule } from 'angular-data-table-library'
+import { OrderModule } from 'ngx-order-pipe';
+import { CustomerProfitPageComponent } from './customer-profit-page/customer-profit-page.component';
 // My Modules
 
 @NgModule({
@@ -30,6 +32,7 @@ import { CopyCustomerPageComponent } from './copy-customer-page/copy-customer-pa
     CustomersPageComponent,
     TransactionPageComponent,
     CopyCustomerPageComponent,
+    CustomerProfitPageComponent,
   ],
   imports: [
     BrowserModule,
@@ -40,7 +43,9 @@ import { CopyCustomerPageComponent } from './copy-customer-page/copy-customer-pa
     NgxPaginationModule,
     MatTableModule,
     MatPaginatorModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AngularDataTableModule,
+    OrderModule,
   ],
   providers: [AuthService, AuthGuard],
   bootstrap: [AppComponent]
