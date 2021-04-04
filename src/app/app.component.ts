@@ -17,12 +17,14 @@ export class AppComponent {
   constructor(private authService: AuthService,) { }
 
 
+  // logout function
   logout() {
     this.authService.logout()
     location.assign(environment.frontend_url + "home/")
 
   }
 
+  // backup Api Called
   backupData() {
     this.show_backup = true
     this.authService.backupData().subscribe((result) => {
