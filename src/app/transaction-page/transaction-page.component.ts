@@ -23,37 +23,33 @@ export class TransactionPageComponent implements OnInit {
   text = '';
   csvdata;
   csvFile;
-  headElements = ['Sr.No.', 'Date', 'Name', 'Credit', 'New Debit','Total Debit','Pending'];
+  headElements = ['Sr.No.', 'Date', 'Name', 'Credit', 'Debit', 'Pending'];
 
-  constructor(private route: ActivatedRoute,private authService: AuthService,private router: Router) { }
+  constructor(private route: ActivatedRoute, private authService: AuthService, private router: Router) { }
 
+  // getTransactionHistory Api Call
   getTransactionHistory(data) {
-    console.log("Getting Transaction History....")
     return this.authService.getTransactionHistory(data).subscribe((result) => {
       console.log("Transaction History Fetched Successfully....")
       this.transactionList = result
+      console.log(this.transactionList)
       this.csvdata = this.transactionList.data
       this.totalCredit = this.transactionList.total["totalCredit"]
       this.totalDebit = this.transactionList.total["totalDebit"]
       this.totalPending = this.transactionList.total["totalPending"]
       this.transactionList = this.transactionList.data['transactionHistory']
-      console.log(this.transactionList)
       this.totalRecords = this.transactionList.length
       return this.transactionList;
     })
-
-    
-
   }
 
-  createCSV() {
+
+  // createTransactionCSV Api Call
+  createTransactionCSV() {
     this.show_createExcel = true;
-    console.log("CSV Creating...")
-    console.log(this.csvdata)
-    return this.authService.createCSV(this.csvdata).subscribe((result) => {
-      console.log("CSV Created....")
+    return this.authService.createTransactionCSV(this.csvdata).subscribe((result) => {
+      console.log("CSV Created Successfully...")
       this.csvFile = result
-      console.log(this.csvFile);
       this.show_createExcel = false;
     })
   }

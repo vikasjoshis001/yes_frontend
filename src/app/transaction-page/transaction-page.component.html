@@ -27,9 +27,11 @@
             <!-- Create Excel Button -->
             <div *ngIf="show_createExcel === false">
 
-                <button style="position:absolute;bottom:30.5em;margin-left:970px;" type="button"
+                <button
+                    style="position:absolute;bottom:30.5em;margin-left:970px;"
+                    type="button"
                     class="btn
-                    btn-success" (click)="createCSV()"><i class="fa
+                    btn-success" (click)="createTransactionCSV()"><i class="fa
                         fa-file-excel-o"></i> Create Excel</button>
 
             </div>
@@ -45,8 +47,8 @@
                         aria-hidden="true"></span>
                     Creating...</button>
 
-                </div>
-                <!-- Create Excel Button -->
+            </div>
+            <!-- Create Excel Button -->
 
 
             <!-- Transaction List Pagination Table -->
@@ -69,31 +71,11 @@
                             totalItems : totalRecords
                             }; let i=index">
                             <td>{{ (page - 1) * 10 + i +1 }}</td>
-                            <td>{{transaction.creationTime}}</td>
+                            <td>{{transaction.transactionDate}} ( {{transaction.transactionTime}})</td>
                             <td>{{transaction.transactionName}}</td>
                             <td>{{transaction.transactionCredit}}</td>
-                            <td>{{transaction.transactionNewDebit}}</td>
-                            <td>{{transaction.transactionTotalDebit}}</td>
+                            <td>{{transaction.transactionDebit}}</td>
                             <td>{{transaction.transactionPending}}</td>
-                            <!-- <td>{{customer.customerContact}}</td>
-                    <td>{{customer.customerAddress}}</td>
-                    <td>{{customer.customerAadharNumber}}</td>
-                    <td>{{customer.customerPanNumber}}</td> -->
-                            <!-- <td>
-                        <a style="color: #FFC107;" class="edit"
-                            title="Edit" data-toggle="tooltip"
-                            (click)="editCustomerForm(customer)"><i
-                                class="material-icons">&#xE254;</i></a>
-                        <a style="color: #E34724;" class="delete"
-                            title="Delete" data-toggle="tooltip"
-                            (click)="deleteCustomer(customer)"><i
-                                class="material-icons">&#xE872;</i></a>
-                        <a style="color: green;" class="delete"
-                            title="Transaction"
-                            data-toggle="tooltip"
-                            (click)="transactionForm(customer)"><i
-                                class="material-icons">&#xe8e5;</i></a>
-                    </td> -->
                         </tr>
 
                     </tbody>
@@ -102,13 +84,8 @@
                         <td></td>
                         <td>Total </td>
                         <td>{{totalCredit}}</td>
-                        <td></td>
                         <td>{{totalDebit}}</td>
                         <td>{{totalPending}}</td>
-                        <!-- <td></td>
-                <td></td>
-                <td></td>
-                <td></td> -->
                     </tr>
                 </table>
 
@@ -118,7 +95,7 @@
                         (pageChange)="page=
                         $event"></pagination-controls>
                 </div>
-                
+
             </ng-template>
             <!-- Transaction List Pagination Table -->
 
@@ -136,33 +113,13 @@
                     <tbody>
                         <tr class="table-light" *ngFor="let transaction of
                             transactionList |
-                            filter:text let i=index">
-                            <td>{{ i+1 }}</td>
-                            <td>{{transaction.creationTime}}</td>
+                            filter:text;let i=index">
+                            <td>{{ (page - 1) * 10 + i +1 }}</td>
+                            <td>{{transaction.transactionDate}} ( {{transaction.transactionTime}})</td>
                             <td>{{transaction.transactionName}}</td>
                             <td>{{transaction.transactionCredit}}</td>
-                            <td>{{transaction.transactionNewDebit}}</td>
-                            <td>{{transaction.transactionTotalDebit}}</td>
+                            <td>{{transaction.transactionDebit}}</td>
                             <td>{{transaction.transactionPending}}</td>
-                            <!-- <td>{{customer.customerContact}}</td>
-                    <td>{{customer.customerAddress}}</td>
-                    <td>{{customer.customerAadharNumber}}</td>
-                    <td>{{customer.customerPanNumber}}</td> -->
-                            <!-- <td>
-                        <a style="color: #FFC107;" class="edit"
-                            title="Edit" data-toggle="tooltip"
-                            (click)="editCustomerForm(customer)"><i
-                                class="material-icons">&#xE254;</i></a>
-                        <a style="color: #E34724;" class="delete"
-                            title="Delete" data-toggle="tooltip"
-                            (click)="deleteCustomer(customer)"><i
-                                class="material-icons">&#xE872;</i></a>
-                        <a style="color: green;" class="delete"
-                            title="Transaction"
-                            data-toggle="tooltip"
-                            (click)="transactionForm(customer)"><i
-                                class="material-icons">&#xe8e5;</i></a>
-                    </td> -->
                         </tr>
 
                     </tbody>
@@ -171,15 +128,11 @@
                         <td></td>
                         <td>Total </td>
                         <td>{{totalCredit}}</td>
-                        <td></td>
                         <td>{{totalDebit}}</td>
                         <td>{{totalPending}}</td>
-                        <!-- <td></td>
-                <td></td>
-                <td></td>
-                <td></td> -->
                     </tr>
                 </table>
+
 
 
             </ng-template>
