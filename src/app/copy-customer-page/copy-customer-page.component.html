@@ -1,7 +1,6 @@
 <body>
     <div class="intro">
         <div class="container">
-            <!-- Copy Customers -->
             <!-- Title -->
             <h3>
                 <br><br><br>
@@ -12,16 +11,20 @@
 
             <!-- Search Bar -->
             <div class="form-group">
-                <input id="copysearchBar" type="text" class="form-control"
+                <input id="copysearchBar" type="text"
+                    class="form-control"
                     [(ngModel)]="text"
+                    name="text"
                     placeholder="Search">
             </div>
             <!-- Search Bar -->
 
+
+
             <!-- Select Business Form -->
             <form #selectBusinessForm="ngForm"
                 (ngSubmit)="copy(selectBusinessForm)">
-                <label id="input_label" style="color:black" for="sem">Select
+                <label id="input_label" style="color:black" for="businessId">Select
                     Business to Copy</label>
                 <div id="select_business" class="select" class="input-group
                     mb-3">
@@ -30,6 +33,7 @@
                             for="inputGroupSelect01">BUSINESS</label>
                     </div>
                     <select required name="businessId" ngModel
+                        requirred
                         class="custom-select"
                         id="inputGroupSelect01">
                         <option *ngFor="let business of businessList"
@@ -37,54 +41,89 @@
                             business.businessId }}">{{
                             business.businessName }}</option>
                     </select>
+                    <span id="input_label"
+                        *ngIf="businessId.invalid &&
+                        businessId.touched"
+                        style="color:red"><b>**Please Select Business</b></span>
                 </div>
 
-                <button
-                    style="position:relative;bottom:163px;margin-left:1030px;"
-                    id="submit_button" type="submit" class="btn
-                    btn-info">Submit</button>
+                <!-- Submit Button -->
+                <div *ngIf="show_copy === false">
+                    <button
+                        style="position:relative;bottom:163px;margin-left:1030px;"
+                        type="submit"
+                        id="submit_button"
+                        [disabled]="selectBusinessForm.invalid"
+                        class="btn
+                        btn-warning"><i class="fa
+                            fa-file-copy"></i>Copy</button>
+                </div>
+
+                <div *ngIf="show_copy === true">
+
+                    <button
+                        style="position:relative;bottom:163px;margin-left:1030px;"
+                        type="button"
+                        class="btn btn-warning"
+                        disabled>
+                        <span class="spinner-border spinner-border-sm"
+                            role="status"
+                            aria-hidden="true"></span>
+                        Copying</button>
+
+                </div>
+                <!-- Submit Button -->
 
 
             </form>
             <!-- Select Business Form -->
 
 
-            <form [formGroup]="form" (ngSubmit)="submit()">
-                <div>
-                    <ul class="list-group"
-                        *ngFor="let order of
-                        ordersFormArray.controls |
-                        filter:text ;let i=index">
+            <!-- Customer Display Table -->
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th (click)="sort('customerId')" class="table-dark"><i
+                                class="fa fa-sort"></i>&nbsp;Sr</th>
+                        <th (click)="sort('customerName')" class="table-dark"><i
+                                class="fa fa-sort"></i>&nbsp;Name</th>
+                        <th (click)="sort('customerContact')"
+                            class="table-dark"><i
+                                class="fa fa-sort"></i>&nbsp;Contact</th>
+                        <th (click)="sort('customerAddress')"
+                            class="table-dark"><i
+                                class="fa fa-sort"></i>&nbsp;Address</th>
+                        <th (click)="sort('customerAadharNumber')"
+                            class="table-dark"><i class="fa fa-sort"></i>&nbsp;Aadhar
+                            No.</th>
+                        <th (click)="sort('customerPanNumber')"
+                            class="table-dark"><i class="fa fa-sort"></i>&nbsp;Pan
+                            No.</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="table-light" *ngFor="let
+                        customer
+                        of
+                        customerList.slice().reverse() | orderBy: key : reverse|filter:text; let i=index">
+                        <!-- <div *ngIf="{{customer.customerPending}} === '0' "> -->
+                        <td><div class="custom-control custom-checkbox">
+                                <input (click)="addCustomerIds(customer)"
+                                    type="checkbox" class="custom-control-input"
+                                    id={{i+1}} [checked]="customer.customerStatus">
+                                <label class="custom-control-label" for={{i+1}}>{{i+1}}</label>
+                            </div></td>
+                        <td>{{customer.customerName}}</td>
+                        <td>{{customer.customerContact}}</td>
+                        <td>{{customer.customerAddress}}</td>
+                        <td>{{customer.customerAadharNumber}}</td>
+                        <td>{{customer.customerPanNumber}}</td>
+                        <!-- </div> -->
+                    </tr>
 
-                        <li class="list-group-item d-flex
-                            justify-content-between
-                            align-items-center">
-                            <span>
-                                <label style="color:black"
-                                    formArrayName="orders"
-                                    formGroupName="orders">
-                                    <input type="checkbox"
-                                        [formControlName]="i">
-                                    <b>&nbsp;&nbsp;&nbsp;{{
-                                        webData[i].customerName }}</b>
-                                </label>
-                            </span>
-                        </li>
-                    </ul>
-                </div>
-                <!-- Searching List of Business -->
-                <!-- Business List -->
-
-                <!-- Submit Button -->
-                <button style="position:absolute;bottom:25.2em;margin-left:920px;" type="submit"
-                    class="btn
-                    btn-warning"><i class="fa
-                        fa-file-copy"></i>Copy</button>
-                <!-- Submit Button -->
-
-
-            </form>
-            <!-- Copy Cutomer List -->
+                </tbody>
+            </table>
+            <!-- Customer Display Table -->
 
         </div>
     </div>
