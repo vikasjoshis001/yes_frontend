@@ -21,7 +21,7 @@
                 <div id="model_popup" class="fancy">
                     <p id="delete"
                         style="text-align:center;font-size:
-                        22px;"><b>Are You Sure Do You Want to Delete
+                        22px;"><b>Are You Sure You Want to Delete
                             Customer {{
                             customerEditName }} </b></p><br><hr>
                     <button style="margin-left:100px;width:80px"
@@ -40,10 +40,7 @@
 
 
             <!-- Add Customer Form -->
-            <div *ngIf="show_customerAdd_form === true &&
-                show_transaction_form
-                === false && show_customerEdit_form === false &&
-                show_copyCustomer_form===false">
+            <div *ngIf="show_customerAdd_form === true">
                 <!-- Title -->
                 <h3>
                     <br><br><br>
@@ -80,9 +77,6 @@
                                 aria-describedby="customerName"
                                 ngModel
                                 name="customerName">
-                            <!-- <span id="input_label" *ngIf="customerName.invalid &&
-                                        customerName.touched"
-                                            style="color:red"><b>**Invalid Username Format</b></span> -->
                         </div>
                         <!-- Customer Name -->
 
@@ -92,7 +86,6 @@
                                 for="customerContact">Mobile Number</label>
                             <input #customerContact="ngModel"
                                 pattern=\d\d\d\d\d\d\d\d\d\d
-                                required
                                 type="text" class="form-control"
                                 id="customerContact"
                                 autocomplete="off"
@@ -123,9 +116,6 @@
                                 aria-describedby="customerAddress"
                                 ngModel
                                 name="customerAddress">
-                            <!-- <span id="input_label" *ngIf="customerName.invalid &&
-                                        customerName.touched"
-                                            style="color:red"><b>**Invalid Username Format</b></span> -->
                         </div>
                         <!-- Customer Adress -->
 
@@ -163,7 +153,6 @@
                                 for="customerPanNumber">Pan Card
                                 Number</label>
                             <input #customerPanNumber="ngModel"
-                                pattern="\w\w\w\w\w\d\d\d\d\d"
                                 type="text" class="form-control"
                                 placeholder="Enter Pan Number"
                                 id="customerPanNumber"
@@ -182,12 +171,27 @@
                         <!-- Customer Pan Number -->
 
 
+                        <!-- Customer DOB -->
+                        <div class="form-group">
+                            <label id="input_label"
+                                for="customerDOB">Date of Birth</label>
+                            <input #customerDOB="ngModel"
+                                type="date" class="form-control"
+                                placeholder="Enter Date of Birth"
+                                id="customerDOB"
+                                autocomplete="off"
+                                aria-describedby="customerDOB"
+                                ngModel
+                                name="customerDOB">
+                        </div>
+                        <!-- Customer DOB -->
+
+
                         <!-- Customer Debit -->
                         <div class="form-group">
                             <label id="input_label"
                                 for="customerDebit">Debit Amount</label>
                             <input #customerDebit="ngModel"
-                                required
                                 type="text" class="form-control"
                                 id="customerDebit"
                                 autocomplete="off"
@@ -195,9 +199,6 @@
                                 placeholder="Enter Debit Amount"
                                 ngModel
                                 name="customerDebit">
-                            <!-- <span id="input_label" *ngIf="customerContact.invalid &&
-                                        customerContact.touched"
-                                            style="color:red"><b>**Invalid Password Format</b></span> -->
                         </div>
                         <!-- Customer Debit -->
 
@@ -206,7 +207,6 @@
                             <label id="input_label"
                                 for="customerCredit">Credit Amount</label>
                             <input #customerCredit="ngModel"
-                                required
                                 type="text" class="form-control"
                                 id="customerCredit"
                                 autocomplete="off"
@@ -214,9 +214,6 @@
                                 placeholder="Enter Credit Amount"
                                 ngModel
                                 name="customerCredit">
-                            <!-- <span id="input_label" *ngIf="customerContact.invalid &&
-                                        customerContact.touched"
-                                            style="color:red"><b>**Invalid Password Format</b></span> -->
                         </div>
                         <!-- Customer Credit -->
 
@@ -238,10 +235,7 @@
 
 
             <!-- Transaction Form -->
-            <div *ngIf="show_transaction_form === true &&
-                show_customerEdit_form
-                === false && show_customerAdd_form === false &&
-                show_copyCustomer_form===false">
+            <div *ngIf="show_transaction_form === true">
                 <!-- Title -->
                 <h3>
                     <br><br><br>
@@ -278,140 +272,25 @@
                                 aria-describedby="transactionName"
                                 ngModel
                                 name="transactionName">
-                            <!-- <span id="input_label" *ngIf="customerName.invalid &&
-                        customerName.touched"
-                            style="color:red"><b>**Invalid Username Format</b></span> -->
                         </div>
                         <!-- Customer Name -->
 
 
-                        <!-- Customer Contact -->
+                        <!-- Customer Debit -->
                         <div class="form-group">
                             <label id="input_label"
-                                for="transactionContact">Mobile
-                                Number</label>
-                            <input #transactionContact="ngModel"
-                                disabled
-                                type="text" class="form-control"
-                                id="transactionContact"
-                                autocomplete="off"
-                                aria-describedby="transactionContact"
-                                placeholder={{customerEditContact}}
-                                ngModel
-                                name="transactionContact">
-                            <!-- <span id="input_label" *ngIf="customerContact.invalid &&
-                        customerContact.touched"
-                            style="color:red"><b>**Invalid Password Format</b></span> -->
-                        </div>
-                        <!-- Customer Contact -->
-
-
-                        <!-- Customer Adress -->
-                        <div class="form-group">
-                            <label id="input_label"
-                                for="transactionAddress">Address</label>
-                            <input #transactionAddress="ngModel"
-                                disabled
-                                type="text" class="form-control"
-                                placeholder={{customerEditAddress}}
-                                id="transactionAddress"
-                                autocomplete="off"
-                                aria-describedby="transactionAddress"
-                                ngModel
-                                name="transactionAddress">
-                            <!-- <span id="input_label" *ngIf="customerName.invalid &&
-                        customerName.touched"
-                            style="color:red"><b>**Invalid Username Format</b></span> -->
-                        </div>
-                        <!-- Customer Adress -->
-
-
-                        <!-- Customer Aadhar Number -->
-                        <div class="form-group">
-                            <label id="input_label"
-                                for="transactionAadharNumber">Aadhar
-                                Card
-                                Number</label>
-                            <input
-                                #transactionAadharNumber="ngModel"
-                                disabled
-                                pattern="\d\d\d\d\d\d\d\d\d\d\d\d"
-                                type="text" class="form-control"
-                                placeholder={{customerEditAadharNumber}}
-                                id="transactionAadharNumber"
-                                autocomplete="off"
-                                aria-describedby="transactionAadharNumber"
-                                ngModel
-                                name="transactionAadharNumber">
-                            <!-- <span id="input_label" *ngIf="transactionAadharNumber.invalid &&
-                            transactionAadharNumber.touched"
-                            style="color:red"><b>**Aadhar card Number should be 12 digits</b></span> -->
-                        </div>
-                        <!-- Customer Aadhar Number -->
-
-
-                        <!-- Customer Pan Number -->
-                        <div class="form-group">
-                            <label id="input_label"
-                                for="transactionPanNumber">Pan Card
-                                Number</label>
-                            <input #transactionPanNumber="ngModel"
-                                disabled
-                                pattern="\w\w\w\w\w\d\d\d\d\d"
-                                type="text" class="form-control"
-                                placeholder={{customerEditPanNumber}}
-                                id="transactionPanNumber"
-                                autocomplete="off"
-                                aria-describedby="transactionPanNumber"
-                                ngModel
-                                name="transactionPanNumber">
-                            <!-- <span id="input_label" *ngIf="transactionPanNumber.invalid &&
-                            transactionPanNumber.touched"
-                            style="color:red"><b>**Enter Valid Pan Card Number</b></span> -->
-                        </div>
-                        <!-- Customer Pan Number -->
-
-
-                        <!-- Customer New Debit -->
-                        <div class="form-group">
-                            <label id="input_label"
-                                for="transactionNewDebit">New Debit
+                                for="transactionDebit">New Debit
                                 Amount</label>
-                            <input #transactionNewDebit="ngModel"
+                            <input #transactionDebit="ngModel"
                                 type="text" class="form-control"
-                                id="transactionNewDebit"
+                                id="transactionDebit"
                                 autocomplete="off"
-                                aria-describedby="transactionNewDebit"
+                                aria-describedby="transactionDebit"
                                 placeholder="Enter Debit Amount"
                                 ngModel
-                                name="transactionNewDebit">
-                            <!-- <span id="input_label" *ngIf="customerContact.invalid &&
-                        customerContact.touched"
-                            style="color:red"><b>**Invalid Password Format</b></span> -->
+                                name="transactionDebit">
                         </div>
-                        <!-- Customer New Debit -->
-
-
-                        <!-- Customer Total Debit -->
-                        <div class="form-group">
-                            <label id="input_label"
-                                for="transactionTotalDebit">Total
-                                Debit
-                                Amount</label>
-                            <input #transactionTotalDebit="ngModel"
-
-                                type="text" class="form-control"
-                                id="transactionTotalDebit"
-                                autocomplete="off"
-                                aria-describedby="transactionTotalDebit"
-                                placeholder={{customerEditDebit}}
-                                ngModel
-                                name="transactionTotalDebit">
-                            <!-- <span id="input_label" *ngIf="customerContact.invalid &&
-                        customerContact.touched"
-                            style="color:red"><b>**Invalid Password Format</b></span> -->
-                        </div>
-                        <!-- Customer Total Debit -->
+                        <!-- Customer Debit -->
 
                         <!-- Customer Credit -->
                         <div class="form-group">
@@ -426,12 +305,8 @@
                                 placeholder={{customerEditCredit}}
                                 ngModel
                                 name="transactionCredit">
-                            <!-- <span id="input_label" *ngIf="customerContact.invalid &&
-                        customerContact.touched"
-                            style="color:red"><b>**Invalid Password Format</b></span> -->
                         </div>
                         <!-- Customer Credit -->
-
 
                         <!-- Submit Button -->
                         <button id="submit_button" type="submit"
@@ -450,10 +325,7 @@
 
 
             <!-- Edit Form -->
-            <div *ngIf="show_customerEdit_form === true &&
-                show_transaction_form
-                === false && show_customerAdd_form === false&&
-                show_copyCustomer_form===false">
+            <div *ngIf="show_customerEdit_form === true">
                 <!-- Title -->
                 <h3>
                     <br><br><br>
@@ -487,9 +359,6 @@
                                 aria-describedby="customerName"
                                 ngModel
                                 name="customerName">
-                            <!-- <span id="input_label" *ngIf="customerName.invalid &&
-                        customerName.touched"
-                            style="color:red"><b>**Invalid Username Format</b></span> -->
                         </div>
                         <!-- Customer Name -->
 
@@ -530,9 +399,6 @@
                                 aria-describedby="customerAddress"
                                 ngModel
                                 name="customerAddress">
-                            <!-- <span id="input_label" *ngIf="customerName.invalid &&
-                                        customerName.touched"
-                                            style="color:red"><b>**Invalid Username Format</b></span> -->
                         </div>
                         <!-- Customer Adress -->
 
@@ -570,7 +436,7 @@
                                 for="customerPanNumber">Pan Card
                                 Number</label>
                             <input #customerPanNumber="ngModel"
-                                pattern="\w\w\w\w\w\d\d\d\d\d"
+                                pattern="\d\d\d\d\d\d\d\d\d\d"
                                 type="text" class="form-control"
                                 placeholder={{customerEditPanNumber}}
                                 id="customerPanNumber"
@@ -588,6 +454,20 @@
                         </div>
                         <!-- Customer Pan Number -->
 
+                        <!-- Customer DOB -->
+                        <div class="form-group">
+                            <label id="input_label"
+                                for="customerDOB">Date of Birth</label>
+                            <input #customerDOB="ngModel"
+                                type="date" class="form-control"
+                                placeholder="Enter Date of Birth"
+                                id="customerDOB"
+                                autocomplete="off"
+                                aria-describedby="customerDOB"
+                                ngModel
+                                name="customerDOB">
+                        </div>
+                        <!-- Customer DOB -->
 
                         <!-- Submit Button -->
                         <button id="submit_button" type="submit"
@@ -628,6 +508,8 @@
                     <input id="searchBar" type="text"
                         class="form-control"
                         [(ngModel)]="text"
+                        name="text"
+                        (ngModelChange)="Search()"
                         placeholder="Search">
                 </div>
                 <!-- Search Bar -->
@@ -638,7 +520,7 @@
 
                     <button style="margin-left:970px;" type="button"
                         class="btn
-                        btn-success" (click)="createCSV()"><i class="fa
+                        btn-success" (click)="createCustomersCSV()"><i class="fa
                             fa-file-excel-o"></i> Create Excel</button>
 
                 </div>
@@ -654,184 +536,233 @@
                             aria-hidden="true"></span>
                         Creating...</button>
 
-                    </div>
-                    <!-- Create Excel Button -->
-
-
-
-                    <!-- Add New User Button -->
-                    <button
-                        style="position:relative;bottom:54px;margin-left:840px;"
-                        type="button" class="btn btn-info add-new"
-                        (click)=addUser()><i class="fa fa-plus"></i> Add
-                        New</button>
-                    <div *ngIf="text === '';then content else
-                        other_content"></div>
-                    <!-- Add New User Button -->
-
-
-                    <!-- Copy User Button -->
-                    <a href="/copy/{{id}}/"><button
-                            style="position:absolute;bottom:30.8em;margin-left:730px;"
-                            type="button" class="btn btn-warning"><i class="fa
-                                fa-copy"></i>
-                            Copy</button></a>
-                    <!-- Copy User Button -->
-
-
-                    <!-- Customer List Pagination Table -->
-                    <ng-template #content>
-                        <table class="table table-hover">
-                            <thead>
-                                <tr>
-                                    <th class="table-dark" *ngFor="let
-                                        head
-                                        of
-                                        headElements"
-                                        scope="col">{{head}} </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr class="table-light" *ngFor="let
-                                    customer
-                                    of
-                                    customerList.slice().reverse() |
-                                    paginate : {id :
-                                    'listing_pagination',
-                                    itemsPerPage : 10,
-                                    currentPage : page,
-                                    totalItems : totalLength
-                                    }; let i=index">
-                                    <td>{{ (page - 1) * 10 + i +1 }}</td>
-                                    <td><a
-                                            href="/transaction/{{id}}/{{customer.customerId}}">{{customer.customerName}}</a></td>
-                                    <td>{{customer.customerCredit}}</td>
-                                    <td>{{customer.customerDebit}}</td>
-                                    <td>{{customer.customerPending}}</td>
-                                    <td>{{customer.customerContact}}</td>
-                                    <td>{{customer.customerAddress}}</td>
-                                    <td>{{customer.customerAadharNumber}}</td>
-                                    <td>{{customer.customerPanNumber}}</td>
-                                    <td>
-                                        <a style="color: #FFC107;"
-                                            class="edit"
-                                            title="Edit"
-                                            data-toggle="tooltip"
-                                            (click)="editCustomerForm(customer)"><i
-                                                class="material-icons">&#xE254;</i></a>
-                                        <a style="color: #E34724;"
-                                            class="delete"
-                                            title="Delete"
-                                            data-toggle="tooltip"
-                                            (click)="deleteCustomerForm(customer)"><i
-                                                class="material-icons">&#xE872;</i></a>
-                                        <a style="color: green;"
-                                            class="delete"
-                                            title="Transaction"
-                                            data-toggle="tooltip"
-                                            (click)="transactionForm(customer)"><i
-                                                class="material-icons">&#xe8e5;</i></a>
-                                    </td>
-                                </tr>
-
-                            </tbody>
-                            <tr class="table-primary">
-                                <td></td>
-                                <td>Total </td>
-                                <td>{{totalCredit}}</td>
-                                <td>{{totalDebit}}</td>
-                                <td>{{totalPending}}</td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                        </table>
-
-                        <div>
-                            <pagination-controls style="color:white;"
-                                id="listing_pagination"
-                                (pageChange)="page=
-                                $event"></pagination-controls>
-                        </div>
-                    </ng-template>
-                    <!-- Customer List Pagination Table -->
-
-
-                    <!-- Customer List Search Table -->
-                    <ng-template #other_content>
-                        <table class="table table-hover">
-                            <thead>
-                                <tr>
-                                    <th class="table-dark" *ngFor="let
-                                        head
-                                        of
-                                        headElements"
-                                        scope="col">{{head}} </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr class="table-light" *ngFor="let
-                                    customer
-                                    of
-                                    customerList.slice().reverse() |
-                                    filter : text; let i=index">
-                                    <!-- <div *ngIf="{{customer.customerPending}} === '0' "> -->
-                                    <td>{{ i+1 }}</td>
-                                    <td><a
-                                            href="/transaction/{{id}}/{{customer.customerId}}">{{customer.customerName}}</a></td>
-                                    <td>{{customer.customerCredit}}</td>
-                                    <td>{{customer.customerDebit}}</td>
-                                    <td>{{customer.customerPending}}</td>
-                                    <td>{{customer.customerContact}}</td>
-                                    <td>{{customer.customerAddress}}</td>
-                                    <td>{{customer.customerAadharNumber}}</td>
-                                    <td>{{customer.customerPanNumber}}</td>
-                                    <td>
-                                        <a style="color: #FFC107;"
-                                            class="edit"
-                                            title="Edit"
-                                            data-toggle="tooltip"
-                                            (click)="editCustomerForm(customer)"><i
-                                                class="material-icons">&#xE254;</i></a>
-                                        <a style="color: #E34724;"
-                                            class="delete"
-                                            title="Delete"
-                                            data-toggle="tooltip"
-                                            (click)="deleteCustomerForm(customer)"><i
-                                                class="material-icons">&#xE872;</i></a>
-                                        <a style="color: green;"
-                                            class="delete"
-                                            title="Transaction"
-                                            data-toggle="tooltip"
-                                            (click)="transactionForm(customer)"><i
-                                                class="material-icons">&#xe8e5;</i></a>
-                                    </td>
-                                    <!-- </div> -->
-                                </tr>
-
-                            </tbody>
-                            <tr class="table-primary">
-                                <td></td>
-                                <td>Total </td>
-                                <td>{{totalCredit}}</td>
-                                <td>{{totalDebit}}</td>
-                                <td>{{totalPending}}</td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                        </table>
-                    </ng-template>
-                    <!-- Customer List Search Table -->
-
                 </div>
-                <!-- Customer Table -->
+                <!-- Create Excel Button -->
 
+
+
+                <!-- Add New User Button -->
+                <button
+                    style="position:relative;bottom:54px;margin-left:840px;"
+                    type="button" class="btn btn-info add-new"
+                    (click)=addCustomerForm()><i class="fa fa-plus"></i> Add
+                    New</button>
+                <div *ngIf="text === '';then content else
+                    other_content"></div>
+                <!-- Add New User Button -->
+
+
+                <!-- Copy User Button -->
+                <a href="/copy/{{businessId}}/"><button
+                        style="position:absolute;bottom:30.8em;margin-left:730px;"
+                        type="button" class="btn btn-warning"><i class="fa
+                            fa-copy"></i>
+                        Copy</button></a>
+                <!-- Copy User Button -->
+
+
+                <!-- Customer List Pagination Table -->
+                <ng-template #content>
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th (click)="sort('customerId')"
+                                    class="table-dark"><i class="fa fa-sort"></i>&nbsp;Sr</th>
+                                <th (click)="sort('customerName')"
+                                    class="table-dark"><i class="fa fa-sort"></i>&nbsp;Name</th>
+                                <th (click)="sort('customerCredit')"
+                                    class="table-dark"><i class="fa fa-sort"></i>&nbsp;Credit</th>
+                                <th (click)="sort('customerDebit')"
+                                    class="table-dark"><i class="fa fa-sort"></i>&nbsp;Debit</th>
+                                <th (click)="sort('customerPending')"
+                                    class="table-dark"><i class="fa fa-sort"></i>&nbsp;Pending</th>
+                                <th (click)="sort('customerContact')"
+                                    class="table-dark"><i class="fa fa-sort"></i>&nbsp;Contact</th>
+                                <th (click)="sort('customerAddress')"
+                                    class="table-dark"><i class="fa fa-sort"></i>&nbsp;Address</th>
+                                <th (click)="sort('customerAadharNumber')"
+                                    class="table-dark"><i class="fa fa-sort"></i>&nbsp;Aadhar
+                                    No.</th>
+                                <th (click)="sort('customerPanNumber')"
+                                    class="table-dark"><i class="fa fa-sort"></i>&nbsp;Pan
+                                    No.</th>
+                                <th (click)="sort('customerDOB')"
+                                    class="table-dark"><i class="fa fa-sort"></i>&nbsp;DOB</th>
+                                <th class="table-dark">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="table-light" *ngFor="let
+                                customer
+                                of
+                                customerList.slice().reverse() | orderBy: key :
+                                reverse |
+                                paginate : {id :
+                                'listing_pagination',
+                                itemsPerPage : 10,
+                                currentPage : page,
+                                totalItems : totalLength
+                                }; let i=index">
+                                <td>{{ (page - 1) * 10 + i +1 }}</td>
+                                <td (click)="sort('id')"><a
+                                        href="/transaction/{{businessId}}/{{customer.customerId}}">{{customer.customerName}}</a></td>
+                                <td>{{customer.customerCredit}}</td>
+                                <td>{{customer.customerDebit}}</td>
+                                <td>{{customer.customerPending}}</td>
+                                <td>{{customer.customerContact}}</td>
+                                <td>{{customer.customerAddress}}</td>
+                                <td>{{customer.customerAadharNumber}}</td>
+                                <td>{{customer.customerPanNumber}}</td>
+                                <td>{{customer.customerDOB}}</td>
+                                <td>
+                                    <a style="color: #FFC107;"
+                                        class="edit"
+                                        title="Edit"
+                                        data-toggle="tooltip"
+                                        (click)="editCustomerForm(customer)"><i
+                                            class="material-icons">&#xE254;</i></a>
+                                    <a style="color: #E34724;"
+                                        class="delete"
+                                        title="Delete"
+                                        data-toggle="tooltip"
+                                        (click)="deleteCustomerForm(customer)"><i
+                                            class="material-icons">&#xE872;</i></a>
+                                    <a style="color: green;"
+                                        class="delete"
+                                        title="info"
+                                        data-toggle="tooltip"
+                                        (click)="transactionForm(customer)"><i
+                                            class="material-icons">&#xe263;</i></a>
+                                    <a style="color: blue;"
+                                        class="delete"
+                                        title="Transaction"
+                                        data-toggle="tooltip"
+                                        href="/profit/{{businessId}}/{{customer.customerId}}"><i
+                                            class="material-icons">&#xe88f;</i></a>
+                                </td>
+                            </tr>
+
+                        </tbody>
+                        <tr class="table-primary">
+                            <td></td>
+                            <td>Total </td>
+                            <td>{{totalCredit}}</td>
+                            <td>{{totalDebit}}</td>
+                            <td>{{totalPending}}</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </table>
+
+                    <div>
+                        <pagination-controls style="color:white;"
+                            id="listing_pagination"
+                            (pageChange)="page=
+                            $event"></pagination-controls>
+                    </div>
+                </ng-template>
+                <!-- Customer List Pagination Table -->
+
+
+                <!-- Customer List Search Table -->
+                <ng-template #other_content>
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th (click)="sort('customerId')"
+                                    class="table-dark"><i class="fa fa-sort"></i>&nbsp;Sr</th>
+                                <th (click)="sort('customerName')"
+                                    class="table-dark"><i class="fa fa-sort"></i>&nbsp;Name</th>
+                                <th (click)="sort('customerCredit')"
+                                    class="table-dark"><i class="fa fa-sort"></i>&nbsp;Credit</th>
+                                <th (click)="sort('customerDebit')"
+                                    class="table-dark"><i class="fa fa-sort"></i>&nbsp;Debit</th>
+                                <th (click)="sort('customerPending')"
+                                    class="table-dark"><i class="fa fa-sort"></i>&nbsp;Pending</th>
+                                <th (click)="sort('customerContact')"
+                                    class="table-dark"><i class="fa fa-sort"></i>&nbsp;Contact</th>
+                                <th (click)="sort('customerAddress')"
+                                    class="table-dark"><i class="fa fa-sort"></i>&nbsp;Address</th>
+                                <th (click)="sort('customerAadharNumber')"
+                                    class="table-dark"><i class="fa fa-sort"></i>&nbsp;Aadhar
+                                    No.</th>
+                                <th (click)="sort('customerPanNumber')"
+                                    class="table-dark"><i class="fa fa-sort"></i>&nbsp;Pan
+                                    No.</th>
+                                <th (click)="sort('customerDOB')"
+                                    class="table-dark"><i class="fa fa-sort"></i>&nbsp;DOB</th>
+                                <th class="table-dark">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="table-light" *ngFor="let customer of
+                                customerList.slice().reverse() | orderBy: key :
+                                reverse | filter:text; let i=index">
+                                <td>{{ (page - 1) * 10 + i +1 }}</td>
+                                <td (click)="sort('id')"><a
+                                        href="/transaction/{{businessId}}/{{customer.customerId}}">{{customer.customerName}}</a></td>
+                                <td>{{customer.customerCredit}}</td>
+                                <td>{{customer.customerDebit}}</td>
+                                <td>{{customer.customerPending}}</td>
+                                <td>{{customer.customerContact}}</td>
+                                <td>{{customer.customerAddress}}</td>
+                                <td>{{customer.customerAadharNumber}}</td>
+                                <td>{{customer.customerPanNumber}}</td>
+                                <td>{{customer.customerDOB}}</td>
+                                <td>
+                                    <a style="color: #FFC107;"
+                                        class="edit"
+                                        title="Edit"
+                                        data-toggle="tooltip"
+                                        (click)="editCustomerForm(customer)"><i
+                                            class="material-icons">&#xE254;</i></a>
+                                    <a style="color: #E34724;"
+                                        class="delete"
+                                        title="Delete"
+                                        data-toggle="tooltip"
+                                        (click)="deleteCustomerForm(customer)"><i
+                                            class="material-icons">&#xE872;</i></a>
+                                    <a style="color: green;"
+                                        class="delete"
+                                        title="info"
+                                        data-toggle="tooltip"
+                                        (click)="transactionForm(customer)"><i
+                                            class="material-icons">&#xe263;</i></a>
+                                    <a style="color: blue;"
+                                        class="delete"
+                                        title="Transaction"
+                                        data-toggle="tooltip"
+                                        href="/profit/{{businessId}}/{{customer.customerId}}"><i
+                                            class="material-icons">&#xe88f;</i></a>
+                                </td>
+                            </tr>
+
+                        </tbody>
+                        <tr class="table-primary">
+                            <td></td>
+                            <td>Total </td>
+                            <td>{{totalCredit}}</td>
+                            <td>{{totalDebit}}</td>
+                            <td>{{totalPending}}</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </table>
+                </ng-template>
+                <!-- Customer List Search Table -->
 
             </div>
+            <!-- Customer Table -->
+
+
         </div>
-    </body>
+    </div>
+</body>

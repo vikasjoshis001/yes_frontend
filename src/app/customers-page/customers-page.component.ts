@@ -13,49 +13,28 @@ export class CustomersPageComponent implements OnInit {
 
   private routeSub: any;
   title = "Customers"
-  id = "string";
+  businessId = "string";
   text = '';
-  totalCredit;
-  totalDebit;
-  totalPending;
-  totalLength;
-  csvdata;
-  csvFile;
-  page = 1;
-  val;
-  i = 1;
-  my_transaction;
+  totalCredit; totalDebit; totalPending; totalLength;
+  csvdata; csvFile;
+  page = 1; my_transaction;
   show_customerEdit_form = false;
   show_customerAdd_form = false;
   show_customerDelete_form = false;
   show_transaction_form = false;
   show_copyCustomer_form = false;
   show_createExcel = false;
-  customerEditName;
-  customerEditContact;
-  customerEditAadharNumber;
-  customerEditPanNumber;
-  customerEditAddress;
-  customerEditCredit;
-  customerEditDebit;
-  customerEditPending;
-  customerEditId;
-  editedCustomer;
-  deletedCustomer;
-  addedCustomer;
-  msg;
-  
+  customerEditName; customerEditContact; customerEditAadharNumber; customerEditPanNumber; customerEditAddress; customerEditDOB; customerEditCredit; customerEditDebit; customerEditPending; customerEditId;
+  editedCustomer; deletedCustomer; addedCustomer;
+
   customerList;
-  businessList;
-  headElements = ['Sr.No.', 'Name', 'Credit', 'Debit', 'Pending', 'Contact', 'Address', 'Aadhar No.', 'Pan No.', 'Actions'];
-  newHead = ['Select','Name']
-  transactionList;
-  constructor(private route: ActivatedRoute, private authService: AuthService, private router: Router) { 
+  constructor(private route: ActivatedRoute, private authService: AuthService, private router: Router) {
   }
 
 
+
+  // getCustomers Api Call
   getCustomers(data) {
-    console.log("Getting Customers List...")
     return this.authService.getCustomersList(data).subscribe((result) => {
       console.log("Customers List Fetched Successfully....")
       this.customerList = result
@@ -64,11 +43,54 @@ export class CustomersPageComponent implements OnInit {
       this.totalDebit = this.customerList.total["totalDebit"]
       this.totalPending = this.customerList.total["totalPending"]
       this.customerList = this.customerList.data['customersList'];
-      console.log(this.customerList)
       this.totalLength = this.customerList.length
     })
   }
 
+  // addCustomer Form
+  addCustomerForm() {
+    this.show_customerAdd_form = true
+  }
+
+  // addCustomer Api Call
+  addCustomer(data) {
+    data.value['businessId'] = this.businessId
+    return this.authService.addCustomer(data.value).subscribe((result) => {
+      console.log("Customer Added Successfully....")
+      this.addedCustomer = result
+      this.show_customerAdd_form = false;
+      location.assign(environment.frontend_url + "customers/" + this.businessId)
+    })
+  }
+
+  // addTransaction Form
+  transactionForm(data) {
+    this.customerEditId = data.customerId
+    this.customerEditName = data.customerName;
+    this.customerEditPending = data.customerPending;
+    this.show_transaction_form = true;
+  }
+
+  // addTransaction Api Call
+  transaction(data) {
+    data.value['transactionName'] = this.customerEditName
+    data.value['customerId'] = this.customerEditId
+    data.value['businessId'] = this.businessId
+    if (data.value['transactionDebit'] == '') {
+      data.value['transactionDebit'] = 0;
+    }
+    if (data.value['transactionCredit'] == '') {
+      data.value['transactionCredit'] = 0
+    }
+    return this.authService.transaction(data.value).subscribe((result) => {
+      console.log("Transaction Done Successfully....")
+      this.my_transaction = result
+      this.show_transaction_form = false;
+      location.assign(environment.frontend_url + "customers/" + this.businessId)
+    })
+  }
+
+  // editCustomer Form
   editCustomerForm(data) {
     this.customerEditId = data.customerId
     this.customerEditName = data.customerName;
@@ -76,17 +98,12 @@ export class CustomersPageComponent implements OnInit {
     this.customerEditAddress = data.customerAddress;
     this.customerEditAadharNumber = data.customerAadharNumber;
     this.customerEditPanNumber = data.customerPanNumber;
-    this.customerEditCredit = data.customerCredit;
-    this.customerEditDebit = data.customerName;
-    this.customerEditPending = data.customerPending;
+    this.customerEditDOB = data.customerDOB;
     this.show_customerEdit_form = true;
-    console.log(this.customerEditName)
-
-
   }
 
+  // editCustomer Api Call
   editCustomer(data) {
-    console.log("Editing Customer...")
     data.value['customerId'] = this.customerEditId;
     if (data.value['customerContact'] == '') {
       data.value['customerContact'] = this.customerEditContact
@@ -103,117 +120,76 @@ export class CustomersPageComponent implements OnInit {
     if (data.value['customerPanNumber'] == '') {
       data.value['customerPanNumber'] = this.customerEditPanNumber
     }
+    if (data.value['customerDOB'] == '') {
+      data.value['customerDOB'] = this.customerEditDOB
+    }
     return this.authService.editCustomer(data.value).subscribe((result) => {
       this.editedCustomer = result;
-      console.log("Customer Edited...");
+      console.log("Customer Edited Successfully...");
       this.show_customerEdit_form = false;
-      location.assign(environment.frontend_url + "customers/" + this.id)
+      location.assign(environment.frontend_url + "customers/" + this.businessId)
     })
 
   }
 
-  
-  deleteCustomer() {
-    console.log("Deleting Customer...")
-    return this.authService.deleteCustomer(this.customerEditId).subscribe((result) => {
-      this.deletedCustomer = result;
-      console.log(this.deletedCustomer)
-      console.log("Customer Deleted...");
-      location.assign(environment.frontend_url + "customers/" + this.id)
-    })
-  }
-
-  createCSV() {
-    this.show_createExcel = true;
-    console.log("CSV Creating...")
-    console.log(this.csvdata)
-    return this.authService.createCSV(this.csvdata).subscribe((result) => {
-      console.log("CSV Created....")
-      this.csvFile = result
-      console.log(this.csvFile);
-      this.show_createExcel = false;
-    })
-  }
-
-  transactionForm(data) {
-    console.log(this.show_customerEdit_form)
-    console.log(this.show_transaction_form)
-    this.customerEditId = data.customerId
-    this.customerEditName = data.customerName;
-    this.customerEditContact = data.customerContact;
-    this.customerEditAddress = data.customerAddress;
-    this.customerEditAadharNumber = data.customerAadharNumber;
-    this.customerEditPanNumber = data.customerPanNumber;
-    this.customerEditCredit = data.customerCredit;
-    this.customerEditDebit = data.customerDebit;
-    this.customerEditPending = data.customerPending;
-    this.show_transaction_form = true;
-    console.log(this.customerEditName)
-  }
-
-
-  transaction(data) {
-    data.value['transactionName'] = this.customerEditName
-    data.value['transactionContact'] = this.customerEditContact
-    data.value['transactionAddress'] = this.customerEditAddress
-    data.value['transactionAadharNumber'] = this.customerEditAadharNumber
-    data.value['transactionPanNumber'] = this.customerEditPanNumber
-    data.value['customerId'] = this.customerEditId
-    data.value['businessId'] = this.id
-    if (data.value['transactionNewDebit'] == '') {
-      data.value['transactionNewDebit'] = this.customerEditDebit
-    }
-    if (data.value['transactionCredit'] == '') {
-      data.value['transactionCredit'] = this.customerEditCredit
-    }
-    console.log("Transaction Ongoing...")
-    console.log(data.value)
-    return this.authService.transaction(data.value).subscribe((result) => {
-      console.log("Transaction Done....")
-      this.my_transaction = result
-      this.show_transaction_form = false;
-      console.log(this.my_transaction);
-      location.assign(environment.frontend_url + "customers/" + this.id)
-
-    })
-  }
-
-  addUser() {
-    this.show_customerAdd_form = true
-  }
-
+  // deleteCustomer Form
   deleteCustomerForm(data) {
     this.customerEditId = data.customerId
     this.customerEditName = data.customerName
     this.show_customerDelete_form = true
   }
 
-  addCustomer(data) {
-    data.value['businessId'] = this.id
-    console.log(data.value)
-    return this.authService.addCustomer(data.value).subscribe((result) => {
-      console.log("Customer Added....")
-      this.addedCustomer = result
-      this.show_customerAdd_form = false;
-      console.log(this.addedCustomer);
-      location.assign(environment.frontend_url + "customers/" + this.id)
-
+  // deleteCustomer Api Call
+  deleteCustomer() {
+    return this.authService.deleteCustomer(this.customerEditId).subscribe((result) => {
+      this.deletedCustomer = result;
+      console.log("Customer Deleted Successfully...");
+      location.assign(environment.frontend_url + "customers/" + this.businessId)
     })
   }
 
+  // createCustomersCSV Api Call
+  createCustomersCSV() {
+    this.show_createExcel = true;
+    return this.authService.createCustomersCSV(this.csvdata).subscribe((result) => {
+      console.log("CSV Created Successfully....")
+      this.csvFile = result
+      this.show_createExcel = false;
+    })
+  }
+
+  // onClose Form
   onClose() {
     this.show_customerEdit_form = false;
     this.show_transaction_form = false;
     this.show_customerAdd_form = false;
     this.show_customerDelete_form = false;
+  }
 
+  // Sorting Function
+  key = 'id';
+  reverse = false;
+  sort(key) {
+    this.key = key;
+    this.reverse = !this.reverse;
+  }
 
+  // Searching Function
+  Search() {
+    if (this.text == "") {
+      this.ngOnInit()
+    }
+    else {
+      this.customerList = this.customerList.filter((res) => {
+        return res.customerName.toLocaleLowerCase().match(this.text.toLocaleLowerCase())
+      })
+    }
   }
 
   ngOnInit(): void {
     this.routeSub = this.route.params.subscribe(para => {
-      this.id = para['businessId']
-      this.getCustomers(this.id)
+      this.businessId = para['businessId']
+      this.getCustomers(this.businessId)
 
     })
 

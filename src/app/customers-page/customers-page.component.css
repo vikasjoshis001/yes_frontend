@@ -10,13 +10,13 @@ body {
   background-image: url("src/assets/Images/finance5.jpg");
 }
 .intro {
-  height: 160vh;
+  height: 190vh;
 }
 
 #customerEditForm {
   padding: 1em;
   width: 60%;
-  height: 550px;
+  height: 650px;
   box-sizing: border-box;
   position: relative;
   margin: 0 auto;
@@ -25,7 +25,18 @@ body {
   background-color: grey;
 }
 
-#transactionForm,
+#transactionForm {
+  padding: 1em;
+  width: 60%;
+  height: 400px;
+  box-sizing: border-box;
+  position: relative;
+  margin: 0 auto;
+  border-radius: 25px;
+  top: auto;
+  background-color: grey;
+}
+
 #addCustomerForm {
   padding: 1em;
   width: 70%;
@@ -58,6 +69,7 @@ form label {
   margin-left: 400px;
 }
 
+/* Table */
 table.table td a {
   cursor: pointer;
   display: inline-block;
@@ -82,49 +94,51 @@ table.table td a.add i {
   position: relative;
   top: 3px;
 }
+/* Table */
 
+/* Material Icon */
 @font-face {
-  font-family: 'Material Icons';
+  font-family: "Material Icons";
   font-style: normal;
   font-weight: 400;
   src: url(material-design-icons-3.0.2/iconfont/MaterialIcons-Regular.eot); /* For IE6-8 */
-  src: local('Material Icons'),
-       local('MaterialIcons-Regular'),
-       url(material-design-icons-3.0.2/iconfont/MaterialIcons-Regular.woff2) format('woff2'),
-       url(material-design-icons-3.0.2/iconfont/MaterialIcons-Regular.woff) format('woff'),
-       url(material-design-icons-3.0.2/iconfont/MaterialIcons-Regular.ttf) format('truetype');
+  src: local("Material Icons"), local("MaterialIcons-Regular"),
+    url(material-design-icons-3.0.2/iconfont/MaterialIcons-Regular.woff2)
+      format("woff2"),
+    url(material-design-icons-3.0.2/iconfont/MaterialIcons-Regular.woff)
+      format("woff"),
+    url(material-design-icons-3.0.2/iconfont/MaterialIcons-Regular.ttf)
+      format("truetype");
 }
 
 .material-icons {
- font-family: 'Material Icons';
- font-weight: normal;
- font-style: normal;
- font-size: 24px;  /* Preferred icon size */
- display: inline-block;
- line-height: 1;
- text-transform: none;
- letter-spacing: normal;
- word-wrap: normal;
- white-space: nowrap;
- direction: ltr;
+  font-family: "Material Icons";
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px; /* Preferred icon size */
+  display: inline-block;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
 
- /* Support for all WebKit browsers. */
- -webkit-font-smoothing: antialiased;
- /* Support for Safari and Chrome. */
- text-rendering: optimizeLegibility;
+  /* Support for all WebKit browsers. */
+  -webkit-font-smoothing: antialiased;
+  /* Support for Safari and Chrome. */
+  text-rendering: optimizeLegibility;
 
- /* Support for Firefox. */
- -moz-osx-font-smoothing: grayscale;
+  /* Support for Firefox. */
+  -moz-osx-font-smoothing: grayscale;
 
- /* Support for IE. */
- font-feature-settings: 'liga';
+  /* Support for IE. */
+  font-feature-settings: "liga";
 }
+/* Material Icon */
 
-/* Model Popup */
-
-
+/* Delete Form */
 .fancy {
-
   padding: 1em;
   width: 50%;
   height: 280px;
@@ -135,4 +149,4 @@ table.table td a.add i {
   top: auto;
   background-color: #fcfcfa;
 }
-/* Model Popup */
+/* Delete Form */
