@@ -65,9 +65,12 @@
                 type="text" class="form-control"
                 placeholder="Enter Business Name"
                 id="businessName"
-                autocomplete="off"
+                list="businessList"
                 aria-describedby="businessName" ngModel
                 name="businessName">
+                <datalist id="businessList">
+                  <option *ngFor="let business of businessList">{{business.businessName}}</option>
+                </datalist>
             </div>
             <!-- Business Name -->
 

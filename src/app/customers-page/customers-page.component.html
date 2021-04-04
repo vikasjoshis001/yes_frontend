@@ -13,8 +13,8 @@
                 <!-- Title -->
                 <h3>
                     <br><br><br>
-                    <span id="title" class="pacificofont"><b><i>Delete Customer</i></b></span>         
-                        <br><br><br>
+                    <span id="title" class="pacificofont"><b><i>Delete Customer</i></b></span>
+                    <br><br><br>
                 </h3>
                 <!-- Title -->
                 <div id="model_popup" class="fancy">
@@ -43,7 +43,7 @@
                 <!-- Title -->
                 <h3>
                     <br><br><br>
-                    <span id="title" class="pacificofont"><b><i>Add Customer</i></b></span>         
+                    <span id="title" class="pacificofont"><b><i>Add Customer</i></b></span>
                     <br><br><br>
                 </h3>
                 <!-- Title -->
@@ -71,10 +71,13 @@
                                 type="text" class="form-control"
                                 placeholder="Enter Name"
                                 id="customerName"
-                                autocomplete="off"
+                                list="customerNameList"
                                 aria-describedby="customerName"
                                 ngModel
                                 name="customerName">
+                            <datalist id="customerNameList">
+                                <option *ngFor="let customer of customerList">{{customer.customerName}}</option>
+                            </datalist>
                         </div>
                         <!-- Customer Name -->
 
@@ -86,11 +89,14 @@
                                 pattern=\d\d\d\d\d\d\d\d\d\d
                                 type="text" class="form-control"
                                 id="customerContact"
-                                autocomplete="off"
+                                list="customerContactList"
                                 aria-describedby="customerContact"
                                 placeholder="Enter Mobile Number"
                                 ngModel
                                 name="customerContact">
+                            <datalist id="customerContactList">
+                                <option *ngFor="let customer of customerList">{{customer.customerContact}}</option>
+                            </datalist>
                             <span id="input_label"
                                 *ngIf="customerContact.invalid &&
                                 customerContact.touched"
@@ -237,7 +243,7 @@
                 <!-- Title -->
                 <h3>
                     <br><br><br>
-                    <span id="title" class="pacificofont"><b><i>Add Transaction</i></b></span>         
+                    <span id="title" class="pacificofont"><b><i>Add Transaction</i></b></span>
                     <br><br><br>
                 </h3>
                 <!-- Title -->
@@ -326,7 +332,7 @@
                 <!-- Title -->
                 <h3>
                     <br><br><br>
-                    <span id="title" class="pacificofont"><b><i>Edit Customer</i></b></span>         
+                    <span id="title" class="pacificofont"><b><i>Edit Customer</i></b></span>
                     <br><br><br>
                 </h3>
                 <!-- Title -->
@@ -492,13 +498,13 @@
 
                 <!-- Title -->
                 <div style="text-align: center">
-                <h2>
-                    <span
-                        style="position:relative;top:20px;color:white"
-                        class="pacificofont"><b><i>{{
-                                businessName|titlecase }} Customers</i></b></span>
-                </h2>
-            </div>
+                    <h2>
+                        <span
+                            style="position:relative;top:20px;color:white"
+                            class="pacificofont"><b><i>{{
+                                    businessName|titlecase }} Customers</i></b></span>
+                    </h2>
+                </div>
                 <!-- Title -->
 
 
