@@ -18,8 +18,10 @@ export class AuthService {
 
   }
 
+  // Login Api Call
   login(data) {
-    return this.http.post(environment.url + "login/", data)
+    console.log("Logging in...");
+    return this.http.post(environment.url + "login/", data);
   }
 
   public isAuthenticated(): boolean {
@@ -34,76 +36,36 @@ export class AuthService {
   }
 
 
+  // Logout Function
   logout() {
     console.log("Logout Successfull...");
     sessionStorage.removeItem('token');
     this.router.navigate(['/home']);
-
   }
 
+  // Function for fetching Token
   getToken() {
-    console.log("fetching token....");
+    console.log("Fetching Token....");
     this.header = new HttpHeaders().set(
       'Authorization', 'Token ' + this.auth_token
     );
     return this.header
   }
 
+  // Business Apis
   getBusinessList() {
-    console.log("fetching business list....");
+    console.log("Fetching Business List....");
     return this.http.get(environment.url + "getBusiness/", { headers: this.getToken() })
   }
 
   deleteBusiness(data) {
+    console.log("Deleting Business..")
     return this.http.get(environment.url + "deleteBusiness/?businessId=" + data, { headers: this.getToken() })
   }
 
-  backupData() {
-    console.log("backuping Data...");
-    return this.http.get(environment.url + "backup/", { headers: this.getToken() })
-  }
-
-  getCustomersList(data) {
-    console.log("fetching customers list....");
-    return this.http.get(environment.url + "getCustomer/?businessId=" + data, { headers: this.getToken() })
-  }
-
-  getTransactionHistory(transactionCustomer) {
-    return this.http.get(environment.url + "getTransaction/?customerId=" + transactionCustomer, { headers: this.getToken() })
-
-  }
-
-  createCSV(data) {
-    return this.http.post(environment.url + "createCSV/", data, { headers: this.getToken() })
-  }
-
-  editCustomer(data) {
-    console.log("Customer is Editing...")
-    return this.http.post(environment.url + "editCustomer/", data, { headers: this.getToken() })
-
-  }
-
   editBusiness(data) {
-    console.log("Business is Editing...")
+    console.log("Editing. Business..")
     return this.http.post(environment.url + "editBusiness/", data, { headers: this.getToken() })
-
-  }
-
-  deleteCustomer(data) {
-    console.log("Customer Deleting...")
-    return this.http.get(environment.url + "deleteCustomer/?customerId=" + data, { headers: this.getToken() })
-
-  }
-
-  transaction(data) {
-    console.log("Customer is Editing...")
-    return this.http.post(environment.url + "addTransaction/", data, { headers: this.getToken() })
-
-  }
-
-  addCustomer(data) {
-    console.log("Adding Customer...")
-    return this.http.post(environment.url + "addCustomer/", data, { headers: this.getToken() })
   }
 
   addBusiness(data) {
@@ -111,9 +73,80 @@ export class AuthService {
     return this.http.post(environment.url + "addBusiness/", data, { headers: this.getToken() })
   }
 
+  // Customer Apis
+  getCustomersList(data) {
+    console.log("Fetching Customers List....");
+    return this.http.get(environment.url + "getCustomer/?businessId=" + data, { headers: this.getToken() })
+  }
+
+  editCustomer(data) {
+    console.log("Editing Customer...")
+    return this.http.post(environment.url + "editCustomer/", data, { headers: this.getToken() })
+
+  }
+
+  deleteCustomer(data) {
+    console.log("Deleting Customer...")
+    return this.http.get(environment.url + "deleteCustomer/?customerId=" + data, { headers: this.getToken() })
+  }
+
+  addCustomer(data) {
+    console.log("Adding Customer...")
+    return this.http.post(environment.url + "addCustomer/", data, { headers: this.getToken() })
+  }
+
   copyCustomer(data) {
     console.log("Copying Customer...")
-    return this.http.post(environment.url + "copy/", data, { headers: this.getToken() })
+    return this.http.post(environment.url + "copyCustomers/", data, { headers: this.getToken() })
   }
+
+  getCustomerProfit(businessId, customerId) {
+    console.log("Fetching Customer Profit...")
+    return this.http.get(environment.url + "getCustomerProfit/?businessId=" + businessId + "&&customerId=" + customerId, { headers: this.getToken() })
+  }
+
+  createCustomersCSV(data) {
+    console.log("Creating Customers CSV...")
+    return this.http.post(environment.url + "createCustomersCSV/", data, { headers: this.getToken() })
+  }
+
+  createProfitCSV(data) {
+    console.log("Creating Customers Profit CSV...")
+    return this.http.post(environment.url + "createProfitCSV/", data, { headers: this.getToken() })
+  }
+
+  // Transaction Apis
+  transaction(data) {
+    console.log("Transaction on the way...")
+    return this.http.post(environment.url + "addTransaction/", data, { headers: this.getToken() })
+  }
+
+  getTransactionHistory(transactionCustomer) {
+    console.log("Fetching Transaction History...")
+    return this.http.get(environment.url + "getTransaction/?customerId=" + transactionCustomer, { headers: this.getToken() })
+  }
+
+  createTransactionCSV(data) {
+    console.log("Creating Transaction CSV...")
+    return this.http.post(environment.url + "createTransactionCSV/", data, { headers: this.getToken() })
+  }
+
+  // Finance Apis
+  backupData() {
+    console.log("Backuping Data...");
+    return this.http.get(environment.url + "backup/", { headers: this.getToken() })
+  }
+
+
+
+
+
+
+
+
+
+
+
+
 
 }
