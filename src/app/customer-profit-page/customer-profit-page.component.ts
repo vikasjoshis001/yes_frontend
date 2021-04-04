@@ -23,6 +23,8 @@ export class CustomerProfitPageComponent implements OnInit {
   totalDebit;
   totalPending;
   headElements = ['Sr.No.', 'Business', 'Name', 'Credit', 'Debit', 'Pending'];
+  errorMessage;
+  customerName;
   constructor(private route: ActivatedRoute, private authService: AuthService, private router: Router) { }
 
   // getCustomerProfit Api Call
@@ -34,8 +36,15 @@ export class CustomerProfitPageComponent implements OnInit {
       this.totalCredit = this.profitList.total["totalCredit"]
       this.totalDebit = this.profitList.total["totalDebit"]
       this.totalPending = this.profitList.total["totalPending"]
+      this.customerName = this.profitList.total["customerName"]
       this.profitList = this.profitList.data['profitList'];
+      console.log(this.profitList)
       this.totalRecords = this.profitList.length;
+    },
+    (error) => {       
+      this.errorMessage = error;
+      console.log(this.errorMessage)
+      alert("Network Error")
     })
   }
 
@@ -46,6 +55,11 @@ export class CustomerProfitPageComponent implements OnInit {
       console.log("CSV Created Successfully....")
       this.csvFile = result
       this.show_createExcel = false;
+    },
+    (error) => {       
+      this.errorMessage = error;
+      console.log(this.errorMessage)
+      alert("Network Error")
     })
   }
 

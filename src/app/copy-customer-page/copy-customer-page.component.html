@@ -2,11 +2,14 @@
     <div class="intro">
         <div class="container">
             <!-- Title -->
-            <h3>
-                <br><br><br>
-                <span id="title" class="pacificofont">Copy Customers</span>
-                <br><br><br>
-            </h3>
+            <div style="text-align: center;color:white">
+                <h3>
+                    <br><br><br>
+                    <span id="title" class="pacificofont"><b><i>Copy
+                                {{businessName}} Customers</i></b></span>
+                    <br><br><br>
+                </h3>
+            </div>
             <!-- Title -->
 
             <!-- Search Bar -->
@@ -78,51 +81,124 @@
             </form>
             <!-- Select Business Form -->
 
+            <div *ngIf="text === '';then content else
+                other_content"></div>
+            <!-- Customer Display Table -->
+            <ng-template #content>
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th (click)="sort('customerId')" class="table-dark"><i
+                                    class="fa fa-sort"></i>&nbsp;Sr</th>
+                            <th (click)="sort('customerName')"
+                                class="table-dark"><i
+                                    class="fa fa-sort"></i>&nbsp;Name</th>
+                            <th (click)="sort('customerContact')"
+                                class="table-dark"><i
+                                    class="fa fa-sort"></i>&nbsp;Contact</th>
+                            <th (click)="sort('customerAddress')"
+                                class="table-dark"><i
+                                    class="fa fa-sort"></i>&nbsp;Address</th>
+                            <th (click)="sort('customerAadharNumber')"
+                                class="table-dark"><i class="fa fa-sort"></i>&nbsp;Aadhar
+                                No.</th>
+                            <th (click)="sort('customerPanNumber')"
+                                class="table-dark"><i class="fa fa-sort"></i>&nbsp;Pan
+                                No.</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="table-light" *ngFor="let
+                            customer
+                            of
+                            customerList | orderBy: key :
+                            reverse|
+                            paginate : {id :
+                            'listing_pagination',
+                            itemsPerPage : 10,
+                            currentPage : page,
+                            totalItems : totalLength
+                            }; let i=index">
+                            <!-- <div *ngIf="{{customer.customerPending}} === '0' "> -->
+                            <td><div class="custom-control custom-checkbox">
+                                    <input (click)="addCustomerIds(customer)"
+                                        type="checkbox"
+                                        class="custom-control-input"
+                                        id={{i+1}}
+                                        [checked]="customer.customerStatus">
+                                    <label class="custom-control-label"
+                                        for={{i+1}}>{{i+1}}</label>
+                                </div></td>
+                            <td>{{customer.customerName}}</td>
+                            <td>{{customer.customerContact}}</td>
+                            <td>{{customer.customerAddress}}</td>
+                            <td>{{customer.customerAadharNumber}}</td>
+                            <td>{{customer.customerPanNumber}}</td>
+                            <!-- </div> -->
+                        </tr>
+
+                    </tbody>
+                </table>
+                <div>
+                    <pagination-controls style="color:white;"
+                        id="listing_pagination"
+                        (pageChange)="page=
+                        $event"></pagination-controls>
+                </div>
+            </ng-template>
+            <!-- Customer Display Table -->
 
             <!-- Customer Display Table -->
-            <table class="table table-hover">
-                <thead>
-                    <tr>
-                        <th (click)="sort('customerId')" class="table-dark"><i
-                                class="fa fa-sort"></i>&nbsp;Sr</th>
-                        <th (click)="sort('customerName')" class="table-dark"><i
-                                class="fa fa-sort"></i>&nbsp;Name</th>
-                        <th (click)="sort('customerContact')"
-                            class="table-dark"><i
-                                class="fa fa-sort"></i>&nbsp;Contact</th>
-                        <th (click)="sort('customerAddress')"
-                            class="table-dark"><i
-                                class="fa fa-sort"></i>&nbsp;Address</th>
-                        <th (click)="sort('customerAadharNumber')"
-                            class="table-dark"><i class="fa fa-sort"></i>&nbsp;Aadhar
-                            No.</th>
-                        <th (click)="sort('customerPanNumber')"
-                            class="table-dark"><i class="fa fa-sort"></i>&nbsp;Pan
-                            No.</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr class="table-light" *ngFor="let
-                        customer
-                        of
-                        customerList.slice().reverse() | orderBy: key : reverse|filter:text; let i=index">
-                        <!-- <div *ngIf="{{customer.customerPending}} === '0' "> -->
-                        <td><div class="custom-control custom-checkbox">
-                                <input (click)="addCustomerIds(customer)"
-                                    type="checkbox" class="custom-control-input"
-                                    id={{i+1}} [checked]="customer.customerStatus">
-                                <label class="custom-control-label" for={{i+1}}>{{i+1}}</label>
-                            </div></td>
-                        <td>{{customer.customerName}}</td>
-                        <td>{{customer.customerContact}}</td>
-                        <td>{{customer.customerAddress}}</td>
-                        <td>{{customer.customerAadharNumber}}</td>
-                        <td>{{customer.customerPanNumber}}</td>
-                        <!-- </div> -->
-                    </tr>
+            <ng-template #other_content>
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th (click)="sort('customerId')" class="table-dark"><i
+                                    class="fa fa-sort"></i>&nbsp;Sr</th>
+                            <th (click)="sort('customerName')"
+                                class="table-dark"><i
+                                    class="fa fa-sort"></i>&nbsp;Name</th>
+                            <th (click)="sort('customerContact')"
+                                class="table-dark"><i
+                                    class="fa fa-sort"></i>&nbsp;Contact</th>
+                            <th (click)="sort('customerAddress')"
+                                class="table-dark"><i
+                                    class="fa fa-sort"></i>&nbsp;Address</th>
+                            <th (click)="sort('customerAadharNumber')"
+                                class="table-dark"><i class="fa fa-sort"></i>&nbsp;Aadhar
+                                No.</th>
+                            <th (click)="sort('customerPanNumber')"
+                                class="table-dark"><i class="fa fa-sort"></i>&nbsp;Pan
+                                No.</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="table-light" *ngFor="let
+                            customer
+                            of
+                            customerList | orderBy: key :
+                            reverse|filter:text; let i=index">
+                            <!-- <div *ngIf="{{customer.customerPending}} === '0' "> -->
+                            <td><div class="custom-control custom-checkbox">
+                                    <input (click)="addCustomerIds(customer)"
+                                        type="checkbox"
+                                        class="custom-control-input"
+                                        id={{i+1}}
+                                        [checked]="customer.customerStatus">
+                                    <label class="custom-control-label"
+                                        for={{i+1}}>{{i+1}}</label>
+                                </div></td>
+                            <td>{{customer.customerName}}</td>
+                            <td>{{customer.customerContact}}</td>
+                            <td>{{customer.customerAddress}}</td>
+                            <td>{{customer.customerAadharNumber}}</td>
+                            <td>{{customer.customerPanNumber}}</td>
+                            <!-- </div> -->
+                        </tr>
 
-                </tbody>
-            </table>
+                    </tbody>
+                </table>
+            </ng-template>
             <!-- Customer Display Table -->
 
         </div>

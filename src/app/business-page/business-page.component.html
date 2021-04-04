@@ -13,7 +13,7 @@
         <!-- Title -->
         <h3>
           <br><br><br>
-          <span id="title" class="pacificofont">Delete Business</span>
+          <span id="title" class="pacificofont"><b><i>Delete Business</i></b></span>
           <br><br><br>
         </h3>
         <!-- Title -->
@@ -39,7 +39,7 @@
         <!-- Title -->
         <h3>
           <br><br><br>
-          <span id="title" class="pacificofont">Add Business</span>
+          <span id="title" class="pacificofont"><b><i>Add Business</i></b></span>
           <br><br><br>
         </h3>
         <!-- Title -->
@@ -91,7 +91,7 @@
         <!-- Title -->
         <h3>
           <br><br><br>
-          <span id="title" class="pacificofont">Edit Business</span>
+          <span id="title" class="pacificofont"><b><i>Edit Business</i></b></span>
           <br><br><br>
         </h3>
         <!-- Title -->
@@ -179,7 +179,7 @@
 
           <div>
             <ul class="list-group" *ngFor="let business of
-              businessList.slice().reverse() |
+              businessList |
               paginate
               : {id :
               'listing_pagination',

@@ -26,8 +26,9 @@ export class CustomersPageComponent implements OnInit {
   show_createExcel = false;
   customerEditName; customerEditContact; customerEditAadharNumber; customerEditPanNumber; customerEditAddress; customerEditDOB; customerEditCredit; customerEditDebit; customerEditPending; customerEditId;
   editedCustomer; deletedCustomer; addedCustomer;
-
+  errorMessage;
   customerList;
+  businessName;
   constructor(private route: ActivatedRoute, private authService: AuthService, private router: Router) {
   }
 
@@ -39,11 +40,19 @@ export class CustomersPageComponent implements OnInit {
       console.log("Customers List Fetched Successfully....")
       this.customerList = result
       this.csvdata = this.customerList.data
+      console.log(this.customerList)
       this.totalCredit = this.customerList.total["totalCredit"]
       this.totalDebit = this.customerList.total["totalDebit"]
       this.totalPending = this.customerList.total["totalPending"]
+      this.businessName = this.customerList.total["businessName"]
       this.customerList = this.customerList.data['customersList'];
+      this.customerList = this.customerList.reverse();      
       this.totalLength = this.customerList.length
+    },
+    (error) => {       
+      this.errorMessage = error;
+      console.log(this.errorMessage)
+      alert("Network Error")
     })
   }
 
@@ -54,12 +63,24 @@ export class CustomersPageComponent implements OnInit {
 
   // addCustomer Api Call
   addCustomer(data) {
+    if (data.value['customerDebit'] == '') {
+      data.value['customerDebit'] = 0;
+    }
+    if (data.value['customerCredit'] == '') {
+      data.value['customerCredit'] = 0
+    }
     data.value['businessId'] = this.businessId
     return this.authService.addCustomer(data.value).subscribe((result) => {
       console.log("Customer Added Successfully....")
       this.addedCustomer = result
+      console.log(this.addedCustomer)
       this.show_customerAdd_form = false;
       location.assign(environment.frontend_url + "customers/" + this.businessId)
+    },
+    (error) => {       
+      this.errorMessage = error;
+      console.log(this.errorMessage)
+      alert("Network Error")
     })
   }
 
@@ -87,6 +108,11 @@ export class CustomersPageComponent implements OnInit {
       this.my_transaction = result
       this.show_transaction_form = false;
       location.assign(environment.frontend_url + "customers/" + this.businessId)
+    },
+    (error) => {       
+      this.errorMessage = error;
+      console.log(this.errorMessage)
+      alert("Network Error")
     })
   }
 
@@ -128,6 +154,11 @@ export class CustomersPageComponent implements OnInit {
       console.log("Customer Edited Successfully...");
       this.show_customerEdit_form = false;
       location.assign(environment.frontend_url + "customers/" + this.businessId)
+    },
+    (error) => {       
+      this.errorMessage = error;
+      console.log(this.errorMessage)
+      alert("Network Error")
     })
 
   }
@@ -145,6 +176,11 @@ export class CustomersPageComponent implements OnInit {
       this.deletedCustomer = result;
       console.log("Customer Deleted Successfully...");
       location.assign(environment.frontend_url + "customers/" + this.businessId)
+    },
+    (error) => {       
+      this.errorMessage = error;
+      console.log(this.errorMessage)
+      alert("Network Error")
     })
   }
 
@@ -155,6 +191,11 @@ export class CustomersPageComponent implements OnInit {
       console.log("CSV Created Successfully....")
       this.csvFile = result
       this.show_createExcel = false;
+    },
+    (error) => {       
+      this.errorMessage = error;
+      console.log(this.errorMessage)
+      alert("Network Error")
     })
   }
 

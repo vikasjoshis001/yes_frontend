@@ -22,6 +22,7 @@ export class BusinessPageComponent implements OnInit {
   businessEditId;
   editedBusiness;
   addedBusiness;
+  errorMessage;
   constructor(private authService: AuthService) { }
 
   // getBusiness Api Call
@@ -30,9 +31,15 @@ export class BusinessPageComponent implements OnInit {
       console.log("Business List Fetched Successfully....");
       this.businessList = result;
       this.businessList = this.businessList.data['businessList'];
+      this.businessList = this.businessList.reverse();
       this.totalRecords = this.businessList.length;
       return this.businessList;
-    })
+    },
+      (error) => {
+        this.errorMessage = error;
+        console.log(this.errorMessage)
+        alert("Network Error")
+      })
   }
 
   // addBusiness Form
@@ -47,7 +54,12 @@ export class BusinessPageComponent implements OnInit {
       this.addedBusiness = result
       this.show_businessAdd_form = false;
       location.assign(environment.frontend_url + "business/")
-    })
+    },
+      (error) => {
+        this.errorMessage = error;
+        console.log(this.errorMessage)
+        alert("Network Error")
+      })
   }
 
   // editBusiness Form
@@ -65,19 +77,24 @@ export class BusinessPageComponent implements OnInit {
       this.editedBusiness = result;
       this.show_businessEdit_form = false;
       location.assign(environment.frontend_url + "business/")
-    })
+    },
+      (error) => {
+        this.errorMessage = error;
+        console.log(this.errorMessage)
+        alert("Network Error")
+      })
   }
   // Business Delete Api Call
   deleteBusiness() {
-    try {
-      this.authService.deleteBusiness(this.businessEditId).subscribe((result) => {
-        console.log("Business Deleted Successfully....");
-        location.assign(environment.frontend_url + "business");
+    this.authService.deleteBusiness(this.businessEditId).subscribe((result) => {
+      console.log("Business Deleted Successfully....");
+      location.assign(environment.frontend_url + "business");
+    },
+      (error) => {
+        this.errorMessage = error;
+        console.log(this.errorMessage)
+        alert("Network Error")
       })
-    }
-    catch (Error) {
-      alert("Network Error");
-    }
   }
 
   // deleteBusiness Form

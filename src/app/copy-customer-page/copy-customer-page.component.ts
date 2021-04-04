@@ -19,7 +19,8 @@ export class CopyCustomerPageComponent implements OnInit {
   page = 1;
   totalLength;
   show_copy = false
-  val = "checked";
+  errorMessage;
+  businessName;
   constructor(private route: ActivatedRoute, private authService: AuthService, private router: Router) { }
 
 
@@ -34,7 +35,6 @@ export class CopyCustomerPageComponent implements OnInit {
 
   // Add CustomerIds Function
   addCustomerIds(data) {
-    console.log("Adding Customer....")
     this.selectedCustomerIds.push[0]
     var i = 0;
     for (i = 0; i < this.selectedCustomerIds.length; i++) {
@@ -71,6 +71,12 @@ export class CopyCustomerPageComponent implements OnInit {
       this.copied = result;
       this.show_copy = false;
       this.changeCustomerStatus();     
+      this.selectedCustomerIds = [1, 2];
+    },
+    (error) => {       
+      this.errorMessage = error;
+      console.log(this.errorMessage)
+      alert("Network Error")
     })
 
   }
@@ -89,7 +95,12 @@ export class CopyCustomerPageComponent implements OnInit {
       console.log("Business List Fetched Successfully....")
       this.businessList = result
       this.businessList = this.businessList.data['businessList']
-    })
+    }),
+    (error) => {       
+      this.errorMessage = error;
+      console.log(this.errorMessage)
+      alert("Network Error")
+    }
   }
 
   // getCustomers Api Call
@@ -97,15 +108,16 @@ export class CopyCustomerPageComponent implements OnInit {
     return this.authService.getCustomersList(data).subscribe((result) => {
       console.log("Customers List Fetched Successfully....")
       this.customerList = result
+      this.businessName = this.customerList.total['businessName'];
       this.customerList = this.customerList.data['customersList'];
+      this.customerList = this.customerList.reverse();      
       this.totalLength = this.customerList.length;
+    },
+    (error) => {       
+      this.errorMessage = error;
+      console.log(this.errorMessage)
+      alert("Network Error")
     })
-  }
-
-  changeCheckbox(customerList,i){
-    if(customerList){
-      this.customerList[i].customerStatus != this.customerList[i].customerStatus;
-    }
   }
 
 

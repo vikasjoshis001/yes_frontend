@@ -23,6 +23,8 @@ export class TransactionPageComponent implements OnInit {
   text = '';
   csvdata;
   csvFile;
+  errorMessage;
+  customerName;
   headElements = ['Sr.No.', 'Date', 'Name', 'Credit', 'Debit', 'Pending'];
 
   constructor(private route: ActivatedRoute, private authService: AuthService, private router: Router) { }
@@ -37,9 +39,15 @@ export class TransactionPageComponent implements OnInit {
       this.totalCredit = this.transactionList.total["totalCredit"]
       this.totalDebit = this.transactionList.total["totalDebit"]
       this.totalPending = this.transactionList.total["totalPending"]
+      this.customerName = this.transactionList.total["customerName"]
       this.transactionList = this.transactionList.data['transactionHistory']
       this.totalRecords = this.transactionList.length
       return this.transactionList;
+    },
+    (error) => {       
+      this.errorMessage = error;
+      console.log(this.errorMessage)
+      alert("Network Error")
     })
   }
 
@@ -47,10 +55,16 @@ export class TransactionPageComponent implements OnInit {
   // createTransactionCSV Api Call
   createTransactionCSV() {
     this.show_createExcel = true;
+    console.log(this.csvdata)
     return this.authService.createTransactionCSV(this.csvdata).subscribe((result) => {
       console.log("CSV Created Successfully...")
       this.csvFile = result
       this.show_createExcel = false;
+    },
+    (error) => {       
+      this.errorMessage = error;
+      console.log(this.errorMessage)
+      alert("Network Error")
     })
   }
 

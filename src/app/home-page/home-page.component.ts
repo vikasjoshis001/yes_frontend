@@ -12,28 +12,28 @@ export class HomePageComponent implements OnInit {
 
   token;
   msg;
-
+  errorMessage;
   constructor(private http: HttpClient, private authService: AuthService, private router: Router) { }
 
   // Login Api Call
   login(data) {
-    try {
-      this.authService.login(data.value).subscribe((result) => {
-        console.log("Successfully Logged in....");
-        this.token = result;
-        if (this.token.msg == "Invalid Credentials") {
-          this.msg = "**Invalid Username or Password";
-        }
-        else {
-          this.token = this.token.data['token']
-          sessionStorage.setItem('token', this.token);
-          this.router.navigate(['/business']);
-        }
+    this.authService.login(data.value).subscribe((result) => {
+      console.log("Successfully Logged in....");
+      this.token = result;
+      if (this.token.msg == "Invalid Credentials") {
+        this.msg = "**Invalid Username or Password";
+      }
+      else {
+        this.token = this.token.data['token']
+        sessionStorage.setItem('token', this.token);
+        this.router.navigate(['/business']);
+      }
+    },
+      (error) => {
+        this.errorMessage = error;
+        console.log(this.errorMessage)
+        alert("Network Error")
       })
-    }
-    catch (Error) {
-      alert("Network Error")
-    }
   }
 
   ngOnInit(): void {

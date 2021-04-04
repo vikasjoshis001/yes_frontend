@@ -13,9 +13,8 @@
                 <!-- Title -->
                 <h3>
                     <br><br><br>
-                    <span id="title" class="pacificofont">Delete
-                        Customer</span>
-                    <br><br><br>
+                    <span id="title" class="pacificofont"><b><i>Delete Customer</i></b></span>         
+                        <br><br><br>
                 </h3>
                 <!-- Title -->
                 <div id="model_popup" class="fancy">
@@ -44,8 +43,7 @@
                 <!-- Title -->
                 <h3>
                     <br><br><br>
-                    <span id="title" class="pacificofont">Add
-                        Customer</span>
+                    <span id="title" class="pacificofont"><b><i>Add Customer</i></b></span>         
                     <br><br><br>
                 </h3>
                 <!-- Title -->
@@ -239,8 +237,7 @@
                 <!-- Title -->
                 <h3>
                     <br><br><br>
-                    <span id="title" class="pacificofont">Add
-                        Transaction</span>
+                    <span id="title" class="pacificofont"><b><i>Add Transaction</i></b></span>         
                     <br><br><br>
                 </h3>
                 <!-- Title -->
@@ -329,7 +326,7 @@
                 <!-- Title -->
                 <h3>
                     <br><br><br>
-                    <span id="title" class="pacificofont">Edit Customer</span>
+                    <span id="title" class="pacificofont"><b><i>Edit Customer</i></b></span>         
                     <br><br><br>
                 </h3>
                 <!-- Title -->
@@ -494,12 +491,14 @@
                 show_copyCustomer_form===false">
 
                 <!-- Title -->
+                <div style="text-align: center">
                 <h2>
                     <span
-                        style="position:relative;top:20px;margin-left:450px;color:white"
+                        style="position:relative;top:20px;color:white"
                         class="pacificofont"><b><i>{{
-                                title|titlecase }}</i></b></span>
+                                businessName|titlecase }} Customers</i></b></span>
                 </h2>
+            </div>
                 <!-- Title -->
 
 
@@ -595,7 +594,7 @@
                             <tr class="table-light" *ngFor="let
                                 customer
                                 of
-                                customerList.slice().reverse() | orderBy: key :
+                                customerList | orderBy: key :
                                 reverse |
                                 paginate : {id :
                                 'listing_pagination',
@@ -700,7 +699,7 @@
                         </thead>
                         <tbody>
                             <tr class="table-light" *ngFor="let customer of
-                                customerList.slice().reverse() | orderBy: key :
+                                customerList | orderBy: key :
                                 reverse | filter:text; let i=index">
                                 <td>{{ (page - 1) * 10 + i +1 }}</td>
                                 <td (click)="sort('id')"><a

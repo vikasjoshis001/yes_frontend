@@ -14,6 +14,7 @@ export class AppComponent {
   url = environment.url + "admin/"
   database;
   show_backup = false;
+  errorMessage;
   constructor(private authService: AuthService,) { }
 
 
@@ -32,8 +33,12 @@ export class AppComponent {
       console.log("Database backup sucessfull...");
       this.show_backup = false;
       location.assign(environment.frontend_url + "/")
-
+    },
+    (error) => {
+      this.show_backup = false;
+      this.errorMessage = error;
+      console.log(this.errorMessage)
+      alert("Network Error")
     })
-
   }
 }
