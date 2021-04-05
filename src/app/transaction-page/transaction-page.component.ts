@@ -20,9 +20,11 @@ export class TransactionPageComponent implements OnInit {
   totalDebit;
   totalPending;
   show_createExcel = false;
+  show_createPdf = false;
   text = '';
   csvdata;
   csvFile;
+  pdfdata;pdfFile;
   errorMessage;
   customerName;
   headElements = ['Sr.No.', 'Date', 'Name', 'Credit', 'Debit', 'Pending'];
@@ -36,6 +38,7 @@ export class TransactionPageComponent implements OnInit {
       this.transactionList = result
       console.log(this.transactionList)
       this.csvdata = this.transactionList.data
+      this.pdfdata = this.transactionList.data
       this.totalCredit = this.transactionList.total["totalCredit"]
       this.totalDebit = this.transactionList.total["totalDebit"]
       this.totalPending = this.transactionList.total["totalPending"]
@@ -60,6 +63,21 @@ export class TransactionPageComponent implements OnInit {
       console.log("CSV Created Successfully...")
       this.csvFile = result
       this.show_createExcel = false;
+    },
+    (error) => {       
+      this.errorMessage = error;
+      console.log(this.errorMessage)
+      alert("Network Error")
+    })
+  }
+
+  // / createProfitPdf Api Call
+  createTransactionPdf() {
+    this.show_createPdf = true;
+    return this.authService.createTransactionPdf(this.pdfdata).subscribe((result) => {
+      console.log("Pdf Created Successfully....")
+      this.pdfFile = result
+      this.show_createPdf = false;
     },
     (error) => {       
       this.errorMessage = error;

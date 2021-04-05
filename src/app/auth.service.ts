@@ -105,6 +105,11 @@ export class AuthService {
     return this.http.get(environment.url + "getCustomerProfit/?businessId=" + businessId + "&&customerId=" + customerId, { headers: this.getToken() })
   }
 
+  DeleteAllCustomers(data){
+    console.log("Deleting All Customers...")
+    return this.http.post(environment.url + "deleteAllCustomers/", data, { headers: this.getToken() })
+  }
+
   createCustomersCSV(data) {
     console.log("Creating Customers CSV...")
     return this.http.post(environment.url + "createCustomersCSV/", data, { headers: this.getToken() })
@@ -113,6 +118,16 @@ export class AuthService {
   createProfitCSV(data) {
     console.log("Creating Customers Profit CSV...")
     return this.http.post(environment.url + "createProfitCSV/", data, { headers: this.getToken() })
+  }
+
+  createCustomersPdf(data) {
+    console.log("Creating Customers Pdf...")
+    return this.http.post(environment.url + "createCustomersPdf/", data, { headers: this.getToken() })
+  }
+
+  createProfitPdf(data) {
+    console.log("Creating Customers Profit Pdf...")
+    return this.http.post(environment.url + "createProfitPdf/", data, { headers: this.getToken() })
   }
 
   // Transaction Apis
@@ -129,6 +144,11 @@ export class AuthService {
   createTransactionCSV(data) {
     console.log("Creating Transaction CSV...")
     return this.http.post(environment.url + "createTransactionCSV/", data, { headers: this.getToken() })
+  }
+
+  createTransactionPdf(data) {
+    console.log("Creating Transaction Pdf...")
+    return this.http.post(environment.url + "createTransactionPdf/", data, { headers: this.getToken() })
   }
 
   // Finance Apis

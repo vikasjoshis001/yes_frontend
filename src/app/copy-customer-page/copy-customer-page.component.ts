@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
 import { ActivatedRoute } from '@angular/router';
 import { AuthService } from "../auth.service";
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-copy-customer-page',
@@ -11,16 +12,19 @@ import { AuthService } from "../auth.service";
 export class CopyCustomerPageComponent implements OnInit {
 
   private routeSub: any;
-  businessId; customerId;
+  businessId; customerId;copiedBusinessId;
   businessList; customerList;
   text = '';
-  copied; length;
-  selectedCustomerIds = [1, 2];
+  copied; length;deleted;
+  selectedCustomerIds = [-1, -2];
   page = 1;
   totalLength;
   show_copy = false
   errorMessage;
   businessName;
+  showSelectAll = false;
+  showDeleteAll = false;
+  delete = {}
   constructor(private route: ActivatedRoute, private authService: AuthService, private router: Router) { }
 
 
@@ -64,14 +68,16 @@ export class CopyCustomerPageComponent implements OnInit {
   // copyCustomersApi Call
   copy(data) {
     this.show_copy = true
-    this.selectedCustomerIds = this.selectedCustomerIds.filter(item => item !== 1)
-    this.selectedCustomerIds = this.selectedCustomerIds.filter(item => item !== 2)
+    this.copiedBusinessId = data.value['businessId']
+    this.selectedCustomerIds = this.selectedCustomerIds.filter(item => item !== -1)
+    this.selectedCustomerIds = this.selectedCustomerIds.filter(item => item !== -2)
     data.value['customersId'] = this.selectedCustomerIds;
     return this.authService.copyCustomer(data.value).subscribe((result) => {
       this.copied = result;
       this.show_copy = false;
       this.changeCustomerStatus();     
-      this.selectedCustomerIds = [1, 2];
+      this.selectedCustomerIds = [-1, -2];
+      location.assign(environment.frontend_url + "customers/" + this.copiedBusinessId)
     },
     (error) => {       
       this.errorMessage = error;
@@ -80,6 +86,41 @@ export class CopyCustomerPageComponent implements OnInit {
     })
 
   }
+
+  // selectAll function
+  selectAll(){
+    this.selectedCustomerIds = [-1, -2];
+    var i =0;
+    for(i=0;i<this.customerList.length;i++){
+      this.selectedCustomerIds.push(this.customerList[i].customerId)
+      this.customerList[i].customerStatus = true;
+      this.showSelectAll = true;
+    }
+    this.selectedCustomerIds = this.selectedCustomerIds.filter(item => item !== -1)
+    this.selectedCustomerIds = this.selectedCustomerIds.filter(item => item !== -2)
+    console.log(this.selectedCustomerIds)
+  }
+
+  // UnselectAll Function
+  UnselectAll(){
+    var i =0;
+    for(i=0;i<this.customerList.length;i++){
+      this.customerList[i].customerStatus = false;
+      this.showSelectAll = false;
+    }
+    this.selectedCustomerIds = [-1, -2];
+    console.log(this.selectedCustomerIds)
+  }
+
+  // Api implementation of delete all customer
+  DeleteAllCustomers(){
+    this.showDeleteAll = true
+    return this.authService.DeleteAllCustomers(this.selectedCustomerIds).subscribe((result) => {
+      this.deleted = result;
+      this.showSelectAll = false;
+      this.showDeleteAll = false;
+      location.assign(environment.frontend_url + "customers/" + this.businessId)
+    })}
 
   // changeCustomerStatus Function
   changeCustomerStatus(){

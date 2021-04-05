@@ -53,7 +53,7 @@
                 <!-- Submit Button -->
                 <div *ngIf="show_copy === false">
                     <button
-                        style="position:relative;bottom:163px;margin-left:1030px;"
+                        style="position:absolute;top:220px;margin-left:1030px;"
                         type="submit"
                         id="submit_button"
                         [disabled]="selectBusinessForm.invalid"
@@ -65,7 +65,7 @@
                 <div *ngIf="show_copy === true">
 
                     <button
-                        style="position:relative;bottom:163px;margin-left:1030px;"
+                        style="position:absolute;top:220px;margin-left:1030px;"
                         type="button"
                         class="btn btn-warning"
                         disabled>
@@ -80,6 +80,47 @@
 
             </form>
             <!-- Select Business Form -->
+
+            <!-- Select All Button -->
+            <div *ngIf="showSelectAll === false">
+                <button
+                    style="position:absolute;top:220px;margin-left:770px;"
+                    type="button"
+                    class="btn btn-primary" (click)="selectAll()"
+                    id="selectAllbutton">Select All</button>
+            </div>
+
+            <div *ngIf="showSelectAll === true">
+                <button
+                    style="position:absolute;top:220px;margin-left:770px;"
+                    type="button"
+                    class="btn btn-primary" (click)="UnselectAll()"
+                    id="selectAllbutton">Unselect All</button>
+            </div>
+            <!-- Select All Button -->
+
+            <!-- Delete All Button -->
+            <div *ngIf="showDeleteAll === false">
+                <button
+                    style="position:absolute;top:220px;margin-left:900px;"
+                    type="button"
+                    class="btn btn-danger" (click)="DeleteAllCustomers()"
+                    id="selectAllbutton">Delete All</button>
+            </div>
+
+            <div *ngIf="showDeleteAll === true">
+                <button
+                    style="position:absolute;top:220px;margin-left:900px;"
+                    type="button"
+                    class="btn btn-danger"
+                    disabled>
+                    <span class="spinner-border spinner-border-sm"
+                        role="status"
+                        aria-hidden="true"></span>
+                    Deleting</button>
+            </div>
+            <!-- Delete All Button -->
+
 
             <div *ngIf="text === '';then content else
                 other_content"></div>
@@ -126,8 +167,6 @@
                                         class="custom-control-input"
                                         id={{i+1}}
                                         [checked]="customer.customerStatus">
-                                    <label class="custom-control-label"
-                                        for={{i+1}}>{{i+1}}</label>
                                 </div></td>
                             <td>{{customer.customerName}}</td>
                             <td>{{customer.customerContact}}</td>
@@ -184,23 +223,20 @@
                                         type="checkbox"
                                         class="custom-control-input"
                                         id={{i+1}}
-                                        [checked]="customer.customerStatus">
-                                    <label class="custom-control-label"
-                                        for={{i+1}}>{{i+1}}</label>
-                                </div></td>
-                            <td>{{customer.customerName}}</td>
-                            <td>{{customer.customerContact}}</td>
-                            <td>{{customer.customerAddress}}</td>
-                            <td>{{customer.customerAadharNumber}}</td>
-                            <td>{{customer.customerPanNumber}}</td>
-                            <!-- </div> -->
-                        </tr>
+                                        [checked]="customer.customerStatus"></div>
+                                <td>{{customer.customerName}}</td>
+                                <td>{{customer.customerContact}}</td>
+                                <td>{{customer.customerAddress}}</td>
+                                <td>{{customer.customerAadharNumber}}</td>
+                                <td>{{customer.customerPanNumber}}</td>
+                                <!-- </div> -->
+                            </tr>
 
-                    </tbody>
-                </table>
-            </ng-template>
-            <!-- Customer Display Table -->
+                        </tbody>
+                    </table>
+                </ng-template>
+                <!-- Customer Display Table -->
 
+            </div>
         </div>
-    </div>
-</body>
+    </body>

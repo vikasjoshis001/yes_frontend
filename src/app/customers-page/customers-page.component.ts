@@ -16,7 +16,7 @@ export class CustomersPageComponent implements OnInit {
   businessId = "string";
   text = '';
   totalCredit; totalDebit; totalPending; totalLength;
-  csvdata; csvFile;
+  csvdata; csvFile;pdfdata;pdfFile;
   page = 1; my_transaction;
   show_customerEdit_form = false;
   show_customerAdd_form = false;
@@ -24,6 +24,7 @@ export class CustomersPageComponent implements OnInit {
   show_transaction_form = false;
   show_copyCustomer_form = false;
   show_createExcel = false;
+  show_createPdf = false;
   customerEditName; customerEditContact; customerEditAadharNumber; customerEditPanNumber; customerEditAddress; customerEditDOB; customerEditCredit; customerEditDebit; customerEditPending; customerEditId;
   editedCustomer; deletedCustomer; addedCustomer;
   errorMessage;
@@ -40,6 +41,7 @@ export class CustomersPageComponent implements OnInit {
       console.log("Customers List Fetched Successfully....")
       this.customerList = result
       this.csvdata = this.customerList.data
+      this.pdfdata = this.customerList.data
       console.log(this.customerList)
       this.totalCredit = this.customerList.total["totalCredit"]
       this.totalDebit = this.customerList.total["totalDebit"]
@@ -191,6 +193,21 @@ export class CustomersPageComponent implements OnInit {
       console.log("CSV Created Successfully....")
       this.csvFile = result
       this.show_createExcel = false;
+    },
+    (error) => {       
+      this.errorMessage = error;
+      console.log(this.errorMessage)
+      alert("Network Error")
+    })
+  }
+
+  // createCustomersPdf Api Call
+  createCustomersPdf() {
+    this.show_createPdf = true;
+    return this.authService.createCustomersPdf(this.csvdata).subscribe((result) => {
+      console.log("Pdf Created Successfully....")
+      this.pdfFile = result
+      this.show_createPdf = false;
     },
     (error) => {       
       this.errorMessage = error;

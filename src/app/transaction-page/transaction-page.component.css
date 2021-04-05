@@ -10,8 +10,9 @@ a,u{
 }
 
 #searchBar {
-  position: relative;
+  position: absolute;
   width: 700px;
+  top:120px;
 }
 
 .pacificofont {

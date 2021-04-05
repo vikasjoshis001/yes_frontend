@@ -56,9 +56,9 @@
 
 
                         <!-- Close Icon -->
-                        <p style="text-align:center;font-size:
-                            22px"><a
-                                (click)="onClose()" class="close">&times;</a></p>
+                        <p style="text-align:right;font-size:40px;"><a
+                                (click)="onClose()" style="color:black"
+                                class="close">&times;</a></p>
                         <!-- Close Icon -->
 
 
@@ -164,13 +164,6 @@
                                 aria-describedby="customerPanNumber"
                                 ngModel
                                 name="customerPanNumber">
-                            <span id="input_label"
-                                *ngIf="customerPanNumber.invalid &&
-                                customerPanNumber.touched"
-                                style="color:red"><b>**Enter Valid
-                                    Pan
-                                    Card
-                                    Number</b></span>
                         </div>
                         <!-- Customer Pan Number -->
 
@@ -256,9 +249,9 @@
                     <div>
 
                         <!-- Close Icon -->
-                        <p style="text-align:center;font-size:
-                            22px"><a
-                                (click)="onClose()" class="close">&times;</a></p>
+                        <p style="text-align:right;font-size:40px;"><a
+                                (click)="onClose()" style="color:black"
+                                class="close">&times;</a></p>
                         <!-- Close Icon -->
 
 
@@ -344,9 +337,9 @@
                     <div>
 
                         <!-- Close Icon -->
-                        <p style="text-align:center;font-size:
-                            22px"><a
-                                (click)="onClose()" class="close">&times;</a></p>
+                        <p style="text-align:right;font-size:40px;"><a
+                                (click)="onClose()" style="color:black"
+                                class="close">&times;</a></p>
                         <!-- Close Icon -->
 
 
@@ -439,7 +432,6 @@
                                 for="customerPanNumber">Pan Card
                                 Number</label>
                             <input #customerPanNumber="ngModel"
-                                pattern="\d\d\d\d\d\d\d\d\d\d"
                                 type="text" class="form-control"
                                 placeholder={{customerEditPanNumber}}
                                 id="customerPanNumber"
@@ -447,13 +439,6 @@
                                 aria-describedby="customerPanNumber"
                                 ngModel
                                 name="customerPanNumber">
-                            <span id="input_label"
-                                *ngIf="customerPanNumber.invalid &&
-                                customerPanNumber.touched"
-                                style="color:red"><b>**Enter Valid
-                                    Pan
-                                    Card
-                                    Number</b></span>
                         </div>
                         <!-- Customer Pan Number -->
 
@@ -523,7 +508,9 @@
                 <!-- Create Excel Button -->
                 <div *ngIf="show_createExcel === false">
 
-                    <button style="margin-left:970px;" type="button"
+                    <button
+                        style="position:relative;top:14px;margin-left:970px;"
+                        type="button"
                         class="btn
                         btn-success" (click)="createCustomersCSV()"><i class="fa
                             fa-file-excel-o"></i> Create Excel</button>
@@ -533,7 +520,9 @@
 
                 <div *ngIf="show_createExcel === true">
 
-                    <button style="margin-left:970px;" type="button"
+                    <button
+                        style="position:relative;top:14px;margin-left:970px;"
+                        type="button"
                         class="btn btn-success"
                         disabled>
                         <span class="spinner-border spinner-border-sm"
@@ -544,11 +533,39 @@
                 </div>
                 <!-- Create Excel Button -->
 
+                <!-- Create Pdf Button -->
+                <div *ngIf="show_createPdf === false">
+
+                    <button
+                        style="position:relative;bottom:40px;margin-left:840px;"
+                        type="button"
+                        class="btn
+                        btn-danger" (click)="createCustomersPdf()"><i class="fa
+                            fa-file-excel-o"></i> Create Pdf</button>
+
+                </div>
+
+
+                <div *ngIf="show_createPdf === true">
+
+                    <button
+                        style="position:relative;bottom:40px;margin-left:840px;"
+                        type="button"
+                        class="btn btn-danger"
+                        disabled>
+                        <span class="spinner-border spinner-border-sm"
+                            role="status"
+                            aria-hidden="true"></span>
+                        Creating...</button>
+
+                </div>
+                <!-- Create Pdf Button -->
+
 
 
                 <!-- Add New User Button -->
                 <button
-                    style="position:relative;bottom:54px;margin-left:840px;"
+                    style="position:relative;bottom:94px;margin-left:730px;"
                     type="button" class="btn btn-info add-new"
                     (click)=addCustomerForm()><i class="fa fa-plus"></i> Add
                     New</button>
@@ -556,14 +573,14 @@
                     other_content"></div>
                 <!-- Add New User Button -->
 
-
                 <!-- Copy User Button -->
                 <a href="/copy/{{businessId}}/"><button
-                        style="position:absolute;bottom:30.8em;margin-left:730px;"
+                        style="position:absolute;top:120px;margin-left:650px;"
                         type="button" class="btn btn-warning"><i class="fa
                             fa-copy"></i>
-                        Copy</button></a>
+                        More</button></a>
                 <!-- Copy User Button -->
+
 
 
                 <!-- Customer List Pagination Table -->
@@ -648,19 +665,21 @@
                             </tr>
 
                         </tbody>
-                        <tr class="table-primary">
-                            <td></td>
-                            <td>Total </td>
-                            <td>{{totalCredit}}</td>
-                            <td>{{totalDebit}}</td>
-                            <td>{{totalPending}}</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
+                        <tbody>
+                            <tr class="table-info">
+                                <td></td>
+                                <td>Total </td>
+                                <td>{{totalCredit}}</td>
+                                <td>{{totalDebit}}</td>
+                                <td>{{totalPending}}</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </tbody>
                     </table>
 
                     <div>
@@ -747,19 +766,21 @@
                             </tr>
 
                         </tbody>
-                        <tr class="table-primary">
-                            <td></td>
-                            <td>Total </td>
-                            <td>{{totalCredit}}</td>
-                            <td>{{totalDebit}}</td>
-                            <td>{{totalPending}}</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
+                        <tbody>
+                            <tr class="table-info">
+                                <td></td>
+                                <td>Total </td>
+                                <td>{{totalCredit}}</td>
+                                <td>{{totalDebit}}</td>
+                                <td>{{totalPending}}</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </tbody>
                     </table>
                 </ng-template>
                 <!-- Customer List Search Table -->

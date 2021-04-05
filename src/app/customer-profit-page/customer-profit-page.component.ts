@@ -17,7 +17,8 @@ export class CustomerProfitPageComponent implements OnInit {
   page = 1;
   text = "";
   show_createExcel = false;
-  csvdata; csvFile;
+  show_createPdf = false;
+  csvdata; csvFile;pdfdata;pdfFile;
   totalRecords;
   totalCredit;
   totalDebit;
@@ -33,6 +34,7 @@ export class CustomerProfitPageComponent implements OnInit {
       console.log("Customer Profit List fetched...");
       this.profitList = result;
       this.csvdata = this.profitList.data
+      this.pdfdata = this.profitList.data
       this.totalCredit = this.profitList.total["totalCredit"]
       this.totalDebit = this.profitList.total["totalDebit"]
       this.totalPending = this.profitList.total["totalPending"]
@@ -55,6 +57,21 @@ export class CustomerProfitPageComponent implements OnInit {
       console.log("CSV Created Successfully....")
       this.csvFile = result
       this.show_createExcel = false;
+    },
+    (error) => {       
+      this.errorMessage = error;
+      console.log(this.errorMessage)
+      alert("Network Error")
+    })
+  }
+
+  // createProfitPdf Api Call
+  createProfitPdf() {
+    this.show_createPdf = true;
+    return this.authService.createProfitPdf(this.pdfdata).subscribe((result) => {
+      console.log("Pdf Created Successfully....")
+      this.pdfFile = result
+      this.show_createPdf = false;
     },
     (error) => {       
       this.errorMessage = error;

@@ -52,8 +52,8 @@
           <div>
 
             <!-- Close Icon -->
-            <p style="text-align:center;font-size: 22px"><a
-                (click)="onClose()" class="close">&times;</a></p>
+            <p style="text-align:right;font-size:40px;"><a
+                (click)="onClose()" style="color:black" class="close">&times;</a></p>
             <!-- Close Icon -->
 
 
@@ -68,9 +68,9 @@
                 list="businessList"
                 aria-describedby="businessName" ngModel
                 name="businessName">
-                <datalist id="businessList">
-                  <option *ngFor="let business of businessList">{{business.businessName}}</option>
-                </datalist>
+              <datalist id="businessList">
+                <option *ngFor="let business of businessList">{{business.businessName}}</option>
+              </datalist>
             </div>
             <!-- Business Name -->
 
@@ -107,8 +107,8 @@
           <div>
 
             <!-- Close Icon -->
-            <p style="text-align:center;font-size: 22px"><a
-                (click)="onClose()" class="close">&times;</a></p>
+            <p style="text-align:right;font-size:40px;"><a
+                (click)="onClose()" style="color:black" class="close">&times;</a></p>
             <!-- Close Icon -->
 
 
@@ -166,7 +166,7 @@
 
 
         <!-- Add New User Button -->
-        <button style="position:relative;bottom:54px;margin-left:1000px;"
+        <button style="position:relative;bottom:40px;margin-left:1000px;"
           type="button" class="btn btn-info add-new"
           (click)=addBusinessForm()><i class="fa fa-plus"></i> Add New</button>
         <!-- Add New User Button -->

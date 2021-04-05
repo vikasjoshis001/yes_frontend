@@ -10,7 +10,7 @@
                 <span
                     style="position:relative;top:20px;color:white"
                     class="pacificofont"><b><i>{{customerName}} Transactions</i></b></span>
-                <br><br><br>
+                <br><br><br><br>
             </h2>
         </div>
             <!-- Title -->
@@ -30,7 +30,7 @@
             <div *ngIf="show_createExcel === false">
 
                 <button
-                    style="position:absolute;bottom:30.5em;margin-left:970px;"
+                    style="position:absolute;top:100px;margin-left:970px;"
                     type="button"
                     class="btn
                     btn-success" (click)="createTransactionCSV()"><i class="fa
@@ -41,7 +41,7 @@
 
             <div *ngIf="show_createExcel === true">
 
-                <button style="margin-left:970px;" type="button"
+                <button style="position:absolute;top:100px;margin-left:970px;" type="button"
                     class="btn btn-success"
                     disabled>
                     <span class="spinner-border spinner-border-sm"
@@ -51,6 +51,30 @@
 
             </div>
             <!-- Create Excel Button -->
+
+            <!-- Create Pdf Button -->
+            <div *ngIf="show_createPdf === false">
+
+                <button style="position:absolute;top:100px;margin-left:840px;" type="button"
+                    class="btn
+                    btn-danger" (click)="createTransactionPdf()"><i class="fa
+                        fa-file-excel-o"></i> Create Pdf</button>
+
+            </div>
+
+
+            <div *ngIf="show_createPdf === true">
+
+                <button style="position:absolute;top:100px;margin-left:840px;" type="button"
+                    class="btn btn-danger"
+                    disabled>
+                    <span class="spinner-border spinner-border-sm"
+                        role="status"
+                        aria-hidden="true"></span>
+                    Creating...</button>
+
+            </div>
+            <!-- Create Pdf Button -->
 
 
             <!-- Transaction List Pagination Table -->
@@ -81,7 +105,8 @@
                         </tr>
 
                     </tbody>
-                    <tr class="table-primary">
+                    <tbody>
+                    <tr class="table-info">
                         <td></td>
                         <td></td>
                         <td>Total </td>
@@ -89,6 +114,7 @@
                         <td>{{totalDebit}}</td>
                         <td>{{totalPending}}</td>
                     </tr>
+                </tbody>
                 </table>
 
                 <div>
@@ -125,14 +151,16 @@
                         </tr>
 
                     </tbody>
-                    <tr class="table-primary">
-                        <td></td>
-                        <td></td>
-                        <td>Total </td>
-                        <td>{{totalCredit}}</td>
-                        <td>{{totalDebit}}</td>
-                        <td>{{totalPending}}</td>
-                    </tr>
+                    <tbody>
+                        <tr class="table-info">
+                            <td></td>
+                            <td></td>
+                            <td>Total </td>
+                            <td>{{totalCredit}}</td>
+                            <td>{{totalDebit}}</td>
+                            <td>{{totalPending}}</td>
+                        </tr>
+                    </tbody>
                 </table>
 
 
