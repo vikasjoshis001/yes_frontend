@@ -5,6 +5,10 @@ body {
   height: 400vh;
 }
 
+a,u{
+  text-decoration: none;
+}
+
 #searchBar {
   position: relative;
   width: 700px;

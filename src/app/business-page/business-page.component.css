@@ -12,6 +12,10 @@ body {
   height: 150vh;
 }
 
+a,u{
+  text-decoration: none;
+}
+
 #businessEditForm,
 #businessAddForm {
   padding: 1em;

@@ -13,6 +13,10 @@ body {
   height: 400vh;
 }
 
+a,u{
+  text-decoration: none;
+}
+
 #customerEditForm {
   padding: 1em;
   width: 60%;
