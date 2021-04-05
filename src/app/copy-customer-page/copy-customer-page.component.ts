@@ -24,7 +24,7 @@ export class CopyCustomerPageComponent implements OnInit {
   businessName;
   showSelectAll = false;
   showDeleteAll = false;
-  delete = {}
+  cnf;
   constructor(private route: ActivatedRoute, private authService: AuthService, private router: Router) { }
 
 
@@ -114,13 +114,19 @@ export class CopyCustomerPageComponent implements OnInit {
 
   // Api implementation of delete all customer
   DeleteAllCustomers(){
+    this.cnf=confirm("Are you you want to delete all customers of this business???")
+    if(!this.cnf)
+    {
+       return;
+    }
     this.showDeleteAll = true
     return this.authService.DeleteAllCustomers(this.selectedCustomerIds).subscribe((result) => {
       this.deleted = result;
       this.showSelectAll = false;
       this.showDeleteAll = false;
       location.assign(environment.frontend_url + "customers/" + this.businessId)
-    })}
+    })
+    }
 
   // changeCustomerStatus Function
   changeCustomerStatus(){
