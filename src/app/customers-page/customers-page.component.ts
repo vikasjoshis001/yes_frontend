@@ -25,11 +25,15 @@ export class CustomersPageComponent implements OnInit {
   show_copyCustomer_form = false;
   show_createExcel = false;
   show_createPdf = false;
+  show_customerSort = false;
   customerEditName; customerEditContact; customerEditAadharNumber; customerEditPanNumber; customerEditAddress; customerEditDOB; customerEditCredit; customerEditDebit; customerEditPending; customerEditId;
   editedCustomer; deletedCustomer; addedCustomer;
   errorMessage;
   customerList;
   businessName;
+  customerCreditSort;
+  customerDebitSort;
+  customerPendingSort;
   constructor(private route: ActivatedRoute, private authService: AuthService, private router: Router) {
   }
 

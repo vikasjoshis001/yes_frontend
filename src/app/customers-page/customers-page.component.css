@@ -44,13 +44,13 @@ a,u{
 #addCustomerForm {
   padding: 1em;
   width: 70%;
-  height: 800px;
+  height: 700px;
   box-sizing: border-box;
   position: relative;
   margin: 0 auto;
   border-radius: 25px;
   top: auto;
-  background-color: grey;
+  background-color: grey
 }
 
 form label {

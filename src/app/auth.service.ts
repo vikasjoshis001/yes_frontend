@@ -130,6 +130,11 @@ export class AuthService {
     return this.http.post(environment.url + "createProfitPdf/", data, { headers: this.getToken() })
   }
 
+  sortCustomers(data){
+    console.log("Sorting Customers...")
+    return this.http.post(environment.url + "sortCustomers/", data, { headers: this.getToken() })
+  }
+
   // Transaction Apis
   transaction(data) {
     console.log("Transaction on the way...")

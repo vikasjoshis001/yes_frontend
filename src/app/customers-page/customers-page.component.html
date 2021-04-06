@@ -56,7 +56,8 @@
 
 
                         <!-- Close Icon -->
-                        <p style="text-align:right;font-size:40px;"><a
+                        <p onmouseover="" style="cursor:
+                            pointer;text-align:right;font-size:40px;"><a
                                 (click)="onClose()" style="color:black"
                                 class="close">&times;</a></p>
                         <!-- Close Icon -->
@@ -249,7 +250,8 @@
                     <div>
 
                         <!-- Close Icon -->
-                        <p style="text-align:right;font-size:40px;"><a
+                        <p onmouseover="" style="cursor:
+                            pointer;text-align:right;font-size:40px;"><a
                                 (click)="onClose()" style="color:black"
                                 class="close">&times;</a></p>
                         <!-- Close Icon -->
@@ -337,7 +339,8 @@
                     <div>
 
                         <!-- Close Icon -->
-                        <p style="text-align:right;font-size:40px;"><a
+                        <p onmouseover="" style="cursor:
+                            pointer;text-align:right;font-size:40px;"><a
                                 (click)="onClose()" style="color:black"
                                 class="close">&times;</a></p>
                         <!-- Close Icon -->
@@ -569,226 +572,242 @@
                     type="button" class="btn btn-info add-new"
                     (click)=addCustomerForm()><i class="fa fa-plus"></i> Add
                     New</button>
-                <div *ngIf="text === '';then content else
-                    other_content"></div>
+                        <div *ngIf="text === '';then content else
+                            other_content"></div>
                 <!-- Add New User Button -->
 
                 <!-- Copy User Button -->
                 <a href="/copy/{{businessId}}/"><button
-                        style="position:absolute;top:120px;margin-left:650px;"
-                        type="button" class="btn btn-warning"><i class="fa
-                            fa-copy"></i>
-                        More</button></a>
-                <!-- Copy User Button -->
+                    style="position:absolute;top:120px;margin-left:650px;"
+                    type="button" class="btn btn-warning"><i class="fa
+                        fa-copy"></i>
+                    More</button></a>
+            <!-- Copy User Button -->
+
+                    <!-- Customer List Pagination Table -->
+                    <ng-template #content>
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th (click)="sort('customerId')"
+                                        class="table-dark"><i class="fa
+                                            fa-sort"></i>&nbsp;Sr</th>
+                                    <th (click)="sort('customerName')"
+                                        class="table-dark"><i class="fa
+                                            fa-sort"></i>&nbsp;Name</th>
+                                    <th
+                                        (click)="sort('customerCredit')"
+                                        class="table-dark"><i class="fa
+                                            fa-sort"></i>&nbsp;Credit</th>
+                                    <th (click)="sort('customerDebit')"
+                                        class="table-dark"><i class="fa
+                                            fa-sort"></i>&nbsp;Debit</th>
+                                    <th (click)="sort('customerPending')"
+                                        class="table-dark"><i class="fa
+                                            fa-sort"></i>&nbsp;Pending</th>
+                                    <th (click)="sort('customerContact')"
+                                        class="table-dark"><i class="fa
+                                            fa-sort"></i>&nbsp;Contact</th>
+                                    <th (click)="sort('customerAddress')"
+                                        class="table-dark"><i class="fa
+                                            fa-sort"></i>&nbsp;Address</th>
+                                    <th (click)="sort('customerAadharNumber')"
+                                        class="table-dark"><i class="fa
+                                            fa-sort"></i>&nbsp;Aadhar
+                                        No.</th>
+                                    <th (click)="sort('customerPanNumber')"
+                                        class="table-dark"><i class="fa
+                                            fa-sort"></i>&nbsp;Pan
+                                        No.</th>
+                                    <th (click)="sort('customerDOB')"
+                                        class="table-dark"><i class="fa
+                                            fa-sort"></i>&nbsp;DOB</th>
+                                    <th class="table-dark">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="table-light" *ngFor="let
+                                    customer
+                                    of
+                                    customerList | orderBy: key :
+                                    reverse |
+                                    paginate : {id :
+                                    'listing_pagination',
+                                    itemsPerPage : 10,
+                                    currentPage : page,
+                                    totalItems : totalLength
+                                    }; let i=index">
+                                    <td>{{ (page - 1) * 10 + i +1 }}</td>
+                                    <td><a
+                                            href="/transaction/{{businessId}}/{{customer.customerId}}">{{customer.customerName}}</a></td>
+                                    <td>{{customer.customerCredit}}</td>
+                                    <td>{{customer.customerDebit}}</td>
+                                    <td>{{customer.customerPending}}</td>
+                                    <td>{{customer.customerContact}}</td>
+                                    <td>{{customer.customerAddress}}</td>
+                                    <td>{{customer.customerAadharNumber}}</td>
+                                    <td>{{customer.customerPanNumber}}</td>
+                                    <td>{{customer.customerDOB}}</td>
+                                    <td>
+                                        <a style="color: #FFC107;"
+                                            class="edit"
+                                            title="Edit"
+                                            data-toggle="tooltip"
+                                            (click)="editCustomerForm(customer)"><i
+                                                class="material-icons">&#xE254;</i></a>
+                                        <a style="color: #E34724;"
+                                            class="delete"
+                                            title="Delete"
+                                            data-toggle="tooltip"
+                                            (click)="deleteCustomerForm(customer)"><i
+                                                class="material-icons">&#xE872;</i></a>
+                                        <a style="color: green;"
+                                            class="delete"
+                                            title="Transaction"
+                                            data-toggle="tooltip"
+                                            (click)="transactionForm(customer)"><i
+                                                class="material-icons">&#xe263;</i></a>
+                                        <a style="color: blue;"
+                                            class="delete"
+                                            title="info"
+                                            data-toggle="tooltip"
+                                            href="/profit/{{businessId}}/{{customer.customerId}}"><i
+                                                class="material-icons">&#xe88f;</i></a>
+                                    </td>
+                                </tr>
+
+                            </tbody>
+                            <tbody>
+                                <tr class="table-info">
+                                    <td></td>
+                                    <td>Total </td>
+                                    <td>{{totalCredit}}</td>
+                                    <td>{{totalDebit}}</td>
+                                    <td>{{totalPending}}</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <div>
+                            <pagination-controls style="color:white;"
+                                id="listing_pagination"
+                                (pageChange)="page=
+                                $event"></pagination-controls>
+                        </div>
+                    </ng-template>
+                    <!-- Customer List Pagination Table -->
 
 
+                    <!-- Customer List Search Table -->
+                    <ng-template #other_content>
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th (click)="sort('customerId')"
+                                        class="table-dark"><i class="fa
+                                            fa-sort"></i>&nbsp;Sr</th>
+                                    <th (click)="sort('customerName')"
+                                        class="table-dark"><i class="fa
+                                            fa-sort"></i>&nbsp;Name</th>
+                                    <th (click)="sort('customerCredit')"
+                                        class="table-dark"><i class="fa
+                                            fa-sort"></i>&nbsp;Credit</th>
+                                    <th (click)="sort('customerDebit')"
+                                        class="table-dark"><i class="fa
+                                            fa-sort"></i>&nbsp;Debit</th>
+                                    <th (click)="sort('customerPending')"
+                                        class="table-dark"><i class="fa
+                                            fa-sort"></i>&nbsp;Pending</th>
+                                    <th (click)="sort('customerContact')"
+                                        class="table-dark"><i class="fa
+                                            fa-sort"></i>&nbsp;Contact</th>
+                                    <th (click)="sort('customerAddress')"
+                                        class="table-dark"><i class="fa
+                                            fa-sort"></i>&nbsp;Address</th>
+                                    <th (click)="sort('customerAadharNumber')"
+                                        class="table-dark"><i class="fa
+                                            fa-sort"></i>&nbsp;Aadhar
+                                        No.</th>
+                                    <th (click)="sort('customerPanNumber')"
+                                        class="table-dark"><i class="fa
+                                            fa-sort"></i>&nbsp;Pan
+                                        No.</th>
+                                    <th (click)="sort('customerDOB')"
+                                        class="table-dark"><i class="fa
+                                            fa-sort"></i>&nbsp;DOB</th>
+                                    <th class="table-dark">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="table-light" *ngFor="let customer of
+                                    customerList | orderBy: key :
+                                    reverse | filter:text; let i=index">
+                                    <td>{{ (page - 1) * 10 + i +1 }}</td>
+                                    <td><a
+                                            href="/transaction/{{businessId}}/{{customer.customerId}}">{{customer.customerName}}</a></td>
+                                    <td>{{customer.customerCredit}}</td>
+                                    <td>{{customer.customerDebit}}</td>
+                                    <td>{{customer.customerPending}}</td>
+                                    <td>{{customer.customerContact}}</td>
+                                    <td>{{customer.customerAddress}}</td>
+                                    <td>{{customer.customerAadharNumber}}</td>
+                                    <td>{{customer.customerPanNumber}}</td>
+                                    <td>{{customer.customerDOB}}</td>
+                                    <td>
+                                        <a style="color: #FFC107;"
+                                            class="edit"
+                                            title="Edit"
+                                            data-toggle="tooltip"
+                                            (click)="editCustomerForm(customer)"><i
+                                                class="material-icons">&#xE254;</i></a>
+                                        <a style="color: #E34724;"
+                                            class="delete"
+                                            title="Delete"
+                                            data-toggle="tooltip"
+                                            (click)="deleteCustomerForm(customer)"><i
+                                                class="material-icons">&#xE872;</i></a>
+                                        <a style="color: green;"
+                                            class="delete"
+                                            title="Transaction"
+                                            data-toggle="tooltip"
+                                            (click)="transactionForm(customer)"><i
+                                                class="material-icons">&#xe263;</i></a>
+                                        <a style="color: blue;"
+                                            class="delete"
+                                            title="info"
+                                            data-toggle="tooltip"
+                                            href="/profit/{{businessId}}/{{customer.customerId}}"><i
+                                                class="material-icons">&#xe88f;</i></a>
+                                    </td>
+                                </tr>
 
-                <!-- Customer List Pagination Table -->
-                <ng-template #content>
-                    <table class="table table-hover">
-                        <thead>
-                            <tr>
-                                <th (click)="sort('customerId')"
-                                    class="table-dark"><i class="fa fa-sort"></i>&nbsp;Sr</th>
-                                <th (click)="sort('customerName')"
-                                    class="table-dark"><i class="fa fa-sort"></i>&nbsp;Name</th>
-                                <th (click)="sort('customerCredit')"
-                                    class="table-dark"><i class="fa fa-sort"></i>&nbsp;Credit</th>
-                                <th (click)="sort('customerDebit')"
-                                    class="table-dark"><i class="fa fa-sort"></i>&nbsp;Debit</th>
-                                <th (click)="sort('customerPending')"
-                                    class="table-dark"><i class="fa fa-sort"></i>&nbsp;Pending</th>
-                                <th (click)="sort('customerContact')"
-                                    class="table-dark"><i class="fa fa-sort"></i>&nbsp;Contact</th>
-                                <th (click)="sort('customerAddress')"
-                                    class="table-dark"><i class="fa fa-sort"></i>&nbsp;Address</th>
-                                <th (click)="sort('customerAadharNumber')"
-                                    class="table-dark"><i class="fa fa-sort"></i>&nbsp;Aadhar
-                                    No.</th>
-                                <th (click)="sort('customerPanNumber')"
-                                    class="table-dark"><i class="fa fa-sort"></i>&nbsp;Pan
-                                    No.</th>
-                                <th (click)="sort('customerDOB')"
-                                    class="table-dark"><i class="fa fa-sort"></i>&nbsp;DOB</th>
-                                <th class="table-dark">Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr class="table-light" *ngFor="let
-                                customer
-                                of
-                                customerList | orderBy: key :
-                                reverse |
-                                paginate : {id :
-                                'listing_pagination',
-                                itemsPerPage : 10,
-                                currentPage : page,
-                                totalItems : totalLength
-                                }; let i=index">
-                                <td>{{ (page - 1) * 10 + i +1 }}</td>
-                                <td (click)="sort('id')"><a
-                                        href="/transaction/{{businessId}}/{{customer.customerId}}">{{customer.customerName}}</a></td>
-                                <td>{{customer.customerCredit}}</td>
-                                <td>{{customer.customerDebit}}</td>
-                                <td>{{customer.customerPending}}</td>
-                                <td>{{customer.customerContact}}</td>
-                                <td>{{customer.customerAddress}}</td>
-                                <td>{{customer.customerAadharNumber}}</td>
-                                <td>{{customer.customerPanNumber}}</td>
-                                <td>{{customer.customerDOB}}</td>
-                                <td>
-                                    <a style="color: #FFC107;"
-                                        class="edit"
-                                        title="Edit"
-                                        data-toggle="tooltip"
-                                        (click)="editCustomerForm(customer)"><i
-                                            class="material-icons">&#xE254;</i></a>
-                                    <a style="color: #E34724;"
-                                        class="delete"
-                                        title="Delete"
-                                        data-toggle="tooltip"
-                                        (click)="deleteCustomerForm(customer)"><i
-                                            class="material-icons">&#xE872;</i></a>
-                                    <a style="color: green;"
-                                        class="delete"
-                                        title="Transaction"
-                                        data-toggle="tooltip"
-                                        (click)="transactionForm(customer)"><i
-                                            class="material-icons">&#xe263;</i></a>
-                                    <a style="color: blue;"
-                                        class="delete"
-                                        title="info"
-                                        data-toggle="tooltip"
-                                        href="/profit/{{businessId}}/{{customer.customerId}}"><i
-                                            class="material-icons">&#xe88f;</i></a>
-                                </td>
-                            </tr>
-
-                        </tbody>
-                        <tbody>
-                            <tr class="table-info">
-                                <td></td>
-                                <td>Total </td>
-                                <td>{{totalCredit}}</td>
-                                <td>{{totalDebit}}</td>
-                                <td>{{totalPending}}</td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                        </tbody>
-                    </table>
-
-                    <div>
-                        <pagination-controls style="color:white;"
-                            id="listing_pagination"
-                            (pageChange)="page=
-                            $event"></pagination-controls>
-                    </div>
-                </ng-template>
-                <!-- Customer List Pagination Table -->
-
-
-                <!-- Customer List Search Table -->
-                <ng-template #other_content>
-                    <table class="table table-hover">
-                        <thead>
-                            <tr>
-                                <th (click)="sort('customerId')"
-                                    class="table-dark"><i class="fa fa-sort"></i>&nbsp;Sr</th>
-                                <th (click)="sort('customerName')"
-                                    class="table-dark"><i class="fa fa-sort"></i>&nbsp;Name</th>
-                                <th (click)="sort('customerCredit')"
-                                    class="table-dark"><i class="fa fa-sort"></i>&nbsp;Credit</th>
-                                <th (click)="sort('customerDebit')"
-                                    class="table-dark"><i class="fa fa-sort"></i>&nbsp;Debit</th>
-                                <th (click)="sort('customerPending')"
-                                    class="table-dark"><i class="fa fa-sort"></i>&nbsp;Pending</th>
-                                <th (click)="sort('customerContact')"
-                                    class="table-dark"><i class="fa fa-sort"></i>&nbsp;Contact</th>
-                                <th (click)="sort('customerAddress')"
-                                    class="table-dark"><i class="fa fa-sort"></i>&nbsp;Address</th>
-                                <th (click)="sort('customerAadharNumber')"
-                                    class="table-dark"><i class="fa fa-sort"></i>&nbsp;Aadhar
-                                    No.</th>
-                                <th (click)="sort('customerPanNumber')"
-                                    class="table-dark"><i class="fa fa-sort"></i>&nbsp;Pan
-                                    No.</th>
-                                <th (click)="sort('customerDOB')"
-                                    class="table-dark"><i class="fa fa-sort"></i>&nbsp;DOB</th>
-                                <th class="table-dark">Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr class="table-light" *ngFor="let customer of
-                                customerList | orderBy: key :
-                                reverse | filter:text; let i=index">
-                                <td>{{ (page - 1) * 10 + i +1 }}</td>
-                                <td (click)="sort('id')"><a
-                                        href="/transaction/{{businessId}}/{{customer.customerId}}">{{customer.customerName}}</a></td>
-                                <td>{{customer.customerCredit}}</td>
-                                <td>{{customer.customerDebit}}</td>
-                                <td>{{customer.customerPending}}</td>
-                                <td>{{customer.customerContact}}</td>
-                                <td>{{customer.customerAddress}}</td>
-                                <td>{{customer.customerAadharNumber}}</td>
-                                <td>{{customer.customerPanNumber}}</td>
-                                <td>{{customer.customerDOB}}</td>
-                                <td>
-                                    <a style="color: #FFC107;"
-                                        class="edit"
-                                        title="Edit"
-                                        data-toggle="tooltip"
-                                        (click)="editCustomerForm(customer)"><i
-                                            class="material-icons">&#xE254;</i></a>
-                                    <a style="color: #E34724;"
-                                        class="delete"
-                                        title="Delete"
-                                        data-toggle="tooltip"
-                                        (click)="deleteCustomerForm(customer)"><i
-                                            class="material-icons">&#xE872;</i></a>
-                                    <a style="color: green;"
-                                        class="delete"
-                                        title="Transaction"
-                                        data-toggle="tooltip"
-                                        (click)="transactionForm(customer)"><i
-                                            class="material-icons">&#xe263;</i></a>
-                                    <a style="color: blue;"
-                                        class="delete"
-                                        title="info"
-                                        data-toggle="tooltip"
-                                        href="/profit/{{businessId}}/{{customer.customerId}}"><i
-                                            class="material-icons">&#xe88f;</i></a>
-                                </td>
-                            </tr>
-
-                        </tbody>
-                        <tbody>
-                            <tr class="table-info">
-                                <td></td>
-                                <td>Total </td>
-                                <td>{{totalCredit}}</td>
-                                <td>{{totalDebit}}</td>
-                                <td>{{totalPending}}</td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </ng-template>
+                            </tbody>
+                            <tbody>
+                                <tr class="table-info">
+                                    <td></td>
+                                    <td>Total </td>
+                                    <td>{{totalCredit}}</td>
+                                    <td>{{totalDebit}}</td>
+                                    <td>{{totalPending}}</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </ng-template>
                 <!-- Customer List Search Table -->
 
             </div>
-            <!-- Customer Table -->
-
-
         </div>
     </div>
 </body>

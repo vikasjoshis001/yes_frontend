@@ -20,17 +20,17 @@ a,u{
 #businessAddForm {
   padding: 1em;
   width: 60%;
-  height: 200px;
+  height: 250px;
   box-sizing: border-box;
   position: relative;
   margin: 0 auto;
   border-radius: 25px;
   top: auto;
-  background-color: grey;
+  background-color: rgb(14, 238, 208);
 }
 
 form label {
-  color: aqua;
+  color: black;
 }
 
 #searchBar {
