@@ -37,7 +37,7 @@ a,u{
 }
 form {
   position: relative;
-  top: 200px;
+  top: 150px;
 }
 
 #title {
@@ -48,13 +48,7 @@ form {
   font-size: 100px;
 }
 
-img {
-  position: relative;
-  margin-left: 500px;
-  top: 100px;
-}
-
 #error {
   position: relative;
-  top: 300px;
+  top: 250px;
 }

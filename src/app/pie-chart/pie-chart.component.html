@@ -1,0 +1,40 @@
+<body>
+    <div class="intro">
+        <div class="container">
+
+             <!-- Title -->
+             <div style="text-align: center">
+                <h2>
+                    <span
+                        style="position:relative;top:20px;color:white"
+                        class="pacificofont"><b><i>{{
+                                businessName|titlecase }} Management</i></b></span>
+                </h2>
+            </div>
+            <br><br>
+            <!-- Title -->
+
+            <div style="margin-left:180px;color:white;">
+                <ul style="list-style-type:disc">
+                    <li><b>Total Credit :- {{totalCredit}}</b></li>
+                    <li><b>Total Debit :- {{totalDebit}}</b></li>
+                    <li><b>Total Pending :- {{totalPending}}</b></li>
+                  </ul>
+            </div>
+
+            <div style="position:absolute;top:130px;margin-left:350px;display:block;width:500px; height:
+                400px;">
+                <canvas baseChart
+                    height="1vh"
+                    [data]="pieChartData"
+                    [labels]="pieChartLabels"
+                    [chartType]="pieChartType"
+                    [options]="pieChartOptions"
+                    [plugins]="pieChartPlugins"
+                    [legend]="pieChartLegend"
+                    [colors]="pieChartColor">
+                </canvas>
+            </div>
+        </div>
+    </div>
+</body>

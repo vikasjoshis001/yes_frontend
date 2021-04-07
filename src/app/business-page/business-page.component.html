@@ -52,7 +52,8 @@
           <div>
 
             <!-- Close Icon -->
-            <p onmouseover="" style="cursor: pointer;text-align:right;font-size:40px;"><a
+            <p onmouseover="" style="cursor:
+              pointer;text-align:right;font-size:40px;"><a
                 (click)="onClose()" style="color:black" class="close">&times;</a></p>
             <!-- Close Icon -->
 
@@ -107,7 +108,8 @@
           <div>
 
             <!-- Close Icon -->
-            <p onmouseover="" style="cursor: pointer;text-align:right;font-size:40px;"><a
+            <p onmouseover="" style="cursor:
+              pointer;text-align:right;font-size:40px;"><a
                 (click)="onClose()" style="color:black" class="close">&times;</a></p>
             <!-- Close Icon -->
 
@@ -201,13 +203,20 @@
                     class="edit"
                     title="Edit" data-toggle="tooltip"
                     (click)="editBusinessForm(business)"><i
-                      class="material-icons">&#xE254;</i></a>&nbsp;&nbsp;&nbsp;
+                      class="material-icons">&#xE254;</i></a>&nbsp;
                   <a onmouseover="" style="cursor: pointer;color: #E34724;"
                     class="delete"
                     title="Delete" data-toggle="tooltip"
                     (click)="deleteBusinessForm(business)"><i
-                      class="material-icons">&#xE872;</i></a>
+                      class="material-icons">&#xE872;</i></a>&nbsp;
+                  <a href="/piechart/{{
+                    business.businessId }}" onmouseover="" style="cursor:
+                    pointer;color:blue;"
+                    class="Chart"
+                    title="Chart" data-toggle="tooltip"><i
+                      class="material-icons">&#xe6c5;</i></a>
                 </span>
+                <!-- <app-customers-page [bid]="business.businessId"></app-customers-page> -->
               </li>
             </ul>
           </div>

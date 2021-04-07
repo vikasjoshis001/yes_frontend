@@ -73,6 +73,11 @@ export class AuthService {
     return this.http.post(environment.url + "addBusiness/", data, { headers: this.getToken() })
   }
 
+  BusinessManagement(data){
+    console.log("Business Management...")
+    return this.http.get(environment.url + "businessManagement/?businessId="+data, { headers: this.getToken() })
+  }
+
   // Customer Apis
   getCustomersList(data) {
     console.log("Fetching Customers List....");

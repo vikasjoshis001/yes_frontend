@@ -22,6 +22,9 @@ import { CopyCustomerPageComponent } from './copy-customer-page/copy-customer-pa
 import { AngularDataTableModule } from 'angular-data-table-library'
 import { OrderModule } from 'ngx-order-pipe';
 import { CustomerProfitPageComponent } from './customer-profit-page/customer-profit-page.component';
+import { PieChartComponent } from './pie-chart/pie-chart.component';
+import { ChartsModule } from 'ng2-charts';
+
 // My Modules
 
 @NgModule({
@@ -33,6 +36,7 @@ import { CustomerProfitPageComponent } from './customer-profit-page/customer-pro
     TransactionPageComponent,
     CopyCustomerPageComponent,
     CustomerProfitPageComponent,
+    PieChartComponent,
   ],
   imports: [
     BrowserModule,
@@ -46,6 +50,7 @@ import { CustomerProfitPageComponent } from './customer-profit-page/customer-pro
     ReactiveFormsModule,
     AngularDataTableModule,
     OrderModule,
+    ChartsModule
   ],
   providers: [AuthService, AuthGuard],
   bootstrap: [AppComponent]

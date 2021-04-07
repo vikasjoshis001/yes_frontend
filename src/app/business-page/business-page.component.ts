@@ -30,6 +30,7 @@ export class BusinessPageComponent implements OnInit {
     return this.authService.getBusinessList().subscribe((result) => {
       console.log("Business List Fetched Successfully....");
       this.businessList = result;
+      console.log(this.businessList)
       this.businessList = this.businessList.data['businessList'];
       this.businessList = this.businessList.reverse();
       this.totalRecords = this.businessList.length;
