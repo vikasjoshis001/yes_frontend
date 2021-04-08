@@ -14,7 +14,18 @@
             <br><br>
             <!-- Title -->
 
-            <div style="margin-left:180px;color:white;">
+            <div style="text-align: left">
+                <h2>
+                    <span
+                        style="position:absolute;top:170px;color:white"><b>Created On :- {{ businessCreatedAt }}</b></span>
+                        <br><br>
+                    <span
+                        style="position:absolute;top:230px;color:white"><b>Total Customers :- {{ totalCustomers }}</b></span>
+                </h2>
+            </div>
+            <br><br>
+
+            <div style="position:absolute;top:170px;margin-left:480px;color:white;">
                 <ul style="list-style-type:disc">
                     <li><b>Total Credit :- {{totalCredit}}</b></li>
                     <li><b>Total Debit :- {{totalDebit}}</b></li>
@@ -22,7 +33,7 @@
                   </ul>
             </div>
 
-            <div style="position:absolute;top:130px;margin-left:350px;display:block;width:500px; height:
+            <div style="position:absolute;top:130px;margin-left:650px;display:block;width:500px; height:
                 400px;">
                 <canvas baseChart
                     height="1vh"

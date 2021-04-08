@@ -7,11 +7,17 @@ import { CustomersPageComponent } from './customers-page/customers-page.componen
 import { TransactionPageComponent } from './transaction-page/transaction-page.component';
 import { CopyCustomerPageComponent } from './copy-customer-page/copy-customer-page.component';
 import { PieChartComponent } from './pie-chart/pie-chart.component';
+import { CustomerProfitPageComponent } from './customer-profit-page/customer-profit-page.component';
 
 const routes: Routes = [
   {
     path: "piechart/:businessId",
     component: PieChartComponent,
+    canActivate: [AuthGuard] 
+  },
+  {
+    path: "profit/:businessId/:customerId",
+    component: CustomerProfitPageComponent,
     canActivate: [AuthGuard] 
   },
   {
@@ -40,6 +46,10 @@ const routes: Routes = [
   },
   {
     path: "",
+    component: HomePageComponent
+  },
+  {
+    path: "**",
     component: HomePageComponent
   },
 ];

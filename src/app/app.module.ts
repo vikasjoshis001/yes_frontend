@@ -24,6 +24,7 @@ import { OrderModule } from 'ngx-order-pipe';
 import { CustomerProfitPageComponent } from './customer-profit-page/customer-profit-page.component';
 import { PieChartComponent } from './pie-chart/pie-chart.component';
 import { ChartsModule } from 'ng2-charts';
+import { Chart } from 'chart.js';
 
 // My Modules
 

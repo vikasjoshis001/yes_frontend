@@ -26,6 +26,8 @@ export class PieChartComponent implements OnInit {
   pieChartLegend
   pieChartOptions
   businessName;
+  businessCreatedAt;
+  totalCustomers;
   pieChartColor;
   constructor(private authService: AuthService, private route: ActivatedRoute) {
     monkeyPatchChartJsTooltip();
@@ -37,6 +39,8 @@ export class PieChartComponent implements OnInit {
       this.total = result
       this.total = this.total.data['totalList']
       this.businessName = this.total['businessName']
+      this.businessCreatedAt = this.total['businessCreatedAt']
+      this.totalCustomers = this.total['totalCustomers']
       this.totalCredit = this.total['totalCredit']
       this.totalDebit = this.total['totalDebit']
       this.totalPending = this.total['totalPending']
