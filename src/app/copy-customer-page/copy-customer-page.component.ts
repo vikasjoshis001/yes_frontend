@@ -74,6 +74,7 @@ export class CopyCustomerPageComponent implements OnInit {
     data.value['customersId'] = this.selectedCustomerIds;
     return this.authService.copyCustomer(data.value).subscribe((result) => {
       this.copied = result;
+      console.log(result)
       this.show_copy = false;
       this.changeCustomerStatus();     
       this.selectedCustomerIds = [-1, -2];

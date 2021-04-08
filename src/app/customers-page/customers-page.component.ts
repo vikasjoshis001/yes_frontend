@@ -3,7 +3,6 @@ import { ActivatedRoute } from '@angular/router';
 import { AuthService } from "../auth.service";
 import { Router } from "@angular/router";
 import { environment } from 'src/environments/environment';
-import { bindCallback } from 'rxjs';
 
 @Component({
   selector: 'app-customers-page',
@@ -54,7 +53,7 @@ export class CustomersPageComponent implements OnInit {
       this.totalPending = this.customerList.total["totalPending"]
       this.businessName = this.customerList.total["businessName"]
       this.customerList = this.customerList.data['customersList'];
-      this.customerList = this.customerList.reverse();      
+      this.customerList = this.customerList;      
       this.totalLength = this.customerList.length
     },
     (error) => {       
@@ -231,7 +230,7 @@ export class CustomersPageComponent implements OnInit {
   }
 
   // Sorting Function
-  key = 'id';
+  key;
   reverse = false;
   sort(key) {
     this.key = key;
