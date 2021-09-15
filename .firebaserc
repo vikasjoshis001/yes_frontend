@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "yes-multiservices": {
+      "hosting": {
+        "yes-frontend": [
+          "yes-multiservices"
+        ]
+      }
+    }
+  }
+}

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from "../auth.service";
 import { environment } from 'src/environments/environment';
+import {Router} from "@angular/router"
 
 @Component({
   selector: 'app-business-page',
@@ -23,7 +24,7 @@ export class BusinessPageComponent implements OnInit {
   editedBusiness;
   addedBusiness;
   errorMessage;
-  constructor(private authService: AuthService) { }
+  constructor(private router: Router,private authService: AuthService) { }
 
   // getBusiness Api Call
   getBusiness() {
@@ -54,7 +55,7 @@ export class BusinessPageComponent implements OnInit {
       console.log("Customer Added Successfully....")
       this.addedBusiness = result
       this.show_businessAdd_form = false;
-      location.assign(environment.frontend_url + "business/")
+      location.replace(environment.frontend_url + "business/")
     },
       (error) => {
         this.errorMessage = error;

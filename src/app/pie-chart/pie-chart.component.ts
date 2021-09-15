@@ -37,6 +37,7 @@ export class PieChartComponent implements OnInit {
   BusinessManagement() {
     this.authService.BusinessManagement(this.businessId).subscribe((result) => {
       this.total = result
+      console.log(result)
       this.total = this.total.data['totalList']
       this.businessName = this.total['businessName']
       this.businessCreatedAt = this.total['businessCreatedAt']

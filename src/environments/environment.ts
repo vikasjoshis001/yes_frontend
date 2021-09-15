@@ -4,8 +4,9 @@
 
 export const environment = {
   production: false,
-  url : "http://192.168.43.156:8000/",
-  frontend_url: "192.168.43.156:4200/"
+  url : "http://localhost:8000/",
+  // frontend_url: "http://localhost:4200/"
+  frontend_url: "https://yes-multiservices.web.app/"
 };
 
 /*
